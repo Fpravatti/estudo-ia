@@ -1,0 +1,5 @@
+# imagens de referência da trilha (não publicar)
+Conteudo/
+.claude/
+__pycache__/
+*.part

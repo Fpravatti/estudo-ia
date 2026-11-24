@@ -1,0 +1,112 @@
+[
+ {
+  "pergunta": "Qual destas tarefas é um exemplo típico de IA generativa, e não de IA tradicional de classificação?",
+  "opcoes": [
+   "Identificar se uma transação de cartão é fraude ou não",
+   "Escrever o rascunho de um e-mail respondendo a um cliente",
+   "Decidir se um e-mail é spam",
+   "Prever se um cliente vai cancelar a conta"
+  ],
+  "certa": 1,
+  "explicacao": "A IA generativa cria conteúdo novo, como um texto. As outras opções são tarefas de classificar ou prever, que são típicas da IA tradicional."
+ },
+ {
+  "pergunta": "Em essência, como um LLM gera uma resposta?",
+  "opcoes": [
+   "Buscando a resposta pronta em um banco de dados de perguntas e respostas",
+   "Consultando a internet a cada pergunta",
+   "Prevendo o próximo token repetidamente, usando o texto que já foi gerado",
+   "Seguindo regras escritas à mão por programadores"
+  ],
+  "certa": 2,
+  "explicacao": "O LLM gera texto prevendo um token de cada vez e colocando cada token gerado de volta no texto. Isso se chama geração autorregressiva. Sozinho, ele não consulta a internet nem um banco de respostas prontas."
+ },
+ {
+  "pergunta": "Uma equipe quer que o modelo extraia dados de contratos de forma consistente, sempre com a mesma resposta para o mesmo documento. Qual ajuste é o mais indicado?",
+  "opcoes": [
+   "Usar uma temperatura baixa",
+   "Usar uma temperatura alta",
+   "Aumentar o tamanho da resposta",
+   "Remover a mensagem de sistema"
+  ],
+  "certa": 0,
+  "explicacao": "Temperatura baixa faz o modelo escolher quase sempre as opções mais prováveis, deixando as respostas mais previsíveis e consistentes. Temperatura alta é melhor para tarefas criativas."
+ },
+ {
+  "pergunta": "Qual é a principal característica do pré-treinamento de um LLM?",
+  "opcoes": [
+   "Usa poucos exemplos de pergunta e resposta escritos por especialistas",
+   "Usa avaliações humanas para comparar respostas",
+   "É a fase mais barata e rápida do treinamento",
+   "Usa enormes quantidades de texto para aprender a prever o próximo token, sem rótulos humanos"
+  ],
+  "certa": 3,
+  "explicacao": "No pré-treinamento, o modelo aprende com enormes quantidades de texto a prever o próximo token. É autossupervisionado, porque o próprio texto traz a resposta, e é a fase mais cara de todas."
+ },
+ {
+  "pergunta": "O que é RLHF?",
+  "opcoes": [
+   "Uma técnica para reduzir o tamanho de um modelo",
+   "Aprendizado por reforço com feedback humano, em que pessoas avaliam respostas e o modelo aprende suas preferências",
+   "Um tipo de banco de dados para guardar documentos",
+   "Um ataque em que instruções maliciosas enganam o modelo"
+  ],
+  "certa": 1,
+  "explicacao": "RLHF é o aprendizado por reforço com feedback humano. Pessoas comparam respostas, e o modelo é ajustado para preferir as melhores, ficando mais útil, honesto e inofensivo."
+ },
+ {
+  "pergunta": "Um prompt traz três exemplos de mensagens já classificadas e, no final, uma nova mensagem para o modelo classificar. Como se chama essa técnica?",
+  "opcoes": [
+   "Zero-shot",
+   "Fine-tuning",
+   "Few-shot",
+   "Pré-treinamento"
+  ],
+  "certa": 2,
+  "explicacao": "Dar alguns exemplos dentro do prompt é few-shot. É uma forma de aprendizado em contexto: o modelo entende o padrão pelos exemplos, sem que os seus parâmetros sejam alterados, ao contrário do fine-tuning."
+ },
+ {
+  "pergunta": "Um chatbot parece lembrar o que o cliente disse várias mensagens atrás. Como isso normalmente funciona?",
+  "opcoes": [
+   "O modelo muda os seus parâmetros a cada mensagem",
+   "O modelo tem uma memória permanente de todos os usuários",
+   "O modelo consulta a data de corte",
+   "O aplicativo reenvia o histórico da conversa junto com cada nova mensagem"
+  ],
+  "certa": 3,
+  "explicacao": "O LLM não tem memória própria entre as chamadas. O aplicativo envia o histórico da conversa de novo a cada mensagem, e por isso conversas longas ficam mais caras e podem esbarrar no limite da janela de contexto."
+ },
+ {
+  "pergunta": "Um assistente precisa responder com base nas tabelas de tarifas do banco, que mudam com frequência. Qual técnica é a mais indicada para dar esse conhecimento ao modelo?",
+  "opcoes": [
+   "RAG, buscando os trechos certos dos documentos e colocando no prompt",
+   "Fine-tuning, retreinando o modelo a cada mudança de tarifa",
+   "Aumentar a temperatura",
+   "Pré-treinar um novo modelo do zero"
+  ],
+  "certa": 0,
+  "explicacao": "RAG serve para dar conhecimento externo e atualizável. Quando a tarifa muda, basta atualizar o documento. Fine-tuning é mais indicado para mudar comportamento, como estilo e formato."
+ },
+ {
+  "pergunta": "Um modelo cita, com total confiança, uma lei que não existe. Como se chama esse problema?",
+  "opcoes": [
+   "Viés",
+   "Data de corte",
+   "Alucinação",
+   "Latência"
+  ],
+  "certa": 2,
+  "explicacao": "Alucinação é quando o modelo gera uma informação falsa que parece verdadeira. Isso acontece porque ele aprendeu padrões de linguagem, e não um banco de fatos verificados."
+ },
+ {
+  "pergunta": "Qual destas atitudes está de acordo com os princípios de IA responsável?",
+  "opcoes": [
+   "Colar dados pessoais de clientes em qualquer ferramenta pública de IA para ganhar tempo",
+   "Manter uma pessoa responsável pelo sistema e revisando as decisões importantes",
+   "Esconder dos clientes que eles estão conversando com uma IA",
+   "Usar o modelo para aprovar créditos sem nenhuma avaliação de vieses"
+  ],
+  "certa": 1,
+  "explicacao": "Responsabilização e supervisão humana são princípios de IA responsável. As outras opções ferem a privacidade, a transparência e a justiça."
+ }
+]
