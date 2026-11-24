@@ -864,8 +864,9 @@ if ('serviceWorker' in navigator) {
     });
   }).catch(() => { /* sem service worker: funciona só online */ });
   let reloading = false;
+  const hadController = !!navigator.serviceWorker.controller; // 1ª visita: não recarrega
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (reloading) return; reloading = true; saveNow(); location.reload();
+    if (reloading || !hadController) return; reloading = true; saveNow(); location.reload();
   });
 }
 
