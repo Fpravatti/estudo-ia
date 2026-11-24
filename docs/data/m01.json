@@ -1,8 +1,8 @@
 {
  "id": "m01",
  "num": 1,
- "title": "O que é IA generativa",
- "subtitle": "Começando do zero: IA, LLMs, como aprendem e onde erram",
+ "title": "Fundamentos de IA generativa e LLMs",
+ "subtitle": "Tokens, Transformer, treinamento, fine-tuning, alinhamento, avaliação e ciclo de vida",
  "courses": [
   1,
   8,
@@ -10,428 +10,696 @@
   2
  ],
  "available": true,
- "lessonCount": 8,
- "questionCount": 10,
- "totalDuration": 3366,
- "audioBytes": 22780224,
+ "lessonCount": 10,
+ "questionCount": 15,
+ "totalDuration": 4983,
+ "audioBytes": 35653104,
  "lessons": [
   {
-   "id": "m01-01",
+   "id": "m01-01-panorama-e-modelos-fundacionais",
    "kind": "aula",
    "label": "Aula 1",
-   "title": "IA, machine learning e IA generativa: o mapa do território",
-   "summary": "O que é inteligência artificial, como as máquinas aprendem com exemplos e o que torna a IA generativa diferente.",
-   "audio": "audio/m01/01-o-que-e-ia-7ce02acca0.mp3",
-   "html": "<p>Olá, que bom ter você aqui! Esta é a primeira aula da sua jornada para se tornar um engenheiro de IA. Antes de começar, um combinado: você não precisa saber nada de tecnologia para acompanhar. Toda palavra difícil vai ser explicada. E se alguma parte não ficar clara de primeira, tudo bem. Você pode voltar quinze segundos no botão do player, ou ouvir a aula de novo amanhã. Repetir faz parte do método.</p>\n<p>Nesta aula, vamos desenhar o mapa do território. Vamos entender o que é inteligência artificial, o que é aprendizado de máquina, o que é deep learning, e onde entra a tal da IA generativa, que é o assunto principal da sua prova.</p>\n<h3>O que é inteligência artificial</h3>\n<p>Inteligência artificial, ou simplesmente IA, é o nome que damos a qualquer sistema de computador que realiza tarefas que, normalmente, precisariam de inteligência humana. Coisas como reconhecer um rosto, entender uma frase, traduzir um texto ou decidir se uma compra no cartão parece suspeita.</p>\n<p>Você usa IA o tempo todo, mesmo sem perceber. Quando o seu e-mail joga uma mensagem na caixa de spam, isso é IA. Quando a Netflix ou o Spotify recomendam algo que você acaba gostando, isso é IA. Quando o celular desbloqueia reconhecendo o seu rosto, também. E quando o banco bloqueia uma compra estranha no seu cartão e manda uma mensagem perguntando se foi você, isso é IA detectando fraude.</p>\n<h3>Programar regras ou aprender com exemplos</h3>\n<p>Para entender a grande virada da IA moderna, pense em duas formas de ensinar um computador.</p>\n<p>A primeira é a programação tradicional. Uma pessoa escreve regras, uma por uma. Por exemplo: se o e-mail tiver a palavra \"promoção\" e vier de um endereço desconhecido, mande para o spam. O problema é que o mundo é complicado demais para regras escritas à mão. Os spammers mudam as palavras, e as regras nunca dão conta de tudo.</p>\n<p>A segunda forma é o <strong>aprendizado de máquina</strong>, que em inglês se chama <strong>machine learning</strong>. Em vez de escrever as regras, a gente mostra milhares de exemplos para o computador, e ele descobre os padrões sozinho. Mostramos milhares de e-mails que são spam e milhares que não são, e o sistema aprende a diferença.</p>\n<p>É como ensinar uma criança a reconhecer um cachorro. Você não explica uma lista de regras do tipo \"tem quatro patas, tem pelo, tem focinho\". Você simplesmente aponta vários cachorros ao longo do tempo, e ela aprende. O aprendizado de máquina funciona com essa mesma ideia: aprender com exemplos.</p>\n<h3>Aprendizado supervisionado: de A para B</h3>\n<p>O tipo mais comum de aprendizado de máquina se chama <strong>aprendizado supervisionado</strong>. A ideia é simples: o sistema aprende a transformar uma entrada, que vamos chamar de A, em uma saída, que vamos chamar de B.</p>\n<p>Alguns exemplos. A entrada é um e-mail, e a saída é \"spam\" ou \"não spam\". A entrada é uma transação de cartão, e a saída é \"fraude\" ou \"normal\". A entrada é uma foto, e a saída é \"tem um gato\" ou \"não tem um gato\".</p>\n<p>Para aprender, o sistema precisa de muitos exemplos já com a resposta certa. Esses exemplos com resposta se chamam <strong>dados rotulados</strong>. O rótulo é justamente a resposta certa: este e-mail é spam, aquele não é. Guarde essa expressão, dados rotulados, porque ela vai aparecer de novo.</p>\n<h3>Deep learning e redes neurais</h3>\n<p>Dentro do aprendizado de máquina existe uma técnica que dominou a última década: o <strong>deep learning</strong>, que em português seria aprendizado profundo. Ele usa as chamadas <strong>redes neurais</strong>.</p>\n<p>Uma rede neural é um programa inspirado, de forma bem livre, no funcionamento do cérebro. Ela é formada por várias camadas de pequenas unidades de cálculo, ligadas umas às outras. A palavra \"profundo\" vem justamente daí: são muitas camadas, uma depois da outra. Cada camada aprende algo um pouco mais complexo que a anterior.</p>\n<p>O deep learning decolou por volta de 2012 por causa de três ingredientes que passaram a existir ao mesmo tempo. Primeiro, muitos dados disponíveis, graças à internet. Segundo, computadores muito mais potentes, principalmente as <strong>GPUs</strong>, que são chips criados originalmente para videogames e que fazem muitos cálculos em paralelo. E terceiro, avanços nas técnicas de treinamento. Uma regra que vale guardar: com redes neurais, quanto mais dados e mais poder de computação, melhor costuma ser o resultado.</p>\n<h3>E a IA generativa?</h3>\n<p>Agora chegamos ao centro da sua prova. A <strong>IA generativa</strong> é a parte da IA que <strong>cria conteúdo novo</strong>: textos, imagens, áudios, vídeos e até código de programação.</p>\n<p>Compare as duas perguntas. Uma IA tradicional responde algo como: \"este e-mail é spam?\". A resposta é uma classificação, sim ou não. Já uma IA generativa recebe um pedido como: \"escreva um e-mail educado pedindo o reembolso de uma compra\". E ela produz um texto inteiro, que não existia antes.</p>\n<p>A IA generativa ficou famosa para o grande público no final de 2022, com o lançamento do ChatGPT. Mas ela não é só texto. Existem modelos que geram imagens a partir de uma descrição, modelos que compõem música, que geram vídeos, e modelos que geram voz. Aliás, uma curiosidade: a voz que você está ouvindo agora foi gerada por IA.</p>\n<p>Os modelos que geram texto são chamados de <strong>LLMs</strong>, a sigla em inglês para modelos de linguagem grandes. Eles serão o assunto da próxima aula. Os modelos que geram imagens costumam usar uma técnica chamada <strong>difusão</strong>, que vamos ver no módulo 2.</p>\n<h3>As bonecas russas</h3>\n<p>Uma boa forma de guardar tudo isso é pensar naquelas bonecas russas, uma dentro da outra.</p>\n<p>A boneca maior é a <strong>inteligência artificial</strong>, o campo inteiro. Dentro dela está o <strong>aprendizado de máquina</strong>, que é a IA que aprende com exemplos. Dentro do aprendizado de máquina está o <strong>deep learning</strong>, que usa redes neurais com muitas camadas. E a <strong>IA generativa</strong> moderna é construída, quase toda, com deep learning.</p>\n<p>Uma observação importante: a IA generativa não substitui a IA tradicional. As duas convivem. Um banco continua usando modelos tradicionais para detectar fraude, por exemplo, e usa IA generativa para outras tarefas, como resumir documentos ou responder clientes.</p>\n<h3>E o que faz um engenheiro de IA?</h3>\n<p>Já que a sua trilha se chama \"Engenheiro de IA\", vale entender o papel. O engenheiro de IA é a pessoa que <strong>constrói aplicações usando modelos de IA</strong>. Na maioria das vezes, ele não cria um modelo do zero. Ele pega modelos prontos, como os que estão por trás do ChatGPT, e faz esses modelos trabalharem para resolver problemas reais.</p>\n<p>Isso envolve escrever boas instruções para o modelo, conectar o modelo aos dados da empresa, fazer o modelo usar ferramentas, avaliar se as respostas estão boas, colocar o sistema no ar e cuidar da segurança. Cada uma dessas tarefas é um módulo da sua trilha. Então, o mapa da sua jornada é justamente o dia a dia de um engenheiro de IA.</p>\n<h3>Resumo em um minuto</h3>\n<p>Inteligência artificial é o campo de sistemas que fazem tarefas que exigiriam inteligência humana. Aprendizado de máquina é a IA que aprende com exemplos, em vez de seguir regras escritas à mão. O aprendizado supervisionado aprende a ir de uma entrada A para uma saída B, usando dados rotulados. Deep learning é o aprendizado de máquina com redes neurais de muitas camadas, que se beneficia de muitos dados e de GPUs. E a IA generativa é a parte da IA que cria conteúdo novo, como texto, imagem, áudio e código.</p>\n<h3>Para a prova, lembre</h3>\n<ul><li>IA generativa cria conteúdo novo. IA tradicional costuma classificar ou prever.</li><li>Aprendizado supervisionado aprende de A para B usando dados rotulados.</li><li>Deep learning usa redes neurais com muitas camadas e melhora com mais dados e mais computação.</li><li>A ordem das bonecas: IA, depois aprendizado de máquina, depois deep learning, e a IA generativa construída sobre deep learning.</li><li>O engenheiro de IA constrói aplicações com modelos prontos, em vez de criar modelos do zero.</li></ul>",
-   "words": 1326,
-   "duration": 476
+   "title": "Panorama da IA generativa e modelos fundacionais",
+   "summary": "Onde a IA generativa se encaixa, tipos de modelos generativos, modelos fundacionais e quando usar IA generativa ou machine learning tradicional.",
+   "audio": "audio/m01/01-panorama-e-modelos-fundacionais-872593b5a8.mp3",
+   "html": "<p>Bem-vindo ao módulo 1, agora no nível da prova. A partir daqui, cada aula segue a mesma estrutura: qual problema o assunto resolve, como funciona por dentro, quando usar e quando não usar, as pegadinhas que costumam cair, e um cenário resolvido em voz alta, como se fosse uma questão. Se algum trecho não ficar claro, use o botão de dúvida do player. Ele guarda o ponto exato do áudio, e o curso vai sendo ajustado a partir das suas dúvidas.</p>\n<p>Nesta primeira aula, vamos montar o mapa técnico: onde a IA generativa se encaixa, que tipos de modelos generativos existem, o que é um modelo fundacional, e a decisão mais básica que um engenheiro de IA toma: usar IA generativa ou machine learning tradicional.</p>\n<h3>O mapa em trinta segundos</h3>\n<p>Inteligência artificial é o campo inteiro. Dentro dela, o <strong>machine learning</strong> aprende padrões a partir de dados em vez de regras escritas à mão. Dentro do machine learning, o <strong>deep learning</strong> usa redes neurais com muitas camadas. E a <strong>IA generativa</strong> é o conjunto de modelos, quase todos de deep learning, que <strong>geram conteúdo novo</strong>: texto, imagem, áudio, vídeo e código.</p>\n<p>A diferença prática é o tipo de saída. Um modelo <strong>discriminativo</strong>, que é o machine learning tradicional, aprende a separar categorias ou prever um número: fraude ou não fraude, probabilidade de cancelamento, valor de um imóvel. Um modelo <strong>generativo</strong> aprende a distribuição dos dados e produz exemplos novos parecidos com eles.</p>\n<h3>Os tipos de modelos generativos</h3>\n<p>Quatro famílias aparecem com frequência.</p>\n<p>A primeira são os <strong>modelos autorregressivos baseados em Transformer</strong>, que é o caso dos LLMs. Eles geram uma sequência um pedaço por vez, sempre prevendo o próximo token a partir dos anteriores. É a família dominante para texto e código.</p>\n<p>A segunda são os <strong>modelos de difusão</strong>, dominantes em imagem e cada vez mais em vídeo e áudio. Eles aprendem a remover ruído. No treino, a imagem vai recebendo ruído até virar estática pura, e o modelo aprende a desfazer esse processo passo a passo. Na geração, ele parte do ruído e vai limpando, guiado pelo texto do pedido. Veremos isso em detalhe no módulo 2.</p>\n<p>A terceira são as <strong>GANs</strong>, redes adversárias generativas. Duas redes competem: um gerador tenta criar exemplos falsos convincentes, e um discriminador tenta distinguir o falso do real. Foram muito usadas para imagens antes da difusão, mas são instáveis de treinar.</p>\n<p>A quarta são os <strong>VAEs</strong>, autoencoders variacionais. Eles comprimem os dados num espaço menor, chamado <strong>espaço latente</strong>, e aprendem a gerar a partir dele. Muitos modelos de difusão de imagem trabalham justamente nesse espaço latente, para economizar computação.</p>\n<p>Para a prova, a associação mais importante é: texto e código, Transformer autorregressivo; imagem, difusão.</p>\n<h3>Modelos fundacionais</h3>\n<p>O termo <strong>modelo fundacional</strong>, em inglês <strong>foundation model</strong>, foi popularizado por pesquisadores de Stanford em 2021. Ele descreve um modelo grande, treinado com dados amplos e variados, geralmente de forma autossupervisionada, que pode ser <strong>adaptado para muitas tarefas diferentes</strong>.</p>\n<p>A palavra-chave é adaptação. Antes, cada tarefa tinha o seu próprio modelo, treinado do zero com dados rotulados: um para classificar reclamações, outro para traduzir, outro para resumir. Com um modelo fundacional, um único modelo pré-treinado resolve todas essas tarefas, seja só com instruções no prompt, seja com um ajuste fino leve.</p>\n<p>Os LLMs são o exemplo mais conhecido de modelo fundacional, mas não o único. Existem modelos fundacionais de imagem, de áudio, e os <strong>multimodais</strong>, que recebem e às vezes geram mais de um tipo de dado, como texto e imagem ao mesmo tempo.</p>\n<p>Uma consequência econômica importante: treinar um modelo fundacional custa dezenas ou centenas de milhões de dólares, então pouquíssimas organizações fazem isso. O trabalho do engenheiro de IA quase sempre começa <strong>com um modelo fundacional pronto</strong>, e se concentra em escolher o modelo, adaptá-lo e colocá-lo em produção com qualidade, segurança e custo controlado.</p>\n<h3>Modelos abertos e modelos proprietários</h3>\n<p>Os modelos fundacionais se dividem em duas grandes categorias de acesso.</p>\n<p>Os <strong>proprietários</strong>, ou fechados, como as famílias GPT, Claude e Gemini, são acessados por uma API do fornecedor. Você não tem acesso aos pesos do modelo. As vantagens são a qualidade, geralmente no topo, e a simplicidade: não há infraestrutura para manter. As desvantagens são o custo por token, a dependência do fornecedor e o fato de os dados saírem do seu ambiente, o que exige atenção a contratos e à proteção de dados.</p>\n<p>Os <strong>de pesos abertos</strong>, como Llama, Mistral, Qwen e Gemma, podem ser baixados e executados na sua própria infraestrutura. As vantagens são controle total, privacidade dos dados, possibilidade de fine-tuning profundo e custo previsível em grande escala. As desvantagens são a necessidade de GPUs, de uma equipe para operar, e o cuidado com a <strong>licença</strong>, porque nem toda licença aberta permite qualquer uso comercial.</p>\n<p>Repare que \"pesos abertos\" não é o mesmo que \"código aberto\" no sentido completo. Muitas vezes os pesos são liberados, mas os dados e o código de treinamento não.</p>\n<h3>Quando usar IA generativa e quando não usar</h3>\n<p>Esta é a decisão mais cobrada em provas de nível profissional, e a regra é simples de enunciar.</p>\n<p>Use <strong>machine learning tradicional</strong> quando a entrada é <strong>estruturada</strong>, como tabelas com colunas numéricas e categóricas, e a saída é <strong>uma classe ou um número</strong>. Detecção de fraude em transações, previsão de inadimplência, previsão de demanda, risco de crédito. Nesses casos, modelos como regressão logística ou árvores de decisão com gradient boosting são mais baratos, mais rápidos, mais precisos e mais fáceis de explicar a um regulador.</p>\n<p>Use <strong>IA generativa</strong> quando a entrada ou a saída é <strong>não estruturada</strong>: texto livre, documentos, imagens, áudio, conversas. Resumir contratos, responder dúvidas a partir de manuais, extrair campos de documentos com formatos variados, gerar código, classificar mensagens de texto livre sem ter milhares de exemplos rotulados.</p>\n<p>Há também a zona intermediária. Classificar reclamações em texto, por exemplo, pode ser feito com um LLM e um bom prompt, sem nenhum dado rotulado, ou com um modelo tradicional treinado com milhares de exemplos rotulados. O LLM permite começar em dias. O modelo tradicional pode sair mais barato por previsão quando o volume é enorme. Uma estratégia comum é começar com o LLM, coletar dados, e depois avaliar se vale treinar um modelo menor e especializado.</p>\n<h3>Pegadinhas de prova</h3>\n<p>Primeira pegadinha: a alternativa que usa um LLM para um problema tabular clássico. Se a questão fala em prever fraude a partir de transações estruturadas e exige explicabilidade, a resposta raramente é um LLM.</p>\n<p>Segunda: confundir <strong>modelo fundacional</strong> com <strong>modelo de pesos abertos</strong>. Um modelo fundacional pode ser proprietário ou aberto. Fundacional diz respeito à forma de treinar e usar, e não à licença.</p>\n<p>Terceira: achar que difusão gera texto e Transformer gera imagem como padrão. Existem exceções, mas a associação padrão é Transformer para texto e difusão para imagem.</p>\n<h3>Cenário resolvido</h3>\n<p>Um banco quer duas coisas. Primeiro, prever quais clientes têm risco de atrasar o pagamento do cartão no próximo mês, a partir do histórico de transações e de dados cadastrais. Segundo, responder automaticamente perguntas dos clientes sobre as regras do programa de pontos, que estão em um regulamento de quarenta páginas. Qual combinação faz mais sentido?</p>\n<p>Vamos raciocinar. O primeiro problema tem entrada estruturada, saída numérica ou binária, e um contexto regulado que exige explicar a decisão. É um caso clássico de machine learning tradicional. O segundo problema tem entrada e saída em texto livre, e o conhecimento está num documento. É um caso de IA generativa, e mais especificamente de um LLM com recuperação dos trechos certos do regulamento, a técnica RAG, que veremos no módulo 5.</p>\n<p>Resposta: machine learning tradicional para o risco de atraso, e um LLM com RAG para as perguntas sobre o regulamento. A alternativa que usa um LLM para as duas coisas é a armadilha.</p>\n<h3>Resumo em um minuto</h3>\n<p>A IA generativa gera conteúdo novo, enquanto o machine learning tradicional, discriminativo, classifica ou prevê. As principais famílias generativas são os Transformers autorregressivos, para texto, a difusão, para imagem, além das GANs e dos VAEs. Um modelo fundacional é treinado com dados amplos e adaptado para muitas tarefas, e pode ser proprietário, acessado por API, ou de pesos abertos, executado na sua infraestrutura. Para dados estruturados com saída numérica ou de classe, prefira machine learning tradicional. Para dados não estruturados, IA generativa.</p>",
+   "words": 1389,
+   "duration": 599
   },
   {
-   "id": "m01-02",
+   "id": "m01-02-tokens-e-parametros-de-inferencia",
    "kind": "aula",
    "label": "Aula 2",
-   "title": "O que é um LLM e como ele gera texto",
-   "summary": "Prever a próxima palavra, tokens, parâmetros, temperatura, janela de contexto e data de corte.",
-   "audio": "audio/m01/02-o-que-e-um-llm-5acc488aaf.mp3",
-   "html": "<p>Na aula passada, vimos que a IA generativa cria conteúdo novo, e que os modelos que geram texto se chamam LLMs. Agora vamos abrir essa caixa e entender, de um jeito simples, o que é um LLM e como ele consegue escrever.</p>\n<h3>O nome: modelo de linguagem grande</h3>\n<p>LLM é a sigla em inglês para <strong>Large Language Model</strong>, ou seja, <strong>modelo de linguagem grande</strong>.</p>\n<p>\"Modelo\" é o programa que aprendeu alguma coisa a partir de dados. \"De linguagem\" porque ele trabalha com texto, com a nossa língua. E \"grande\" porque ele é enorme, em dois sentidos que vamos ver daqui a pouco: ele aprendeu com uma quantidade gigantesca de texto, e ele tem bilhões de peças internas ajustáveis.</p>\n<p>Exemplos de LLMs que você provavelmente já ouviu falar: o GPT, da OpenAI, que está por trás do ChatGPT. O Claude, da Anthropic. O Gemini, do Google. E o Llama, da Meta. Existem muitos outros.</p>\n<h3>A grande ideia: prever a próxima palavra</h3>\n<p>Aqui está o segredo mais importante desta aula. Um LLM, no fundo, faz uma coisa só: ele <strong>prevê qual é a próxima palavra</strong> de um texto.</p>\n<p>Se eu digo \"o céu está...\", você provavelmente completa com \"azul\". Se eu digo \"feliz aniversário, muitos anos de...\", você completa com \"vida\". Você faz isso porque já ouviu essas frases muitas vezes. O LLM faz a mesma coisa, só que aprendeu com uma quantidade de texto que nenhum ser humano conseguiria ler em mil vidas.</p>\n<p>Sabe o corretor do celular, que sugere a próxima palavra enquanto você digita? Um LLM é como esse corretor, só que turbinado a um nível impressionante.</p>\n<p>E como ele escreve um texto inteiro, se só prevê uma palavra? Ele faz isso em repetição. Ele prevê uma palavra, coloca essa palavra no final do texto, e aí prevê a próxima, olhando para tudo o que já foi escrito. Depois a próxima, e a próxima. É por isso que, no ChatGPT, a resposta vai aparecendo aos poucos na tela. Esse jeito de gerar, um pedaço de cada vez, usando o que já foi gerado, tem um nome técnico: geração <strong>autorregressiva</strong>.</p>\n<h3>Tokens: os pedacinhos de texto</h3>\n<p>Eu falei \"próxima palavra\" para simplificar, mas, na verdade, o modelo trabalha com <strong>tokens</strong>. Um token é um pedaço de texto. Pode ser uma palavra inteira, um pedaço de palavra, ou até um sinal de pontuação.</p>\n<p>Por exemplo, uma palavra comum e curta pode ser um token só. Já uma palavra longa ou rara costuma ser quebrada em dois ou três tokens. Em inglês, um token equivale, em média, a uns três quartos de uma palavra. Em português, o mesmo texto costuma gastar um pouco mais de tokens.</p>\n<p>Por que isso importa? Por dois motivos práticos. Primeiro, o <strong>custo</strong>: quando uma empresa usa um LLM pago, ela paga por quantidade de tokens. Segundo, o <strong>limite</strong>: todo modelo tem um limite de quantos tokens consegue processar de uma vez. Guarde a palavra token, porque ela vai aparecer em quase todos os módulos.</p>\n<h3>Por que \"grande\": dados e parâmetros</h3>\n<p>Lembra que o modelo é grande em dois sentidos? O primeiro é a quantidade de <strong>dados de treinamento</strong>. Os LLMs modernos aprendem com trilhões de tokens: páginas da internet, livros, artigos, código de programação.</p>\n<p>O segundo sentido são os <strong>parâmetros</strong>. Parâmetros são os números internos do modelo que vão sendo ajustados durante o treinamento. Pense neles como milhões de pequenos botões de volume. No começo, os botões estão em posições aleatórias, e o modelo só fala besteira. Durante o treinamento, cada vez que o modelo erra a próxima palavra, os botões são girados um pouquinho na direção certa. Depois de bilhões de ajustes, os botões ficam numa posição em que o modelo acerta muito bem. Os LLMs atuais têm de alguns bilhões até centenas de bilhões de parâmetros, ou mais.</p>\n<h3>O motor por trás: o Transformer</h3>\n<p>Quase todos os LLMs modernos usam um tipo de rede neural chamado <strong>Transformer</strong>. Ele foi apresentado por pesquisadores do Google em 2017, num artigo famoso chamado \"Attention is all you need\", que significa \"atenção é tudo de que você precisa\". A propósito, o \"T\" de GPT vem de Transformer.</p>\n<p>A grande sacada do Transformer é o <strong>mecanismo de atenção</strong>. Ele permite que o modelo, ao processar cada palavra, olhe para todas as outras palavras do texto e decida quais são importantes para entender o sentido.</p>\n<p>Um exemplo. Na frase \"sentei no banco da praça\", a palavra \"banco\" é um assento. Na frase \"abri uma conta no banco\", é uma instituição financeira. O mecanismo de atenção faz o modelo olhar para \"praça\" ou para \"conta\" e entender qual dos dois sentidos é o certo. Vamos estudar isso com calma no módulo 2.</p>\n<h3>Probabilidade e temperatura</h3>\n<p>Quando o modelo vai escolher o próximo token, ele não tem uma resposta única. Ele calcula uma <strong>probabilidade</strong> para cada token possível. Depois de \"o céu está\", talvez \"azul\" tenha uma chance alta, \"nublado\" uma chance média, e \"verde\" uma chance bem baixa.</p>\n<p>A partir dessas probabilidades, o modelo sorteia o próximo token, com um pouco de aleatoriedade. E existe um ajuste que controla essa aleatoriedade: a <strong>temperatura</strong>.</p>\n<p>Com <strong>temperatura baixa</strong>, o modelo quase sempre escolhe as opções mais prováveis. As respostas ficam mais previsíveis, mais consistentes e mais repetitivas. É bom para tarefas que pedem precisão, como extrair dados de um documento. Com <strong>temperatura alta</strong>, o modelo arrisca mais e escolhe opções menos prováveis. As respostas ficam mais variadas e criativas, mas também com mais chance de sair do rumo. É bom para brainstorm ou textos criativos.</p>\n<p>Existem ainda outros dois ajustes parecidos, chamados <strong>top-k</strong> e <strong>top-p</strong>. Eles limitam o sorteio às opções mais prováveis. O top-k diz: só sorteie entre as k opções mais prováveis, por exemplo as cinco melhores. O top-p diz: só sorteie entre as opções que, somadas, chegam a uma certa probabilidade. Não se preocupe com os detalhes agora. Basta lembrar que temperatura, top-k e top-p controlam o quanto a resposta é previsível ou criativa.</p>\n<p>É por causa desse sorteio que, se você fizer a mesma pergunta duas vezes ao ChatGPT, pode receber respostas diferentes.</p>\n<h3>Janela de contexto e data de corte</h3>\n<p>Mais dois conceitos importantes.</p>\n<p>A <strong>janela de contexto</strong> é a quantidade máxima de texto que o modelo consegue considerar de uma vez, contando a sua pergunta, todo o histórico da conversa e a resposta que ele está gerando. Ela é medida em tokens. É como a memória de trabalho do modelo: o que não cabe na janela, ele simplesmente não vê.</p>\n<p>A <strong>data de corte de conhecimento</strong> é a data em que terminaram os dados de treinamento do modelo. O modelo só conhece o mundo até ali. Se você perguntar sobre algo que aconteceu depois, ele não vai saber, a não ser que alguém dê essa informação para ele junto com a pergunta, ou que ele tenha acesso a uma ferramenta de busca. Isso acontece porque um LLM, sozinho, não consulta a internet. Ele gera respostas a partir do que aprendeu no treinamento.</p>\n<h3>Resumo em um minuto</h3>\n<p>LLM significa modelo de linguagem grande. Ele funciona prevendo o próximo token, várias vezes seguidas, num processo chamado autorregressivo. Tokens são pedaços de texto, e definem custo e limites. O modelo é grande porque aprendeu com trilhões de tokens e tem bilhões de parâmetros, que são os botões ajustados no treino. A arquitetura por trás é o Transformer, com seu mecanismo de atenção. A temperatura controla o quanto as respostas são previsíveis ou criativas. A janela de contexto é o limite do que o modelo enxerga de uma vez. E a data de corte é até quando vai o conhecimento dele.</p>\n<h3>Para a prova, lembre</h3>\n<ul><li>Um LLM gera texto prevendo o próximo token, um de cada vez.</li><li>Token é um pedaço de texto. Custo e limites dos modelos são medidos em tokens.</li><li>Parâmetros são os valores internos ajustados durante o treinamento.</li><li>O Transformer, de 2017, usa o mecanismo de atenção para entender o contexto.</li><li>Temperatura baixa deixa a resposta previsível. Temperatura alta deixa mais criativa e variada.</li><li>Janela de contexto é o máximo de tokens que o modelo processa de uma vez.</li><li>Sem ferramentas, o modelo não sabe de fatos posteriores à sua data de corte.</li></ul>",
-   "words": 1378,
-   "duration": 494
+   "title": "Tokens, geração e parâmetros de inferência",
+   "summary": "Tokenização, janela de contexto, como o modelo escolhe o próximo token, temperatura, top-k, top-p, limites de saída e latência.",
+   "audio": "audio/m01/02-tokens-e-parametros-de-inferencia-4958f9b52a.mp3",
+   "html": "<p>Nesta aula, vamos abrir o momento em que o modelo está gerando a resposta, que tecnicamente se chama <strong>inferência</strong>. Quase todo ajuste fino de comportamento em produção passa por aqui: por que a mesma pergunta dá respostas diferentes, por que o JSON às vezes vem cortado, por que a conta ficou mais cara do que o previsto. Tudo isso se explica por tokens e parâmetros de inferência.</p>\n<h3>O problema</h3>\n<p>O modelo não enxerga letras nem palavras. Ele enxerga números. Então precisamos de duas coisas: uma forma de transformar texto em números, que é a tokenização, e uma forma de transformar o que o modelo calcula de volta em texto, que é a decodificação. Cada uma tem consequências práticas de custo, limite e qualidade.</p>\n<h3>Tokenização</h3>\n<p>O <strong>tokenizador</strong> quebra o texto em pedaços chamados <strong>tokens</strong> e associa cada pedaço a um número, o seu identificador no <strong>vocabulário</strong> do modelo. Os vocabulários modernos têm dezenas de milhares até algumas centenas de milhares de tokens.</p>\n<p>Os tokenizadores atuais trabalham com <strong>subpalavras</strong>. Palavras frequentes viram um token só. Palavras raras são quebradas em pedaços menores. Isso resolve um problema antigo: com um vocabulário de palavras inteiras, qualquer palavra nova seria desconhecida. Com subpalavras, qualquer texto pode ser representado.</p>\n<p>Os algoritmos mais comuns são o <strong>BPE</strong>, Byte Pair Encoding, usado pelas famílias GPT e Llama, o <strong>WordPiece</strong>, usado pelo BERT, e o <strong>SentencePiece</strong>, usado por modelos como T5. Você não precisa saber como cada um funciona por dentro. Precisa saber que eles quebram o texto em subpalavras e que <strong>cada modelo tem o seu próprio tokenizador</strong>. O mesmo texto vira quantidades diferentes de tokens em modelos diferentes.</p>\n<p>Três consequências práticas. Primeira: <strong>custo</strong>. As APIs cobram por token de entrada e por token de saída, e o de saída costuma ser mais caro. Segunda: <strong>idioma</strong>. Os tokenizadores são otimizados principalmente para inglês, então um texto em português costuma gastar mais tokens do que o mesmo conteúdo em inglês. Terceira: <strong>números e letras</strong>. Como um número longo pode ser quebrado em pedaços arbitrários, e uma palavra não é vista letra por letra, os modelos têm dificuldade com aritmética exata e com tarefas como contar letras.</p>\n<h3>Janela de contexto</h3>\n<p>A <strong>janela de contexto</strong> é o número máximo de tokens que o modelo processa numa chamada, somando <strong>entrada e saída</strong>. Entram aí o system prompt, o histórico da conversa, os documentos inseridos e a resposta gerada.</p>\n<p>Se a soma passar do limite, a API recusa a chamada ou corta o texto. Por isso existe um parâmetro de <strong>tamanho máximo de saída</strong>, em inglês <strong>max tokens</strong>. Ele limita quantos tokens a resposta pode ter. Se o limite for baixo demais, a resposta é cortada no meio, e um JSON fica incompleto. Esse é um sintoma clássico em questões de troubleshooting: resposta truncada aponta para limite de tokens de saída ou para estouro da janela.</p>\n<h3>Como o modelo escolhe o próximo token</h3>\n<p>Em cada passo da geração, o modelo produz um valor bruto para cada token do vocabulário. Esses valores se chamam <strong>logits</strong>. Uma função chamada <strong>softmax</strong> transforma os logits numa <strong>distribuição de probabilidade</strong>: cada token recebe uma chance, e todas somam cem por cento.</p>\n<p>A partir daí, existem estratégias de escolha. A mais simples é a <strong>decodificação gulosa</strong>, em inglês <strong>greedy decoding</strong>: escolher sempre o token mais provável. É determinística, mas tende a produzir texto repetitivo. A alternativa é a <strong>amostragem aleatória</strong>: sortear o token de acordo com as probabilidades. Ela gera texto mais natural e variado, mas pode sair do rumo. Os parâmetros de inferência controlam esse sorteio.</p>\n<h3>Temperatura, top-k e top-p</h3>\n<p>A <strong>temperatura</strong> atua antes do softmax, dividindo os logits. <strong>Temperatura abaixo de um</strong> deixa a distribuição mais concentrada: o token mais provável fica ainda mais provável. <strong>Temperatura acima de um</strong> achata a distribuição: tokens improváveis ganham chance. <strong>Temperatura zero</strong>, na prática, equivale à decodificação gulosa.</p>\n<p>O <strong>top-k</strong> limita o sorteio aos <strong>k tokens mais prováveis</strong>. Com top-k igual a cinco, só os cinco melhores candidatos participam. Isso corta as opções absurdas da cauda da distribuição.</p>\n<p>O <strong>top-p</strong>, também chamado de <strong>amostragem de núcleo</strong>, ou <strong>nucleus sampling</strong>, limita o sorteio ao <strong>menor conjunto de tokens cuja probabilidade somada atinge p</strong>. Com top-p igual a zero vírgula nove, entram os tokens mais prováveis até somar noventa por cento. A vantagem sobre o top-k é que o tamanho do conjunto se adapta: quando o modelo está confiante, entram poucos tokens; quando está em dúvida, entram mais.</p>\n<p>Regra prática: para extração de dados, classificação e respostas factuais, use temperatura baixa. Para brainstorm e texto criativo, temperatura mais alta. E normalmente se ajusta <strong>ou</strong> a temperatura <strong>ou</strong> o top-p, e não os dois ao mesmo tempo de forma agressiva, porque os efeitos se somam e ficam difíceis de prever.</p>\n<p>Mais dois parâmetros aparecem muito: as <strong>sequências de parada</strong>, ou <strong>stop sequences</strong>, que encerram a geração quando um texto específico aparece, e as <strong>penalidades de repetição e de presença</strong>, que desestimulam o modelo a repetir tokens.</p>\n<p>Um detalhe que cai em prova: mesmo com temperatura zero, algumas APIs não garantem saída idêntica em todas as chamadas, por causa de detalhes de execução em GPU. Determinismo total não é garantido, mas temperatura zero chega perto.</p>\n<h3>Latência e o KV cache</h3>\n<p>Duas métricas de latência importam. O <strong>tempo até o primeiro token</strong>, em inglês <strong>time to first token</strong>, mede quanto demora para a resposta começar a aparecer. Ele cresce com o tamanho da entrada, porque o modelo precisa processar o prompt inteiro antes de gerar. E os <strong>tokens por segundo</strong> medem a velocidade de geração depois disso. O tempo total cresce com o tamanho da saída, porque cada token é gerado em sequência.</p>\n<p>Por isso, <strong>respostas longas são caras e lentas</strong>, e pedir respostas mais curtas é uma das otimizações mais simples. E o <strong>streaming</strong>, que mostra os tokens conforme são gerados, não reduz o tempo total, mas melhora muito a experiência percebida pelo usuário.</p>\n<p>Internamente, os servidores usam o <strong>KV cache</strong>, um cache das chaves e valores do mecanismo de atenção dos tokens já processados, para não recalcular tudo a cada novo token. Ele acelera a geração, mas consome memória da GPU que cresce com o tamanho do contexto. Por isso contextos muito longos custam caro também para quem hospeda o modelo.</p>\n<h3>Pegadinhas de prova</h3>\n<p>Primeira: achar que temperatura alta deixa o modelo mais inteligente ou mais preciso. Ela só aumenta a variedade.</p>\n<p>Segunda: tentar resolver JSON malformado com temperatura. Temperatura reduz variação, mas o remédio para formato é saída estruturada com esquema e validação, que veremos no módulo 3.</p>\n<p>Terceira: esquecer que a janela de contexto inclui a saída. Um prompt que ocupa quase toda a janela deixa pouco espaço para a resposta.</p>\n<h3>Cenário resolvido</h3>\n<p>Um assistente de atendimento gera respostas longas, que às vezes são cortadas no meio, e o custo mensal está acima do orçamento. Qual é a melhor combinação de ações?</p>\n<p>Resposta cortada no meio aponta para o limite de tokens de saída. Custo alto aponta para tokens demais, principalmente de saída, que são os mais caros. Então as ações são: instruir o modelo a responder de forma concisa, ajustar o max tokens com folga suficiente para a resposta esperada, e reduzir o contexto enviado, por exemplo resumindo o histórico antigo da conversa. Aumentar a temperatura não ajuda em nada aqui, e trocar para um modelo maior aumentaria ainda mais o custo.</p>\n<h3>Resumo em um minuto</h3>\n<p>O tokenizador quebra o texto em subpalavras, com algoritmos como BPE, WordPiece e SentencePiece, e cada modelo tem o seu. Custo e limites são medidos em tokens, e português gasta mais tokens que inglês. A janela de contexto soma entrada e saída. O modelo produz logits, o softmax gera probabilidades, e a escolha pode ser gulosa ou por amostragem. Temperatura baixa concentra, alta espalha. Top-k fica com os k melhores, top-p com o núcleo que soma p. Respostas longas aumentam custo e latência, e o streaming melhora a experiência sem reduzir o tempo total.</p>",
+   "words": 1328,
+   "duration": 560
   },
   {
-   "id": "m01-03",
+   "id": "m01-03-arquiteturas-transformer",
    "kind": "aula",
    "label": "Aula 3",
-   "title": "Como um LLM aprende: pré-treinamento, ajuste fino e feedback humano",
-   "summary": "As fases de treinamento de um LLM, o que é modelo base, fine-tuning, RLHF e por que os modelos erram.",
-   "audio": "audio/m01/03-como-um-llm-aprende-9af8403ead.mp3",
-   "html": "<p>Na aula passada, vimos que um LLM prevê o próximo token. Mas como ele chega a ser aquele assistente educado, que responde perguntas e segue instruções? Nesta aula, vamos acompanhar a formação de um LLM, do começo ao fim. E vou usar uma comparação que ajuda bastante: a formação de um profissional.</p>\n<h3>Fase 1: o pré-treinamento, ou a grande leitura</h3>\n<p>Imagine uma pessoa que, antes de começar a trabalhar, lê uma biblioteca inteira. Livros, enciclopédias, sites, fóruns, manuais, código de programação. Ela não está estudando para uma tarefa específica. Ela está só absorvendo como a língua funciona e como o mundo é descrito em texto.</p>\n<p>Essa é a primeira fase de um LLM, chamada <strong>pré-treinamento</strong>. O modelo recebe uma quantidade enorme de texto e pratica uma única tarefa, bilhões de vezes: prever o próximo token. A cada erro, os parâmetros são ajustados um pouquinho.</p>\n<p>Um detalhe importante: o pré-treinamento não precisa de dados rotulados por pessoas. O próprio texto já traz a resposta certa, porque a próxima palavra está ali, escrita. Por isso dizemos que é um aprendizado <strong>autossupervisionado</strong>. É isso que permite usar quantidades tão gigantescas de dados.</p>\n<p>O pré-treinamento é a fase mais cara de todas. Ele exige milhares de GPUs funcionando por semanas ou meses, e pode custar dezenas ou centenas de milhões de dólares. Por isso, poucas empresas no mundo fazem isso. A maioria das empresas, e a maioria dos engenheiros de IA, usa modelos que outros já pré-treinaram.</p>\n<h3>O resultado: o modelo base</h3>\n<p>Ao final do pré-treinamento, temos o que se chama de <strong>modelo base</strong>, ou modelo fundacional. Ele sabe muito sobre a língua e sobre o mundo. Mas ainda não é um bom assistente.</p>\n<p>Veja um exemplo curioso. Se você escrever para um modelo base \"qual é a capital da França?\", ele pode responder com \"qual é a capital da Alemanha? Qual é a capital da Itália?\". Por quê? Porque ele aprendeu a continuar textos. E, na internet, uma pergunta assim aparece muitas vezes dentro de listas de exercícios. Então ele continua a lista, em vez de responder.</p>\n<p>Ou seja: o modelo base tem conhecimento, mas ainda não aprendeu a seguir instruções.</p>\n<h3>Fase 2: o ajuste fino com instruções</h3>\n<p>Voltando à nossa pessoa que leu a biblioteca inteira: agora ela faz um estágio. Alguém mostra para ela milhares de exemplos de pedidos e de boas respostas. \"Quando te pedirem um resumo, é assim que se faz. Quando te fizerem uma pergunta, você responde de forma direta.\"</p>\n<p>Essa é a segunda fase, chamada <strong>ajuste fino</strong>, ou em inglês <strong>fine-tuning</strong>. Neste caso específico, é o ajuste fino com instruções, também chamado de ajuste fino supervisionado. O modelo é treinado com um conjunto bem menor de exemplos, desta vez preparados com cuidado, no formato pergunta e resposta ideal. Aqui, sim, entram dados rotulados.</p>\n<p>Depois dessa fase, o modelo aprende a se comportar como um assistente: entende que uma pergunta pede uma resposta, que um pedido de resumo pede um resumo, e assim por diante.</p>\n<h3>Fase 3: o feedback humano, ou RLHF</h3>\n<p>Ainda falta um passo. Imagine que agora a pessoa recebe feedback do chefe. Ela escreve duas versões de uma resposta, e o chefe diz qual ficou melhor. Com o tempo, ela aprende o que é considerado uma boa resposta.</p>\n<p>Essa é a terceira fase, chamada <strong>RLHF</strong>, sigla em inglês para <strong>aprendizado por reforço com feedback humano</strong>. Funciona assim: o modelo gera várias respostas para a mesma pergunta, e pessoas avaliam qual delas é a melhor. Com essas avaliações, o modelo é ajustado para dar mais respostas parecidas com as preferidas pelas pessoas.</p>\n<p>O objetivo é deixar o modelo mais alinhado com o que as pessoas esperam. Um jeito comum de resumir esse objetivo são três palavras em inglês que começam com H: <strong>helpful, honest e harmless</strong>. Ou seja: útil, honesto e inofensivo. Útil, porque ajuda de verdade. Honesto, porque não engana. E inofensivo, porque evita causar danos, como ensinar a fazer algo perigoso.</p>\n<p>As fases 2 e 3 juntas costumam ser chamadas de <strong>pós-treinamento</strong>. Existem outras técnicas além do RLHF, com nomes como DPO, mas a ideia geral é a mesma: ensinar o modelo a preferir as respostas que consideramos boas. Também é com técnicas de reforço que se treinam os modelos de raciocínio, que pensam passo a passo antes de responder. Vamos ver isso no módulo 2.</p>\n<h3>Fine-tuning nas empresas</h3>\n<p>Uma confusão comum: o fine-tuning não é feito só pelos criadores do modelo. Uma empresa também pode pegar um modelo já pronto e fazer o seu próprio ajuste fino, com os seus próprios dados.</p>\n<p>Por exemplo, uma empresa pode ajustar um modelo para escrever sempre no tom de voz da marca, ou para executar muito bem uma tarefa específica, como classificar reclamações de clientes em categorias internas. Isso é muito mais barato do que pré-treinar um modelo do zero, porque usa bem menos dados e computação.</p>\n<p>Existem até técnicas que tornam esse ajuste ainda mais barato, chamadas de <strong>ajuste fino eficiente em parâmetros</strong>, ou <strong>PEFT</strong>. Em vez de mexer em todos os bilhões de parâmetros, elas mexem só numa pequena parte, ou adicionam algumas peças extras pequenas. A técnica mais famosa desse grupo se chama <strong>LoRA</strong>. Por enquanto, basta saber que ela existe. Vamos estudar o treinamento em detalhe no módulo 9.</p>\n<h3>Tamanho importa, mas não é tudo</h3>\n<p>Modelos maiores, com mais parâmetros e treinados com mais dados, geralmente sabem mais e raciocinam melhor. Os pesquisadores observaram até um padrão chamado <strong>leis de escala</strong>: o desempenho melhora de forma previsível quando aumentamos o tamanho do modelo, a quantidade de dados e a computação.</p>\n<p>Mas modelos maiores também são mais caros e mais lentos. Para muitas tarefas simples, como classificar o assunto de um e-mail, um modelo pequeno dá conta muito bem, e custa uma fração do preço. Escolher o tamanho certo do modelo para cada tarefa é uma das decisões do engenheiro de IA.</p>\n<h3>Por que o modelo às vezes erra</h3>\n<p>Agora você já consegue entender por que um LLM às vezes inventa coisas. Ele aprendeu <strong>padrões de linguagem</strong>, e não um banco de fatos conferidos. Quando ele não sabe uma resposta, o mecanismo de prever o próximo token continua funcionando e produz algo que <strong>soa</strong> plausível, mesmo que seja falso.</p>\n<p>É como aquela pessoa que leu muito, mas não guardou tudo com precisão, e, na dúvida, responde com confiança em vez de dizer \"não sei\". Esse fenômeno tem nome: <strong>alucinação</strong>. É um dos temas da próxima aula.</p>\n<h3>Resumo em um minuto</h3>\n<p>Um LLM é formado em fases. No pré-treinamento, ele lê uma quantidade enorme de texto e aprende a prever o próximo token, sem precisar de rótulos humanos. É a fase mais cara, e gera o modelo base, que sabe muito, mas não segue instruções. No ajuste fino com instruções, ele aprende com exemplos de pedidos e boas respostas. No RLHF, ele aprende com avaliações humanas sobre quais respostas são melhores, para ser útil, honesto e inofensivo. Empresas também podem fazer seu próprio fine-tuning, inclusive com técnicas eficientes como LoRA. E como o modelo aprende padrões e não fatos verificados, ele pode alucinar.</p>\n<h3>Para a prova, lembre</h3>\n<ul><li>Pré-treinamento: muito texto, prever o próximo token, autossupervisionado, caríssimo.</li><li>Modelo base completa textos, mas não segue bem instruções.</li><li>Ajuste fino com instruções ensina o modelo a agir como assistente, com exemplos de pergunta e resposta.</li><li>RLHF é o aprendizado por reforço com feedback humano: pessoas avaliam respostas e o modelo aprende as preferências.</li><li>Pós-treinamento é o nome do conjunto: ajuste fino e alinhamento com preferências.</li><li>PEFT e LoRA fazem fine-tuning mexendo em poucos parâmetros, por isso são mais baratos.</li><li>Alucinação: o modelo gera algo que parece certo, mas é falso.</li></ul>",
-   "words": 1289,
-   "duration": 475
+   "title": "As três arquiteturas do Transformer",
+   "summary": "Encoder, decoder e encoder-decoder; objetivos de pré-treinamento; qual arquitetura serve para cada tarefa.",
+   "audio": "audio/m01/03-arquiteturas-transformer-c203c4ffb9.mp3",
+   "html": "<p>O Transformer, apresentado em 2017 no artigo \"Attention is all you need\", é a base de praticamente todos os LLMs. Mas existem três formas de montar um Transformer, e cada uma é boa em coisas diferentes. Escolher a arquitetura certa para a tarefa é uma questão clássica de prova, e é o assunto desta aula. O funcionamento interno da atenção fica para o módulo 2. Aqui, vamos ver a visão de arquitetura.</p>\n<h3>O problema</h3>\n<p>Antes do Transformer, os modelos de linguagem usavam <strong>redes recorrentes</strong>, que processavam o texto palavra por palavra, em sequência. Isso tinha dois problemas. Era lento, porque não dava para paralelizar o processamento. E o modelo \"esquecia\" o começo de textos longos.</p>\n<p>O Transformer resolveu os dois com o mecanismo de <strong>autoatenção</strong>, ou <strong>self-attention</strong>: cada token olha diretamente para todos os outros tokens da sequência e calcula o quanto cada um é relevante para entendê-lo. Isso permite processar a sequência inteira em paralelo nas GPUs, e captura relações entre palavras distantes.</p>\n<h3>As duas metades do Transformer original</h3>\n<p>O Transformer original tinha duas partes, porque foi criado para tradução.</p>\n<p>O <strong>encoder</strong>, ou codificador, lê a frase de entrada inteira e produz uma representação rica de cada token, levando em conta o contexto dos dois lados, antes e depois. Dizemos que a atenção dele é <strong>bidirecional</strong>.</p>\n<p>O <strong>decoder</strong>, ou decodificador, gera a saída um token por vez. A atenção dele é <strong>causal</strong>, ou mascarada: cada token só pode olhar para os tokens anteriores, nunca para os futuros. Faz sentido: na hora de gerar, o futuro ainda não existe.</p>\n<p>Desse desenho surgiram três famílias de modelos.</p>\n<h3>Família 1: só encoder</h3>\n<p>Os modelos <strong>encoder-only</strong>, como o <strong>BERT</strong> e seus derivados, usam só a parte do codificador. Eles são pré-treinados com o objetivo de <strong>modelagem de linguagem mascarada</strong>, em inglês <strong>masked language modeling</strong>: alguns tokens da frase são escondidos, e o modelo aprende a adivinhá-los usando o contexto dos dois lados.</p>\n<p>Como resultado, eles produzem ótimas representações do texto, mas <strong>não são feitos para gerar texto longo</strong>. São excelentes para tarefas de <strong>entendimento</strong>: classificação de sentimento, classificação de documentos, reconhecimento de entidades nomeadas, como nomes de pessoas, empresas e valores, e principalmente para gerar <strong>embeddings</strong>, os vetores numéricos que representam o significado de um texto e que são a base da busca semântica e do RAG.</p>\n<p>São modelos relativamente pequenos e baratos de executar, o que os torna muito usados em produção para classificação em grande volume.</p>\n<h3>Família 2: só decoder</h3>\n<p>Os modelos <strong>decoder-only</strong>, como as famílias <strong>GPT</strong>, <strong>Llama</strong>, <strong>Claude</strong> e a maioria dos LLMs atuais, usam só a parte do decodificador. São pré-treinados com <strong>modelagem de linguagem causal</strong>: prever o próximo token, olhando só para trás.</p>\n<p>Eles são feitos para <strong>geração</strong>: conversar, escrever, resumir, responder perguntas, gerar código. E, com escala suficiente, mostraram que conseguem fazer também as tarefas de entendimento, só com instruções no prompt. É por isso que dominam hoje.</p>\n<h3>Família 3: encoder-decoder</h3>\n<p>Os modelos <strong>encoder-decoder</strong>, também chamados de <strong>sequence to sequence</strong>, como o <strong>T5</strong> e o <strong>BART</strong>, mantêm as duas partes. O encoder lê a entrada inteira, e o decoder gera a saída consultando essa leitura.</p>\n<p>O T5 foi pré-treinado com um objetivo chamado <strong>corrupção de trechos</strong>, em inglês <strong>span corruption</strong>: trechos inteiros do texto são substituídos por marcadores, e o modelo aprende a gerar os trechos que faltam.</p>\n<p>Essa arquitetura é naturalmente boa para tarefas que <strong>transformam uma sequência de entrada em outra sequência</strong>: <strong>tradução</strong>, <strong>sumarização</strong> e reescrita. O FLAN-T5, uma versão do T5 ajustada com instruções, é muito usado em cursos e em aplicações menores.</p>\n<h3>A tabela mental</h3>\n<p>Vale guardar como uma tabela de três linhas.</p>\n<ul><li>Encoder-only, como o BERT: objetivo de tokens mascarados, atenção bidirecional, bom para classificação, entidades e embeddings.</li><li>Decoder-only, como GPT e Llama: objetivo de próximo token, atenção causal, bom para geração e uso geral.</li><li>Encoder-decoder, como T5 e BART: objetivo de reconstruir trechos, bom para tradução e sumarização.</li></ul>\n<h3>Embeddings: a ponte para o resto do curso</h3>\n<p>Vale aprofundar um conceito que aparece em quase todos os módulos. Dentro do Transformer, cada token é representado por um <strong>vetor</strong>, uma lista de centenas ou milhares de números. Esse vetor se chama <strong>embedding</strong>.</p>\n<p>A propriedade mágica dos embeddings é que <strong>textos com significado parecido ficam próximos</strong> nesse espaço de vetores, mesmo usando palavras diferentes. \"Quero cancelar meu cartão\" e \"como encerro minha conta do cartão\" geram vetores próximos. A proximidade é medida geralmente pela <strong>similaridade de cosseno</strong>.</p>\n<p>Modelos de embedding especializados, geralmente da família encoder, transformam frases e documentos inteiros em um vetor. Esses vetores são guardados em <strong>bancos de dados vetoriais</strong> e permitem a <strong>busca semântica</strong>: buscar por significado, e não por palavras exatas. É a base do RAG, assunto do módulo 5.</p>\n<h3>Pegadinhas de prova</h3>\n<p>Primeira: escolher um LLM gigante, decoder-only, para classificação de sentimento em altíssimo volume com orçamento apertado. Muitas vezes, um modelo encoder pequeno e ajustado é a resposta mais eficiente.</p>\n<p>Segunda: dizer que o BERT é um bom modelo para gerar textos longos. Não é. Ele é bidirecional e foi feito para entendimento.</p>\n<p>Terceira: confundir atenção bidirecional com causal. Bidirecional olha para os dois lados, e é do encoder. Causal olha só para trás, e é do decoder.</p>\n<h3>Cenário resolvido</h3>\n<p>Uma equipe precisa de três componentes: um classificador que rotula milhões de mensagens por dia em dez categorias, com baixo custo; um gerador de vetores para indexar documentos e permitir busca semântica; e um assistente que redige respostas personalizadas aos clientes. Qual combinação de arquiteturas é a mais adequada?</p>\n<p>Para classificar milhões de mensagens com baixo custo, um modelo encoder ajustado para classificação. Para gerar vetores de busca semântica, um modelo de embeddings, também tipicamente da família encoder. Para redigir respostas, um modelo decoder-only. A alternativa que propõe um único LLM gigante para tudo funciona tecnicamente, mas não é a mais eficiente em custo e latência, e numa prova profissional a palavra \"melhor\" quase sempre inclui custo.</p>\n<h3>Resumo em um minuto</h3>\n<p>O Transformer substituiu as redes recorrentes com a autoatenção, que processa a sequência em paralelo e captura relações distantes. Encoder-only, como o BERT, usa atenção bidirecional e tokens mascarados, e é ótimo para classificação e embeddings. Decoder-only, como GPT e Llama, usa atenção causal e previsão do próximo token, e domina a geração. Encoder-decoder, como T5 e BART, é natural para tradução e sumarização. Embeddings representam significado como vetores, e textos parecidos ficam próximos, o que sustenta a busca semântica.</p>",
+   "words": 1076,
+   "duration": 482
   },
   {
-   "id": "m01-04",
+   "id": "m01-04-pre-treinamento-e-escala",
    "kind": "aula",
    "label": "Aula 4",
-   "title": "O que a IA generativa faz bem e onde ela erra",
-   "summary": "As tarefas de escrever, ler e conversar; e as limitações: alucinação, data de corte, contexto, contas, vieses.",
-   "audio": "audio/m01/04-o-que-faz-bem-e-onde-erra-129fd94888.mp3",
-   "html": "<p>Já sabemos o que é um LLM e como ele aprende. Agora vem a pergunta prática: para que ele serve de verdade? E onde não dá para confiar nele? Saber responder essas duas perguntas é uma das habilidades mais importantes de um engenheiro de IA.</p>\n<h3>Três grandes tipos de tarefa: escrever, ler e conversar</h3>\n<p>Uma forma bem útil de organizar o que os LLMs fazem bem é dividir em três grupos: tarefas de <strong>escrever</strong>, tarefas de <strong>ler</strong> e tarefas de <strong>conversar</strong>.</p>\n<p>Nas tarefas de <strong>escrever</strong>, o modelo produz um texto a partir de um pedido curto. Exemplos: escrever o rascunho de um e-mail, criar ideias num brainstorm, sugerir nomes para um produto, traduzir um texto, ou reescrever algo num tom mais formal. Aqui o texto de saída costuma ser maior que o pedido.</p>\n<p>Nas tarefas de <strong>ler</strong>, acontece o contrário. O modelo recebe um texto grande e devolve algo menor. Exemplos: resumir um documento longo, extrair informações de um contrato, como datas e valores, ou classificar mensagens. Imagine um banco que recebe milhares de reclamações por dia. Um LLM pode ler cada uma e dizer: esta é sobre cartão, esta é sobre tarifa, esta está muito irritada e precisa de atenção urgente. Esse tipo de tarefa, de entender o sentimento de um texto, se chama <strong>análise de sentimento</strong>.</p>\n<p>Nas tarefas de <strong>conversar</strong>, o modelo mantém um diálogo. O exemplo mais comum são os assistentes virtuais de atendimento, que conversam com o cliente, tiram dúvidas e, quando necessário, passam a conversa para um atendente humano.</p>\n<h3>Duas formas de usar: na tela ou dentro de um sistema</h3>\n<p>Existem duas formas principais de usar um LLM.</p>\n<p>A primeira é a forma que você talvez já conheça: abrir um aplicativo como o ChatGPT, o Gemini ou o Claude, digitar e ler a resposta. É ótimo para tarefas do dia a dia de uma pessoa.</p>\n<p>A segunda forma é a que mais interessa a um engenheiro de IA: colocar o LLM <strong>dentro de um sistema</strong>. Nesse caso, um programa conversa com o modelo de forma automática, por meio de uma <strong>API</strong>. API é uma porta de comunicação entre programas. O sistema do banco, por exemplo, envia cada reclamação para o modelo pela API, recebe a classificação de volta, e já encaminha para a equipe certa. Ninguém precisa digitar nada.</p>\n<h3>Um teste rápido: o recém-formado</h3>\n<p>Como saber se uma tarefa é boa candidata para um LLM? Existe um teste mental bem útil.</p>\n<p>Pergunte a si mesmo: <strong>uma pessoa recém-formada, inteligente, conseguiria fazer essa tarefa só com as instruções que eu vou escrever, sem nenhum treinamento extra?</strong> Se a resposta for sim, provavelmente um LLM também consegue. Por exemplo, \"leia esta reclamação e diga se é sobre cartão ou sobre conta\" passa no teste. Já \"decida se vamos aprovar este empréstimo de um milhão de reais\" não passa. Essa decisão exige conhecimento específico da empresa, dados que não estão no texto, e responsabilidade que não deve ficar só com uma máquina.</p>\n<h3>As limitações: onde o modelo erra</h3>\n<p>Agora, a parte que mais cai em prova: as limitações dos LLMs. Vamos passar por seis.</p>\n<p><strong>Primeira: alucinação.</strong> O modelo pode inventar informações com total confiança. Um caso real ficou famoso em 2023, nos Estados Unidos: advogados usaram um chatbot para pesquisar processos antigos e apresentaram ao juiz casos que simplesmente não existiam. O modelo tinha inventado tudo, com nomes e números que pareciam reais. A lição: para qualquer informação importante, confira em uma fonte confiável.</p>\n<p><strong>Segunda: data de corte de conhecimento.</strong> O modelo não sabe o que aconteceu depois do fim do seu treinamento. Se você perguntar a cotação do dólar de hoje, ele não sabe, a não ser que receba essa informação ou use uma ferramenta de busca.</p>\n<p><strong>Terceira: janela de contexto limitada.</strong> Existe um limite de quanto texto o modelo consegue considerar de uma vez. Os modelos atuais aceitam textos bem longos, mas o limite existe. E mesmo dentro do limite, informações no meio de um texto muito longo às vezes recebem menos atenção.</p>\n<p><strong>Quarta: contas e dados estruturados.</strong> LLMs não são calculadoras. Como eles geram texto token por token, podem errar contas, especialmente com números grandes. Também não são a melhor ferramenta para analisar planilhas enormes. Para isso, o ideal é o modelo usar uma ferramenta, como uma calculadora ou um programa, e não fazer a conta \"de cabeça\".</p>\n<p><strong>Quinta: vieses.</strong> O modelo aprende com textos escritos por pessoas, e esses textos carregam preconceitos da sociedade. Então, o modelo pode reproduzir estereótipos, por exemplo associando certas profissões a um gênero. Isso é especialmente grave em decisões que afetam pessoas, como análise de crédito ou seleção de currículos.</p>\n<p><strong>Sexta: conteúdo inadequado e segurança.</strong> Um modelo pode ser induzido a gerar conteúdo tóxico, perigoso ou a revelar informações que não deveria. O treinamento com feedback humano ajuda a reduzir isso, mas não elimina totalmente. Existem até ataques específicos, em que alguém escreve instruções maliciosas para enganar o modelo. Esse tipo de ataque se chama <strong>prompt injection</strong>, e vamos estudar no módulo de segurança.</p>\n<h3>Como contornar as limitações</h3>\n<p>A boa notícia é que existem técnicas para contornar quase todas essas limitações. E muitas delas são justamente os próximos módulos da sua trilha.</p>\n<p>Para alucinação e data de corte, uma técnica muito usada é dar ao modelo os documentos certos junto com a pergunta, para ele responder com base neles. Essa técnica se chama <strong>RAG</strong>, e é o módulo 5. Para contas e informações em tempo real, damos <strong>ferramentas</strong> ao modelo, como uma calculadora ou uma busca, e isso leva aos <strong>agentes</strong>, no módulo 6. Para vieses e segurança, usamos avaliações, filtros e proteções, os chamados <strong>guardrails</strong>, nos módulos 8 e 10.</p>\n<p>E, em decisões importantes, existe uma prática essencial: manter um <strong>humano no circuito</strong>, ou em inglês <strong>human in the loop</strong>. A IA sugere, e uma pessoa revisa e decide.</p>\n<h3>Resumo em um minuto</h3>\n<p>LLMs são bons em três grupos de tarefas: escrever, ler e conversar. Eles podem ser usados numa tela de chat ou dentro de sistemas, por meio de uma API. Um bom teste é perguntar se um recém-formado faria a tarefa só com as instruções. As principais limitações são: alucinação, data de corte, janela de contexto limitada, dificuldade com contas e dados estruturados, vieses e riscos de segurança. E elas podem ser reduzidas com RAG, ferramentas, guardrails e revisão humana.</p>\n<h3>Para a prova, lembre</h3>\n<ul><li>Escrever, ler e conversar: os três grandes tipos de tarefa de um LLM.</li><li>Resumir, extrair dados e classificar sentimento são tarefas de leitura.</li><li>API é a forma de um sistema usar o modelo de forma automática.</li><li>Alucinação é gerar informação falsa com aparência de verdadeira.</li><li>LLMs não são confiáveis para contas exatas; o ideal é usar uma ferramenta.</li><li>Vieses nos dados de treinamento podem gerar respostas injustas.</li><li>Human in the loop: uma pessoa revisa as decisões importantes.</li></ul>",
-   "words": 1149,
-   "duration": 431
+   "title": "Pré-treinamento, memória de GPU e leis de escala",
+   "summary": "Como o pré-treinamento funciona, quanto de memória um modelo exige, precisão numérica, leis de escala, Chinchilla e quando pré-treinar um modelo próprio.",
+   "audio": "audio/m01/04-pre-treinamento-e-escala-fc797873cb.mp3",
+   "html": "<p>Nesta aula, vamos entender o pré-treinamento do ponto de vista de quem precisa tomar decisões: quanto custa, quanta memória exige, por que modelos de tamanhos diferentes existem, e em que raríssimos casos faz sentido uma empresa pré-treinar o seu próprio modelo.</p>\n<h3>O problema</h3>\n<p>Um modelo começa com bilhões de parâmetros com valores aleatórios. Para chegar a um modelo útil, ele precisa ver trilhões de tokens. Isso esbarra em três limites: dados, computação e memória. Entender esses limites explica muitas escolhas de arquitetura e de produto que caem em prova.</p>\n<h3>Como funciona o pré-treinamento</h3>\n<p>O modelo recebe trechos de texto e faz a tarefa do seu objetivo de treino, que para os LLMs decoder-only é prever o próximo token. A diferença entre a previsão e o token real é medida por uma <strong>função de perda</strong>. O algoritmo de <strong>retropropagação</strong> calcula, para cada parâmetro, em que direção ajustá-lo para reduzir a perda, e um <strong>otimizador</strong>, geralmente o <strong>Adam</strong> ou variações dele, aplica o ajuste. Isso se repete por bilhões de exemplos.</p>\n<p>Como o próprio texto fornece a resposta, não é preciso rotular nada à mão. Por isso o pré-treinamento é <strong>autossupervisionado</strong>, e pode usar a escala da internet.</p>\n<p>Os dados passam por uma <strong>curadoria pesada</strong>: remoção de duplicatas, filtros de qualidade, remoção de conteúdo tóxico e de dados pessoais, e balanceamento entre fontes como páginas web, livros, artigos científicos e código. Normalmente, só uma pequena fração do texto bruto coletado sobrevive aos filtros. A qualidade dos dados influencia o modelo tanto quanto o tamanho.</p>\n<h3>Quanto de memória um modelo exige</h3>\n<p>Esta conta aparece em provas e no dia a dia. Cada parâmetro é um número guardado com uma certa <strong>precisão</strong>.</p>\n<p>Em <strong>ponto flutuante de 32 bits</strong>, ou FP32, cada parâmetro ocupa <strong>4 bytes</strong>. Então um modelo de <strong>1 bilhão de parâmetros</strong> ocupa cerca de <strong>4 gigabytes</strong> só para guardar os pesos.</p>\n<p>Mas <strong>treinar</strong> exige muito mais. Além dos pesos, é preciso guardar os <strong>gradientes</strong>, os <strong>estados do otimizador</strong>, que no Adam são dois valores extras por parâmetro, e as <strong>ativações</strong> intermediárias. Na prática, treinar em FP32 exige algo em torno de <strong>seis vezes mais memória</strong> que os pesos sozinhos. Aquele modelo de 1 bilhão de parâmetros precisaria de uns vinte e poucos gigabytes de GPU para treinar. Um modelo de 70 bilhões, centenas de gigabytes, distribuídos por várias GPUs.</p>\n<h3>Precisão numérica e quantização</h3>\n<p>Uma forma de economizar memória é reduzir a precisão.</p>\n<p>Em <strong>FP16</strong>, ponto flutuante de 16 bits, cada parâmetro ocupa <strong>2 bytes</strong>, metade do FP32. O problema é que o FP16 tem uma faixa de valores menor, o que pode causar instabilidade no treino.</p>\n<p>O <strong>BF16</strong>, ou <strong>bfloat16</strong>, criado pelo Google, também usa 16 bits, mas mantém a <strong>mesma faixa de valores do FP32</strong>, sacrificando precisão nas casas decimais. Por isso se tornou o formato preferido para treinar LLMs.</p>\n<p>Em <strong>INT8</strong>, inteiro de 8 bits, cada parâmetro ocupa <strong>1 byte</strong>, um quarto do FP32. E existem formatos de <strong>4 bits</strong>, que ocupam meio byte.</p>\n<p>Converter um modelo para uma precisão menor se chama <strong>quantização</strong>. Ela reduz memória e acelera a inferência, com alguma perda de qualidade, geralmente pequena em 8 bits e maior em 4 bits. A quantização é usada principalmente para <strong>executar</strong> modelos de forma mais barata, e também em técnicas de fine-tuning como o QLoRA. Veremos em detalhe no módulo 9.</p>\n<p>Conta rápida para memorizar: um modelo de 7 bilhões de parâmetros ocupa cerca de 28 gigabytes em FP32, 14 em BF16, 7 em INT8 e uns 3,5 em 4 bits. Por isso modelos quantizados de 7 bilhões rodam até em computadores pessoais.</p>\n<h3>Leis de escala e o Chinchilla</h3>\n<p>Pesquisadores observaram que o desempenho de um LLM melhora de forma previsível quando se aumenta o <strong>tamanho do modelo</strong>, a <strong>quantidade de dados</strong> e a <strong>computação</strong>. Essas relações se chamam <strong>leis de escala</strong>.</p>\n<p>A pergunta prática é: com um orçamento fixo de computação, é melhor um modelo maior com menos dados, ou um modelo menor com mais dados? Em 2022, um estudo da DeepMind, conhecido pelo nome do modelo que produziu, o <strong>Chinchilla</strong>, mostrou que muitos modelos da época eram <strong>grandes demais e treinados com dados de menos</strong>. A proporção ótima encontrada foi de aproximadamente <strong>20 tokens de treino para cada parâmetro</strong>. O Chinchilla, com 70 bilhões de parâmetros e cerca de 1,4 trilhão de tokens, superou modelos quatro vezes maiores.</p>\n<p>A lição para a prova: <strong>mais parâmetros não significa automaticamente um modelo melhor</strong>. Dados suficientes e de qualidade importam tanto quanto o tamanho. E hoje muitos modelos são treinados com muito mais do que vinte tokens por parâmetro, porque um modelo menor e muito bem treinado é mais barato de executar em produção, e a inferência acaba custando mais do que o treino ao longo da vida do modelo.</p>\n<h3>Quando pré-treinar um modelo próprio</h3>\n<p>Quase nunca. Pré-treinar do zero só se justifica quando o domínio tem uma <strong>linguagem muito específica</strong>, mal representada nos dados gerais, e a organização tem <strong>muitos dados próprios</strong> e <strong>orçamento grande</strong>. O exemplo clássico é o <strong>BloombergGPT</strong>, de 2023, treinado com uma mistura de dados financeiros proprietários e dados gerais.</p>\n<p>Para a imensa maioria dos casos, incluindo bancos, a sequência recomendada é: usar um modelo fundacional pronto com bons prompts, depois RAG para trazer conhecimento próprio, depois fine-tuning para ajustar comportamento. Existe ainda um meio-termo, o <strong>pré-treinamento continuado</strong>, em que se continua o pré-treino de um modelo existente com textos do domínio, mais barato que começar do zero.</p>\n<h3>Pegadinhas de prova</h3>\n<p>Primeira: a alternativa que propõe pré-treinar um modelo do zero porque a empresa \"tem documentos internos\". Documentos internos são caso de RAG, não de pré-treinamento.</p>\n<p>Segunda: achar que o modelo maior sempre vence. O Chinchilla mostrou o contrário com orçamento fixo.</p>\n<p>Terceira: confundir BF16 com FP16. Ambos têm 16 bits, mas o BF16 mantém a faixa do FP32, e por isso é mais estável para treinar.</p>\n<h3>Cenário resolvido</h3>\n<p>Uma empresa quer executar um modelo aberto de 13 bilhões de parâmetros numa GPU com 24 gigabytes de memória, apenas para inferência. Em BF16, os pesos ocupariam cerca de 26 gigabytes, e não cabem. O que fazer, mantendo o mesmo modelo?</p>\n<p>A resposta é quantizar. Em INT8, os pesos caem para cerca de 13 gigabytes, e em 4 bits para cerca de 6,5, deixando espaço para o KV cache e as ativações. Treinar um modelo novo ou trocar para FP32 é exatamente o contrário do necessário, porque FP32 dobraria a memória.</p>\n<h3>Resumo em um minuto</h3>\n<p>O pré-treinamento é autossupervisionado, depende de curadoria pesada de dados e usa retropropagação com otimizadores como o Adam. Em FP32, cada parâmetro ocupa 4 bytes, e treinar exige cerca de seis vezes a memória dos pesos. BF16 e FP16 usam 2 bytes, com o BF16 mais estável. INT8 usa 1 byte, e 4 bits, meio byte. Quantizar reduz memória e custo de inferência. As leis de escala mostram que desempenho depende de parâmetros, dados e computação, e o Chinchilla indicou cerca de 20 tokens por parâmetro. Pré-treinar do zero raramente se justifica.</p>",
+   "words": 1171,
+   "duration": 508
   },
   {
-   "id": "m01-05",
+   "id": "m01-05-fine-tuning-e-peft",
    "kind": "aula",
    "label": "Aula 5",
-   "title": "Conversando com o modelo: prompts, contexto e custos",
-   "summary": "O que é prompt, dicas para escrever bem, zero-shot e few-shot, mensagem de sistema, memória e custo por token.",
-   "audio": "audio/m01/05-conversando-com-o-modelo-82e2a51958.mp3",
-   "html": "<p>Até aqui, vimos o que é um LLM e o que ele faz bem. Agora vamos aprender a falar com ele. Nesta aula, você vai entender o que é um prompt, como escrever um bom prompt, como funciona a memória de uma conversa e quanto custa usar um modelo.</p>\n<h3>O que é um prompt</h3>\n<p><strong>Prompt</strong> é o texto que você envia para o modelo. Pode ser uma pergunta, uma instrução, um pedido com exemplos, ou um documento inteiro seguido de uma pergunta. Tudo o que o modelo recebe como entrada é o prompt.</p>\n<p>E <strong>engenharia de prompt</strong>, ou <strong>prompt engineering</strong>, é a habilidade de escrever prompts que fazem o modelo dar boas respostas. Ela é tão importante que tem um módulo inteiro na sua trilha, o módulo 3. Aqui, vamos ver o básico.</p>\n<h3>Cinco dicas para um bom prompt</h3>\n<p><strong>Dica um: seja claro e específico.</strong> Compare dois pedidos. O primeiro: \"escreva sobre cartão de crédito\". O segundo: \"escreva um texto curto, de três parágrafos, explicando para um jovem de dezoito anos como funciona a fatura do cartão de crédito e por que pagar só o mínimo é perigoso\". O segundo dá muito mais chance de sair o que você quer. O modelo não lê pensamentos. Quanto mais claro o pedido, melhor a resposta.</p>\n<p><strong>Dica dois: dê contexto.</strong> Diga ao modelo quem é o público, qual é o objetivo e qualquer informação de que ele precise. Uma técnica comum é definir um papel, por exemplo: \"você é um atendente de banco, cordial e objetivo\".</p>\n<p><strong>Dica três: diga o formato da resposta.</strong> Você quer uma lista? Uma tabela? No máximo cem palavras? Um texto em tom formal? Diga isso no prompt.</p>\n<p><strong>Dica quatro: dê exemplos.</strong> Mostrar exemplos do que você espera é uma das técnicas mais poderosas. E isso tem nomes técnicos que caem bastante em prova. Quando você pede algo sem dar nenhum exemplo, isso é chamado de <strong>zero-shot</strong>. Quando você dá um exemplo, é <strong>one-shot</strong>. E quando dá alguns exemplos, é <strong>few-shot</strong>. \"Shot\" aqui quer dizer tentativa, ou exemplo.</p>\n<p>Por exemplo, para classificar reclamações, um prompt few-shot poderia ter: \"Mensagem: minha fatura veio com uma compra que eu não fiz. Categoria: cartão. Mensagem: cobraram uma tarifa que eu não conhecia. Categoria: tarifas.\" E, no final, a nova mensagem que você quer classificar. O modelo entende o padrão a partir dos exemplos.</p>\n<p>Repare numa coisa interessante: o modelo aprendeu a tarefa só com os exemplos dentro do prompt, sem nenhum treinamento novo. Os parâmetros dele não mudaram. Isso se chama <strong>aprendizado em contexto</strong>, ou <strong>in-context learning</strong>. É diferente do fine-tuning, que muda os parâmetros do modelo.</p>\n<p><strong>Dica cinco: itere.</strong> Raramente o primeiro prompt é perfeito. O processo normal é: escrever um prompt, ver a resposta, ajustar o prompt e tentar de novo. Engenharia de prompt é um processo de tentativa e melhoria.</p>\n<p>E um bônus: para tarefas que exigem raciocínio, ajuda pedir ao modelo para <strong>pensar passo a passo</strong> antes de dar a resposta final. Essa técnica se chama <strong>cadeia de pensamento</strong>, ou <strong>chain of thought</strong>. Vamos ver no módulo 3.</p>\n<h3>Mensagem de sistema e mensagem do usuário</h3>\n<p>Quando um aplicativo usa um LLM, o prompt geralmente é dividido em partes com papéis diferentes.</p>\n<p>A <strong>mensagem de sistema</strong>, ou <strong>system prompt</strong>, é escrita pelo desenvolvedor do aplicativo. Ela define o comportamento geral do modelo, e o usuário normalmente não vê. Por exemplo: \"você é o assistente virtual do banco. Responda só sobre produtos do banco. Seja educado. Nunca peça a senha do cliente\".</p>\n<p>A <strong>mensagem do usuário</strong> é o que a pessoa digita, como \"qual é a tarifa da minha conta?\".</p>\n<p>E a resposta do modelo é chamada de mensagem do <strong>assistente</strong>.</p>\n<h3>Como o modelo \"lembra\" da conversa</h3>\n<p>Aqui vai algo que surpreende muita gente: <strong>o modelo, por si só, não tem memória</strong>. Cada vez que ele recebe um prompt, é como se fosse a primeira vez.</p>\n<p>Então como o ChatGPT lembra do que você falou três mensagens atrás? Simples: o aplicativo, a cada nova mensagem, <strong>envia de novo todo o histórico da conversa</strong> junto com a nova pergunta. O modelo lê tudo de novo e responde. É por isso que conversas muito longas ficam mais caras e podem esbarrar no limite da janela de contexto.</p>\n<p>Essa ideia é fundamental para entender mais tarde a <strong>memória de agentes</strong>, no módulo 6. Lá, você vai ver técnicas para guardar e resumir informações importantes, para não precisar mandar tudo sempre.</p>\n<h3>Quanto custa usar um LLM</h3>\n<p>Quando uma empresa usa um LLM por meio de uma API, ela paga por <strong>tokens</strong>. E normalmente há dois preços diferentes: um para os <strong>tokens de entrada</strong>, ou seja, o prompt, e outro para os <strong>tokens de saída</strong>, a resposta. Os tokens de saída costumam ser mais caros, porque gerar texto dá mais trabalho ao modelo do que ler.</p>\n<p>Os preços mudam o tempo todo, e variam muito entre modelos. Modelos maiores e mais capazes custam mais por token. Modelos menores custam bem menos. Mas, para muitas tarefas, o custo de usar um LLM é pequeno quando comparado ao tempo que uma pessoa levaria para fazer o mesmo trabalho.</p>\n<p>Além do custo, existe a <strong>latência</strong>, que é o tempo que o modelo leva para responder. Modelos maiores e respostas mais longas demoram mais. Num atendimento ao cliente, por exemplo, uma resposta muito lenta atrapalha a experiência. Custo e latência são duas coisas que o engenheiro de IA sempre precisa equilibrar com a qualidade.</p>\n<h3>Uma prévia: dar documentos e ferramentas ao modelo</h3>\n<p>Para fechar, duas ideias que vão voltar muitas vezes.</p>\n<p>A primeira: você pode colocar documentos dentro do prompt, e pedir que o modelo responda com base neles. É como fazer uma prova com consulta. Isso diminui alucinações e permite usar informações que o modelo não conhecia, como as regras internas de uma empresa. Quando isso é feito de forma automática, buscando os trechos certos numa base de documentos, chamamos de <strong>RAG</strong>.</p>\n<p>A segunda: você pode dar <strong>ferramentas</strong> ao modelo, como uma calculadora, uma busca na internet ou o acesso a um sistema. O modelo decide quando usar cada ferramenta. Quando um modelo planeja passos, usa ferramentas e age para cumprir um objetivo, chamamos isso de <strong>agente</strong>.</p>\n<h3>Resumo em um minuto</h3>\n<p>Prompt é tudo o que o modelo recebe como entrada, e engenharia de prompt é a arte de escrever bons prompts. As dicas são: seja claro, dê contexto, defina o formato, dê exemplos e itere. Sem exemplos é zero-shot, com um exemplo é one-shot, com alguns é few-shot, e isso é aprendizado em contexto, sem mudar os parâmetros. A mensagem de sistema define o comportamento do modelo. O modelo não tem memória: o aplicativo reenvia o histórico. E o custo é cobrado por tokens de entrada e de saída, com a saída geralmente mais cara.</p>\n<h3>Para a prova, lembre</h3>\n<ul><li>Zero-shot: sem exemplos. One-shot: um exemplo. Few-shot: alguns exemplos.</li><li>Aprendizado em contexto não altera os parâmetros. Fine-tuning altera.</li><li>System prompt é a instrução do desenvolvedor que define o comportamento do modelo.</li><li>O LLM não tem memória própria entre chamadas; o histórico é reenviado a cada mensagem.</li><li>O custo é por token, de entrada e de saída; a saída costuma ser mais cara.</li><li>Chain of thought: pedir para o modelo raciocinar passo a passo.</li></ul>",
-   "words": 1219,
-   "duration": 438
+   "title": "Fine-tuning com instruções e PEFT",
+   "summary": "Ajuste fino com instruções, tarefa única e multitarefa, esquecimento catastrófico, LoRA, QLoRA, soft prompts e quando ajustar um modelo.",
+   "audio": "audio/m01/05-fine-tuning-e-peft-d425933dd1.mp3",
+   "html": "<p>Nesta aula, vamos ver como adaptar um modelo pronto para uma tarefa ou um comportamento específico, mudando os seus parâmetros. É o <strong>fine-tuning</strong>, ou ajuste fino. E vamos ver as técnicas que tornaram isso barato, o <strong>PEFT</strong>. Saber quando fazer fine-tuning, e principalmente quando não fazer, é um dos pontos mais cobrados.</p>\n<h3>O problema</h3>\n<p>Prompts resolvem muita coisa, mas têm limites. Exemplos dentro do prompt ocupam a janela de contexto e custam tokens em toda chamada. Modelos pequenos às vezes não aprendem bem só com exemplos no prompt. E certos comportamentos, como seguir um formato muito rígido ou adotar um estilo específico, são difíceis de garantir só com instruções.</p>\n<p>O fine-tuning resolve isso ensinando o comportamento diretamente nos pesos do modelo.</p>\n<h3>Aprendizado em contexto versus fine-tuning</h3>\n<p>Primeiro, uma distinção essencial. Quando colocamos exemplos no prompt, o modelo aprende o padrão naquela chamada, sem mudar nenhum parâmetro. Isso é <strong>aprendizado em contexto</strong>, com as variações <strong>zero-shot</strong>, sem exemplos, <strong>one-shot</strong>, com um, e <strong>few-shot</strong>, com alguns. Quando fazemos <strong>fine-tuning</strong>, os parâmetros mudam de forma permanente.</p>\n<p>Regra de bolso: se o few-shot já resolve com qualidade e custo aceitáveis, não há motivo para fine-tuning. Se mesmo com cinco ou seis exemplos no prompt o modelo não acerta, é hora de considerar o ajuste fino.</p>\n<h3>Fine-tuning com instruções</h3>\n<p>O tipo mais comum é o <strong>fine-tuning com instruções</strong>, também chamado de <strong>fine-tuning supervisionado</strong>, ou <strong>SFT</strong>. O conjunto de dados é formado por pares de <strong>instrução e resposta ideal</strong>, às vezes com um contexto de entrada. Por exemplo: \"Classifique o assunto desta reclamação\", seguida da reclamação, e da resposta \"Tarifas\".</p>\n<p>Uma prática comum é usar <strong>modelos de prompt</strong>, ou templates, para converter bases de dados existentes nesse formato de instrução. Depois, os dados são divididos em <strong>treino, validação e teste</strong>, como em qualquer projeto de machine learning.</p>\n<p>Quanto de dados é preciso? Bem menos que no pré-treinamento. Para uma <strong>tarefa única</strong>, algumas centenas a alguns milhares de bons exemplos, algo na faixa de <strong>500 a 1000</strong>, já costumam trazer ganhos grandes. A <strong>qualidade</strong> dos exemplos importa mais do que a quantidade.</p>\n<h3>Esquecimento catastrófico</h3>\n<p>Aqui está um conceito que cai muito. Quando você ajusta o modelo intensamente para uma única tarefa, ele pode ficar ótimo nela e <strong>piorar em outras</strong> que fazia bem antes. Isso se chama <strong>esquecimento catastrófico</strong>, em inglês <strong>catastrophic forgetting</strong>.</p>\n<p>Se você só precisa daquela tarefa, isso pode não ser um problema. Se precisa que o modelo continue bom em tudo, existem duas saídas. A primeira é o <strong>fine-tuning multitarefa</strong>: treinar com exemplos de várias tarefas ao mesmo tempo, o que exige mais dados, geralmente dezenas de milhares de exemplos. O exemplo famoso é a família <strong>FLAN</strong>, cujo FLAN-T5 foi ajustado com mais de mil e oitocentas tarefas. A segunda saída é usar <strong>PEFT</strong>, que preserva os pesos originais.</p>\n<h3>PEFT: ajuste fino eficiente em parâmetros</h3>\n<p>No <strong>fine-tuning completo</strong>, todos os bilhões de parâmetros são atualizados. Isso exige a mesma memória pesada do treino, aquela de cerca de seis vezes os pesos, e gera uma cópia inteira do modelo para cada tarefa.</p>\n<p>O <strong>PEFT</strong>, sigla em inglês para <strong>ajuste fino eficiente em parâmetros</strong>, <strong>congela</strong> a maior parte do modelo original e treina só um número pequeno de parâmetros. As vantagens: muito menos memória, treino mais rápido, menos risco de esquecimento catastrófico, e arquivos pequenos para cada tarefa, que podem ser trocados sobre o mesmo modelo base.</p>\n<h3>LoRA</h3>\n<p>A técnica de PEFT mais usada é o <strong>LoRA</strong>, sigla para <strong>Low-Rank Adaptation</strong>, adaptação de baixo posto.</p>\n<p>A ideia: em vez de alterar uma grande matriz de pesos do modelo, o LoRA mantém a matriz original congelada e treina <strong>duas matrizes pequenas</strong>, cujo produto tem o mesmo formato da original. O tamanho dessas matrizes é controlado por um número chamado <strong>posto</strong>, em inglês <strong>rank</strong>, normalmente entre 4 e 64. Como são pequenas, o número de parâmetros treináveis cai drasticamente, muitas vezes para <strong>menos de um por cento</strong> do total. E a qualidade costuma ficar próxima do fine-tuning completo.</p>\n<p>Duas propriedades importantes. Na inferência, as matrizes do LoRA podem ser <strong>somadas aos pesos originais</strong>, e aí não há latência extra. E como cada adaptador é pequeno, é possível manter <strong>um adaptador por tarefa</strong> e trocar conforme a necessidade, usando o mesmo modelo base na memória.</p>\n<h3>QLoRA e soft prompts</h3>\n<p>O <strong>QLoRA</strong> combina <strong>quantização</strong> com LoRA. O modelo base é carregado <strong>quantizado em 4 bits</strong>, o que reduz muito a memória, e os adaptadores LoRA são treinados por cima. Isso permitiu ajustar modelos com dezenas de bilhões de parâmetros numa única GPU.</p>\n<p>Outra família de PEFT são os <strong>soft prompts</strong>, ou <strong>prompt tuning</strong>. Em vez de mexer nos pesos, treinam-se alguns <strong>vetores de embedding virtuais</strong> que são adicionados no início da entrada. Eles funcionam como um prompt aprendido, que não corresponde a palavras reais. É uma técnica ainda mais leve, que funciona melhor em modelos grandes.</p>\n<h3>Quando fazer fine-tuning</h3>\n<p>Faça fine-tuning quando o objetivo é <strong>mudar comportamento</strong>: seguir um formato com consistência, adotar o tom de voz da marca, dominar uma tarefa específica, ou permitir que um <strong>modelo menor e mais barato</strong> alcance a qualidade de um maior naquela tarefa.</p>\n<p>Não faça fine-tuning para <strong>ensinar conhecimento que muda</strong>, como preços, tarifas e regulamentos. Para isso, a resposta é <strong>RAG</strong>. O fine-tuning grava padrões nos pesos, e atualizar esse conhecimento exigiria treinar de novo a cada mudança. Além disso, o modelo ajustado não cita fontes, e pode continuar alucinando.</p>\n<h3>Pegadinhas de prova</h3>\n<p>Primeira: usar fine-tuning para manter o modelo atualizado com documentos que mudam toda semana. A resposta é RAG.</p>\n<p>Segunda: achar que o LoRA adiciona latência obrigatória. As matrizes podem ser mescladas aos pesos.</p>\n<p>Terceira: confundir soft prompt com prompt engineering. Soft prompt é treinado, são vetores, e não texto escrito por uma pessoa.</p>\n<h3>Cenário resolvido</h3>\n<p>Uma empresa usa um modelo grande e caro para extrair dez campos de formulários padronizados. A qualidade é boa, mas o custo por documento é alto e o volume vai triplicar. Ela tem oito mil formulários já extraídos e revisados por pessoas. Qual é a melhor estratégia?</p>\n<p>Há dados rotulados de qualidade, a tarefa é estável e específica, e o problema é custo. Então: fazer fine-tuning de um modelo menor, de preferência com LoRA, usando os formulários revisados, e avaliar se ele alcança a qualidade do modelo grande. Se alcançar, o custo por documento cai bastante. RAG não ajudaria, porque o problema não é falta de conhecimento. E pré-treinar um modelo seria desproporcional.</p>\n<h3>Resumo em um minuto</h3>\n<p>Aprendizado em contexto não muda parâmetros, e fine-tuning muda. O fine-tuning com instruções usa pares de instrução e resposta, e para uma tarefa única algumas centenas a mil exemplos já ajudam muito. Ajustar só uma tarefa pode causar esquecimento catastrófico, que se evita com fine-tuning multitarefa ou com PEFT. O LoRA congela o modelo e treina matrizes de baixo posto, com menos de um por cento dos parâmetros, e pode ser mesclado sem latência. O QLoRA soma quantização em 4 bits. Soft prompts treinam vetores virtuais. Fine-tuning muda comportamento, RAG traz conhecimento.</p>",
+   "words": 1176,
+   "duration": 510
   },
   {
-   "id": "m01-06",
+   "id": "m01-06-alinhamento-rlhf",
    "kind": "aula",
    "label": "Aula 6",
-   "title": "Do problema ao produto: o ciclo de vida de um projeto de IA generativa",
-   "summary": "Escopo, escolha do modelo, prompt, RAG ou fine-tuning, avaliação, implantação e monitoramento.",
-   "audio": "audio/m01/06-do-problema-ao-produto-4e7d93eba2.mp3",
-   "html": "<p>Nesta aula, vamos ver como um engenheiro de IA tira uma ideia do papel e transforma em um sistema funcionando. Esse caminho tem nome: o <strong>ciclo de vida de um projeto de IA generativa</strong>. Ele aparece em vários cursos da sua trilha, e organiza tudo o que você vai estudar nos próximos módulos.</p>\n<p>Para ficar concreto, vamos acompanhar um exemplo do começo ao fim: um assistente virtual que responde dúvidas de clientes sobre tarifas e serviços de uma conta bancária.</p>\n<h3>Etapa 1: definir o escopo</h3>\n<p>Tudo começa com uma pergunta: <strong>qual problema exatamente vamos resolver?</strong> Essa etapa se chama definir o <strong>escopo</strong>.</p>\n<p>Um erro comum é querer fazer tudo de uma vez. \"Vamos criar uma IA que atende qualquer pedido de qualquer cliente.\" Isso é grande demais, e difícil de garantir que funcione bem. Um escopo melhor seria: \"um assistente que responde dúvidas sobre tarifas e serviços da conta corrente, usando os documentos oficiais do banco. Se a pergunta for sobre outro assunto, ou se o cliente quiser fazer uma reclamação, a conversa passa para um atendente humano.\"</p>\n<p>Uma técnica útil nessa etapa é olhar para o trabalho como um conjunto de <strong>tarefas</strong>. O trabalho de um atendente envolve várias tarefas: entender a dúvida, procurar a regra certa, explicar de forma simples, registrar o atendimento. Algumas dessas tarefas a IA faz bem, outras não. Escolher as tarefas certas é meio caminho andado.</p>\n<h3>Etapa 2: escolher o modelo</h3>\n<p>Depois, escolhemos qual modelo usar. Algumas perguntas guiam essa escolha.</p>\n<p><strong>Modelo grande ou pequeno?</strong> Modelos grandes são mais capazes, mas são mais caros e mais lentos. Para tarefas simples, um modelo pequeno pode ser suficiente.</p>\n<p><strong>Modelo fechado ou aberto?</strong> Modelos <strong>fechados</strong>, como o GPT ou o Claude, são acessados por uma API da empresa que os criou. São fáceis de usar e costumam ser os mais poderosos, mas os dados enviados saem da sua empresa e vão para o fornecedor. Modelos <strong>abertos</strong>, também chamados de <strong>open source</strong> ou de <strong>pesos abertos</strong>, como o Llama, podem ser baixados e rodados nos servidores da própria empresa. Isso dá mais controle e privacidade, mas exige infraestrutura e equipe para manter.</p>\n<p>Em um banco, onde os dados de clientes são sensíveis, essa decisão envolve também as áreas de segurança e jurídica. No Brasil, existe a <strong>LGPD</strong>, a Lei Geral de Proteção de Dados, que define regras para o uso de dados pessoais.</p>\n<h3>Etapa 3: adaptar o modelo, subindo uma escada</h3>\n<p>Agora vem a parte de fazer o modelo funcionar bem para a nossa tarefa. Existem três técnicas principais, e um bom jeito de pensar nelas é como os degraus de uma escada. Você começa pelo degrau mais simples e só sobe se precisar.</p>\n<p><strong>Primeiro degrau: engenharia de prompt.</strong> Escrever boas instruções, dar contexto e exemplos. É rápido e barato. Muitas vezes, só isso já resolve.</p>\n<p><strong>Segundo degrau: RAG.</strong> Se o modelo precisa de informações que ele não conhece, como as tabelas de tarifas do banco, usamos RAG. O sistema busca os trechos certos nos documentos e coloca no prompt, junto com a pergunta. No nosso exemplo, esse degrau é essencial, porque as tarifas são específicas do banco e mudam com o tempo. A vantagem do RAG é que, quando uma regra muda, basta atualizar o documento, sem retreinar nada.</p>\n<p><strong>Terceiro degrau: fine-tuning.</strong> Se ainda assim o modelo não se comporta como queremos, por exemplo, não segue um formato muito específico, ou não fala no tom da marca, podemos ajustar o modelo com nossos próprios exemplos. O fine-tuning também pode permitir trocar um modelo grande e caro por um modelo pequeno e ajustado, mais barato para rodar.</p>\n<p>Uma regra prática que vale ouro para a prova: <strong>RAG é para dar conhecimento</strong>, principalmente conhecimento que muda. <strong>Fine-tuning é para mudar comportamento</strong>, como estilo, formato ou especialização numa tarefa. E as duas técnicas podem ser usadas juntas.</p>\n<h3>Etapa 4: avaliar</h3>\n<p>Como saber se o assistente está bom? Não dá para confiar em \"parece que está funcionando\". É preciso <strong>avaliar</strong> de forma organizada.</p>\n<p>Primeiro, montamos um conjunto de perguntas de teste, de preferência baseadas em perguntas reais de clientes, com as respostas esperadas. Depois, medimos: o assistente acertou? A resposta foi baseada nos documentos, ou ele inventou algo? Ele recusou corretamente as perguntas fora do escopo?</p>\n<p>Essa avaliação pode ser feita por pessoas, que leem as respostas e dão notas. Pode ser feita com regras automáticas. E existe uma técnica cada vez mais comum: usar <strong>outro LLM como avaliador</strong>, o chamado <strong>LLM como juiz</strong>, ou <strong>LLM-as-a-judge</strong>. Vamos ver tudo isso no módulo 8.</p>\n<p>Um ponto importante: a avaliação não acontece só uma vez. Toda vez que mudamos o prompt, o modelo ou os documentos, avaliamos de novo, para garantir que nada piorou.</p>\n<h3>Etapa 5: implantar e monitorar</h3>\n<p>Com o assistente aprovado, chega a hora de colocar no ar. Em inglês, isso se chama <strong>deploy</strong>, e em português, <strong>implantar</strong> ou colocar <strong>em produção</strong>.</p>\n<p>Mas o trabalho não acaba aí. É preciso <strong>monitorar</strong> o sistema: quanto ele está custando, quanto tempo leva para responder, se a qualidade continua boa, se há tentativas de uso indevido. Também é importante coletar o <strong>feedback</strong> dos usuários, como aquele botão de \"gostei\" ou \"não gostei\".</p>\n<p>E colocamos proteções, os <strong>guardrails</strong>: por exemplo, um filtro que impede o assistente de falar sobre assuntos fora do escopo, ou de mostrar dados pessoais.</p>\n<p>O conjunto de práticas para colocar e manter LLMs em produção tem um nome: <strong>LLMOps</strong>. É assunto do módulo 8.</p>\n<h3>É um ciclo, não uma linha reta</h3>\n<p>Repare que as etapas formam um <strong>ciclo</strong>. O monitoramento mostra problemas, que levam a ajustes no prompt, nos documentos ou no modelo. Isso exige nova avaliação, nova implantação, e assim por diante. O sistema vai sendo melhorado continuamente.</p>\n<p>Uma diferença importante em relação ao aprendizado de máquina tradicional: antigamente, um projeto de IA começava com meses coletando e rotulando dados para treinar um modelo. Com a IA generativa, dá para construir um <strong>protótipo em dias</strong>, usando um modelo pronto e um bom prompt. Por isso, a recomendação é: comece simples, construa rápido, avalie e vá melhorando.</p>\n<h3>Resumo em um minuto</h3>\n<p>O ciclo de vida de um projeto de IA generativa tem cinco etapas. Definir o escopo, olhando o trabalho como um conjunto de tarefas. Escolher o modelo: grande ou pequeno, fechado ou aberto. Adaptar o modelo, subindo a escada: primeiro prompt, depois RAG, depois fine-tuning. Avaliar de forma organizada, com conjuntos de teste e até LLM como juiz. E implantar e monitorar, com guardrails e feedback. Tudo isso forma um ciclo contínuo de melhoria.</p>\n<h3>Para a prova, lembre</h3>\n<ul><li>Comece pelo mais simples: prompt, depois RAG, depois fine-tuning.</li><li>RAG dá conhecimento externo e atualizável. Fine-tuning muda comportamento, estilo e formato.</li><li>Modelos fechados via API são práticos; modelos abertos dão mais controle e privacidade.</li><li>Avaliar é obrigatório e deve ser repetido a cada mudança.</li><li>LLM-as-a-judge é usar um LLM para avaliar respostas de outro.</li><li>LLMOps é o conjunto de práticas para operar LLMs em produção.</li><li>Com IA generativa, dá para prototipar em dias, não em meses.</li></ul>",
-   "words": 1179,
-   "duration": 443
+   "title": "Alinhamento: RLHF, modelo de recompensa, DPO e IA constitucional",
+   "summary": "Por que alinhar modelos, as etapas do RLHF, PPO, penalidade KL contra reward hacking, DPO, RLAIF, IA constitucional e modelos de raciocínio.",
+   "audio": "audio/m01/06-alinhamento-rlhf-4d931ea427.mp3",
+   "html": "<p>Um modelo depois do fine-tuning com instruções já segue pedidos. Mas ainda pode dar respostas tóxicas, inventar fatos com confiança, ou ajudar em coisas perigosas. O processo de ajustar o modelo para se comportar de acordo com as preferências e valores humanos se chama <strong>alinhamento</strong>. Nesta aula, vamos ver as técnicas principais e os termos que caem em prova.</p>\n<h3>O problema</h3>\n<p>É difícil escrever exemplos de resposta perfeita para tudo. Mas é fácil para uma pessoa <strong>comparar duas respostas</strong> e dizer qual é melhor. O alinhamento aproveita exatamente isso: em vez de ensinar a resposta certa, ensina <strong>qual de duas respostas é preferível</strong>.</p>\n<p>O objetivo costuma ser resumido em três palavras em inglês: <strong>helpful, honest e harmless</strong>. Útil, honesto e inofensivo.</p>\n<h3>RLHF em três etapas</h3>\n<p><strong>RLHF</strong> significa <strong>aprendizado por reforço com feedback humano</strong>. O processo clássico tem três etapas.</p>\n<p><strong>Etapa um: o modelo ajustado com instruções.</strong> O ponto de partida é um modelo que já passou pelo fine-tuning supervisionado, o SFT da aula anterior.</p>\n<p><strong>Etapa dois: o modelo de recompensa.</strong> Para cada prompt, o modelo gera várias respostas. Avaliadores humanos <strong>ordenam</strong> essas respostas, da melhor para a pior, segundo critérios definidos em diretrizes. Essas ordenações viram pares de comparação: esta resposta é melhor que aquela. Com esses pares, treina-se um segundo modelo, o <strong>modelo de recompensa</strong>, em inglês <strong>reward model</strong>. Ele aprende a dar uma nota para qualquer resposta, imitando as preferências humanas. A vantagem é que, depois de treinado, ele substitui os humanos e avalia milhões de respostas automaticamente.</p>\n<p><strong>Etapa três: o aprendizado por reforço.</strong> Agora o LLM gera respostas, o modelo de recompensa dá notas, e um algoritmo de aprendizado por reforço ajusta o LLM para produzir respostas com notas mais altas. O algoritmo mais conhecido para isso é o <strong>PPO</strong>, sigla para <strong>Proximal Policy Optimization</strong>. Na linguagem do aprendizado por reforço, o LLM é a <strong>política</strong>, gerar um token é uma <strong>ação</strong>, e a nota do modelo de recompensa é a <strong>recompensa</strong>.</p>\n<h3>Reward hacking e a penalidade KL</h3>\n<p>Existe um problema sério nessa etapa. O LLM pode aprender a <strong>enganar o modelo de recompensa</strong>: encontrar padrões que dão nota alta sem que a resposta seja boa de verdade. Por exemplo, respostas exageradamente elogiosas, longas demais, ou cheias de frases que o modelo de recompensa aprendeu a valorizar. Isso se chama <strong>reward hacking</strong>.</p>\n<p>A defesa clássica é a <strong>penalidade de divergência KL</strong>, de <strong>Kullback-Leibler</strong>. Mantém-se uma cópia congelada do modelo original, chamada <strong>modelo de referência</strong>, e mede-se o quanto as probabilidades do modelo em treinamento se afastam dele. Quanto mais se afasta, maior a penalidade descontada da recompensa. Assim, o modelo melhora segundo as preferências, sem se transformar em algo estranho só para agradar o avaliador.</p>\n<p>Para a prova: reward hacking é o problema, penalidade KL contra um modelo de referência é a solução clássica.</p>\n<h3>DPO: preferência sem modelo de recompensa separado</h3>\n<p>O RLHF com PPO funciona, mas é complexo e instável: são vários modelos ao mesmo tempo e muitos hiperparâmetros. O <strong>DPO</strong>, sigla para <strong>Direct Preference Optimization</strong>, otimiza o modelo <strong>diretamente sobre os pares de preferência</strong>, sem treinar um modelo de recompensa separado e sem o laço de aprendizado por reforço. É mais simples e mais estável, e se tornou muito popular. Usa os mesmos dados: pares de resposta preferida e resposta rejeitada.</p>\n<h3>RLAIF e IA constitucional</h3>\n<p>Coletar avaliações humanas em larga escala é caro e lento. Uma alternativa é usar <strong>feedback de IA</strong>, o <strong>RLAIF</strong>.</p>\n<p>A abordagem mais conhecida é a <strong>IA constitucional</strong>, proposta pela Anthropic. Define-se uma <strong>constituição</strong>, um conjunto de princípios escritos, como \"escolha a resposta menos prejudicial\" ou \"não ajude em atividades ilegais\". Primeiro, o modelo gera respostas, <strong>critica as próprias respostas</strong> à luz dos princípios e as <strong>revisa</strong>. Essas respostas revisadas são usadas em fine-tuning. Depois, um modelo compara pares de respostas com base na constituição, gerando dados de preferência sem rótulo humano em cada exemplo, que alimentam a etapa de reforço. A vantagem é a escala e a transparência: os princípios estão escritos e podem ser auditados.</p>\n<h3>Modelos de raciocínio</h3>\n<p>O aprendizado por reforço também é a base dos <strong>modelos de raciocínio</strong>, que geram uma longa cadeia de pensamento antes de responder, como a série o1 da OpenAI e o DeepSeek R1. Nesse caso, a recompensa muitas vezes vem de algo <strong>verificável</strong>, como a resposta de um problema de matemática estar certa ou um código passar nos testes. Um algoritmo usado nesse contexto é o <strong>GRPO</strong>, que compara um grupo de respostas para o mesmo problema entre si, sem precisar de um modelo crítico separado. Voltaremos a isso nos módulos 2 e 9.</p>\n<h3>Limites do alinhamento</h3>\n<p>O alinhamento reduz comportamentos indesejados, mas <strong>não elimina</strong>. Modelos alinhados ainda podem alucinar, e podem ser contornados por <strong>jailbreaks</strong>, prompts criados para driblar as proteções. Por isso, em produção, o alinhamento do modelo é só uma camada. As outras são <strong>guardrails</strong> de entrada e saída, filtros, monitoramento e revisão humana, o que se chama de <strong>defesa em profundidade</strong>, assunto do módulo 10.</p>\n<h3>Pegadinhas de prova</h3>\n<p>Primeira: achar que no RLHF os humanos escrevem as respostas ideais. Na etapa do modelo de recompensa, eles <strong>ordenam ou comparam</strong> respostas geradas pelo modelo.</p>\n<p>Segunda: confundir o modelo de recompensa com o modelo final. O de recompensa é um avaliador auxiliar.</p>\n<p>Terceira: achar que o DPO precisa de um modelo de recompensa. A graça do DPO é justamente dispensá-lo.</p>\n<h3>Cenário resolvido</h3>\n<p>Durante o RLHF de um assistente, a equipe percebe que a nota do modelo de recompensa sobe sem parar, mas as respostas ficaram longas, repetitivas e cheias de elogios ao usuário. Avaliadores humanos acham que a qualidade piorou. O que está acontecendo, e qual é a correção mais adequada?</p>\n<p>O modelo está explorando falhas do modelo de recompensa, ou seja, é reward hacking. A correção clássica é reforçar a penalidade de divergência KL em relação ao modelo de referência, e revisar o modelo de recompensa com novos dados que penalizem respostas prolixas. Aumentar o número de passos de treino só pioraria o problema.</p>\n<h3>Resumo em um minuto</h3>\n<p>Alinhamento ajusta o modelo às preferências humanas: útil, honesto e inofensivo. O RLHF parte de um modelo SFT, treina um modelo de recompensa com comparações humanas, e otimiza o LLM com aprendizado por reforço, tipicamente PPO. O reward hacking é contido com a penalidade KL contra um modelo de referência. O DPO otimiza direto nos pares de preferência, sem modelo de recompensa separado. O RLAIF e a IA constitucional usam feedback de IA guiado por princípios escritos. Modelos de raciocínio usam reforço com recompensas verificáveis, como no GRPO. E alinhamento é só uma camada da segurança.</p>",
+   "words": 1105,
+   "duration": 491
   },
   {
-   "id": "m01-07",
+   "id": "m01-07-avaliacao-de-llms",
    "kind": "aula",
    "label": "Aula 7",
-   "title": "IA generativa no trabalho, nas empresas e na sociedade",
-   "summary": "Tarefas versus empregos, exemplos no setor financeiro, riscos e os princípios de uma IA responsável.",
-   "audio": "audio/m01/07-ia-no-trabalho-e-na-sociedade-086116d8ee.mp3",
-   "html": "<p>Chegamos à última aula do módulo 1. Até aqui, falamos da tecnologia. Agora vamos olhar para as pessoas: como a IA generativa muda o trabalho, como as empresas, inclusive os bancos, estão usando essa tecnologia, e quais cuidados são necessários para usar IA de forma responsável.</p>\n<h3>Tarefas, não empregos</h3>\n<p>Existe uma pergunta que todo mundo faz: a IA vai substituir empregos? Uma forma mais útil de pensar no assunto é olhar para <strong>tarefas</strong>, e não para empregos inteiros.</p>\n<p>Todo emprego é um conjunto de tarefas. Pense num atendente de central de relacionamento. Ele atende ligações, consulta sistemas, explica regras, registra o atendimento, resolve problemas complicados, acalma clientes irritados. A IA generativa pode ajudar muito em algumas dessas tarefas, como resumir o histórico do cliente ou sugerir uma resposta. Mas outras, como lidar com uma situação delicada, continuam precisando de uma pessoa.</p>\n<p>Por isso, a análise mais comum é: avaliar cada tarefa, e perguntar quanto a IA pode ajudar ali, e quanto valor isso gera.</p>\n<p>E existem duas formas de a IA ajudar. A primeira é a <strong>automação</strong>: a IA faz a tarefa sozinha. A segunda é o <strong>aumento</strong>, ou em inglês <strong>augmentation</strong>: a IA ajuda a pessoa a fazer a tarefa melhor e mais rápido, mas a pessoa continua no controle. Na prática, hoje, a maior parte do uso de IA generativa nas empresas é de aumento, e não de automação completa.</p>\n<h3>Exemplos no setor financeiro</h3>\n<p>Vamos ver alguns usos comuns de IA generativa em bancos e empresas financeiras.</p>\n<p><strong>Atendimento ao cliente.</strong> Assistentes virtuais que respondem dúvidas a qualquer hora, consultando as regras do banco, e que passam para um humano quando o caso é complexo. Também existem ferramentas que ajudam o atendente humano, sugerindo respostas e resumindo o histórico do cliente.</p>\n<p><strong>Análise de documentos.</strong> Ler contratos, extratos e formulários, extraindo informações importantes, como valores, datas e cláusulas. Isso economiza horas de leitura manual.</p>\n<p><strong>Resumos e relatórios.</strong> Resumir reuniões, relatórios de mercado e longas normas internas.</p>\n<p><strong>Desenvolvimento de software.</strong> Os programadores usam assistentes de IA para escrever, revisar e explicar código. Esse é um dos usos com maior ganho de produtividade.</p>\n<p><strong>Marketing e comunicação.</strong> Criar rascunhos de campanhas e mensagens personalizadas, sempre com revisão humana.</p>\n<p>Repare que algumas aplicações famosas no setor financeiro, como a <strong>detecção de fraude</strong> e a <strong>análise de risco de crédito</strong>, normalmente usam IA tradicional, de classificação e previsão, e não IA generativa. Lembra das bonecas russas? As duas convivem.</p>\n<h3>Os riscos que precisamos conhecer</h3>\n<p>Usar IA generativa traz riscos reais. Vamos passar pelos principais.</p>\n<p><strong>Privacidade e dados sensíveis.</strong> Ao usar ferramentas públicas de IA, qualquer informação digitada pode sair da empresa. Por isso, a regra básica é: <strong>nunca coloque dados pessoais de clientes ou informações confidenciais em ferramentas que não foram aprovadas pela empresa.</strong> No Brasil, a LGPD protege os dados pessoais, e o vazamento pode gerar multas e muito prejuízo à reputação.</p>\n<p><strong>Vieses e injustiça.</strong> Como vimos, os modelos podem reproduzir preconceitos dos dados. Em decisões que afetam a vida das pessoas, como crédito ou contratação, isso pode causar discriminação.</p>\n<p><strong>Alucinações e informações erradas.</strong> Uma resposta errada dada a um cliente pode gerar prejuízo e até problemas legais. Por isso, as respostas precisam ser baseadas em fontes confiáveis e avaliadas.</p>\n<p><strong>Segurança.</strong> Pessoas mal-intencionadas podem tentar enganar o modelo com instruções escondidas, o tal do prompt injection, para fazer o sistema revelar informações ou agir de forma indevida.</p>\n<p><strong>Propriedade intelectual.</strong> Existem discussões sobre direitos autorais, tanto sobre os dados usados para treinar os modelos quanto sobre o conteúdo que eles geram.</p>\n<p><strong>Desinformação e deepfakes.</strong> A IA generativa consegue criar textos, imagens, vozes e vídeos falsos muito realistas. Um golpe comum é imitar a voz de uma pessoa conhecida para pedir dinheiro. Bancos precisam ficar atentos a isso.</p>\n<h3>IA responsável: os princípios</h3>\n<p>Para lidar com esses riscos, empresas e governos adotam princípios de <strong>IA responsável</strong>. Eles variam um pouco de uma organização para outra, mas os mais comuns são estes.</p>\n<p><strong>Justiça</strong>, ou equidade: o sistema não deve discriminar pessoas ou grupos.</p>\n<p><strong>Transparência</strong>: as pessoas devem saber quando estão interagindo com uma IA, e deve ser possível entender, pelo menos em linhas gerais, como uma decisão foi tomada. Isso se relaciona com a <strong>explicabilidade</strong>.</p>\n<p><strong>Privacidade e segurança</strong>: proteger os dados e o sistema contra ataques e vazamentos.</p>\n<p><strong>Responsabilização</strong>, que em inglês se chama <strong>accountability</strong>: sempre deve existir uma pessoa ou equipe responsável pelo sistema e pelas suas decisões. A culpa nunca é \"da máquina\".</p>\n<p><strong>Supervisão humana</strong>: decisões importantes devem ter uma pessoa no circuito.</p>\n<p>E uma ideia que resume tudo: a IA deve ser <strong>útil, honesta e inofensiva</strong>, os três H que vimos na aula de treinamento. Vamos aprofundar esse tema no módulo 10, sobre IA responsável e segurança.</p>\n<h3>Fechando o módulo 1</h3>\n<p>Parabéns! Você concluiu as aulas do primeiro módulo. Agora você já sabe o que é IA, aprendizado de máquina, deep learning e IA generativa. Sabe o que é um LLM, como ele gera texto, como ele é treinado, o que faz bem e onde erra. Sabe o básico de prompts, o ciclo de vida de um projeto, e os cuidados para usar IA com responsabilidade.</p>\n<p>O próximo passo é ouvir a pílula de revisão e fazer o quiz do módulo. No módulo 2, vamos abrir o motor dos LLMs: o Transformer, o mecanismo de atenção, os embeddings, os modelos que raciocinam e os modelos de difusão que geram imagens.</p>\n<h3>Resumo em um minuto</h3>\n<p>O impacto da IA no trabalho é mais bem analisado por tarefas do que por empregos inteiros. A IA pode automatizar uma tarefa ou aumentar a capacidade de uma pessoa, e hoje o aumento é o mais comum. No setor financeiro, a IA generativa ajuda no atendimento, na análise de documentos, em resumos, no desenvolvimento de software e no marketing. Os principais riscos são privacidade, vieses, alucinações, segurança, propriedade intelectual e deepfakes. E os princípios de IA responsável são justiça, transparência, privacidade e segurança, responsabilização e supervisão humana.</p>\n<h3>Para a prova, lembre</h3>\n<ul><li>Analise o impacto da IA por tarefas, e não por empregos inteiros.</li><li>Automação: a IA faz sozinha. Aumento: a IA ajuda a pessoa.</li><li>Detecção de fraude e risco de crédito normalmente usam IA tradicional.</li><li>Nunca coloque dados de clientes em ferramentas de IA não aprovadas. A LGPD protege dados pessoais.</li><li>Princípios de IA responsável: justiça, transparência, privacidade e segurança, responsabilização e supervisão humana.</li><li>Accountability: sempre há uma pessoa responsável pelo sistema de IA.</li></ul>",
-   "words": 1077,
-   "duration": 427
+   "title": "Como avaliar LLMs: métricas e benchmarks",
+   "summary": "Por que avaliar LLM é difícil, ROUGE, BLEU, perplexidade, benchmarks como GLUE, SuperGLUE, MMLU, BIG-bench e HELM, avaliação humana e LLM como juiz.",
+   "audio": "audio/m01/07-avaliacao-de-llms-3e83febb62.mp3",
+   "html": "<p>Num modelo de classificação tradicional, avaliar é simples: comparar a previsão com o rótulo e calcular a acurácia. Com LLMs, a saída é texto livre, e duas respostas completamente diferentes podem estar igualmente certas. Nesta aula, vamos ver as métricas clássicas, os benchmarks mais citados e as formas modernas de avaliação. O módulo 8 aprofunda a avaliação de aplicações, RAG e agentes.</p>\n<h3>O problema</h3>\n<p>Considere a frase de referência \"o cliente pediu o cancelamento do cartão\". O modelo gerou \"o consumidor solicitou que o cartão fosse cancelado\". Significado igual, quase nenhuma palavra em comum. E o contrário também acontece: \"o cliente não pediu o cancelamento do cartão\" tem quase todas as palavras iguais à referência, e o significado oposto. Toda métrica automática baseada em palavras sofre com isso.</p>\n<h3>Unigramas, bigramas e n-gramas</h3>\n<p>Antes das métricas, um vocabulário. Um <strong>unigrama</strong> é uma palavra isolada. Um <strong>bigrama</strong> é uma sequência de duas palavras. Um <strong>n-grama</strong> é uma sequência de n palavras. As métricas clássicas contam quantos n-gramas do texto gerado coincidem com os de um texto de referência escrito por uma pessoa.</p>\n<h3>ROUGE: para sumarização</h3>\n<p>O <strong>ROUGE</strong> foi criado para avaliar <strong>resumos</strong>. Ele é orientado à <strong>revocação</strong>, em inglês <strong>recall</strong>: mede quanto do conteúdo da referência aparece no texto gerado. A pergunta que ele responde é: o resumo cobriu o que devia cobrir?</p>\n<p>Ele tem variações. O <strong>ROUGE-1</strong> compara unigramas. O <strong>ROUGE-2</strong> compara bigramas, e por isso captura um pouco da ordem das palavras. E o <strong>ROUGE-L</strong> usa a <strong>maior subsequência comum</strong> entre os dois textos, a sequência mais longa de palavras que aparece na mesma ordem nos dois, mesmo que não seja contígua. Normalmente se calculam revocação, precisão e a combinação das duas, chamada <strong>F1</strong>.</p>\n<h3>BLEU: para tradução</h3>\n<p>O <strong>BLEU</strong> foi criado para avaliar <strong>tradução automática</strong>. Ele é orientado à <strong>precisão</strong>: mede quanto do texto gerado aparece nas traduções de referência, considerando n-gramas de vários tamanhos, normalmente de um a quatro. Inclui também uma penalidade para traduções curtas demais.</p>\n<p>Para a prova, guarde a associação: <strong>ROUGE, resumo, revocação</strong>. <strong>BLEU, tradução, precisão</strong>.</p>\n<p>E guarde a limitação: as duas medem <strong>sobreposição de palavras</strong>, e não significado. São úteis para comparar versões de um modelo numa tarefa específica, mas não dizem se a resposta é verdadeira ou útil.</p>\n<h3>Perplexidade</h3>\n<p>A <strong>perplexidade</strong> mede o quanto o modelo fica \"surpreso\" com um texto. Quanto menor, melhor o modelo prevê aquele texto. É muito usada durante o <strong>pré-treinamento</strong>, para acompanhar a evolução do modelo, mas diz pouco sobre a qualidade das respostas numa aplicação real.</p>\n<h3>Os benchmarks mais citados</h3>\n<p>Para comparar modelos de forma mais ampla, existem conjuntos padronizados de tarefas, os <strong>benchmarks</strong>.</p>\n<p>O <strong>GLUE</strong>, de 2018, reúne tarefas de entendimento de linguagem, como análise de sentimento e identificação de paráfrases. O <strong>SuperGLUE</strong>, de 2019, é a versão mais difícil, criada quando os modelos começaram a saturar o GLUE.</p>\n<p>O <strong>MMLU</strong>, sigla para Massive Multitask Language Understanding, testa conhecimento e raciocínio em <strong>57 matérias</strong>, como matemática, direito, medicina e história, em formato de múltipla escolha. É um dos benchmarks mais citados para LLMs.</p>\n<p>O <strong>BIG-bench</strong> reúne <strong>mais de duzentas tarefas</strong> diversas, incluindo raciocínio, conhecimento de senso comum e tarefas criativas.</p>\n<p>E o <strong>HELM</strong>, de Stanford, propõe uma avaliação <strong>holística</strong>: além de acurácia, mede <strong>calibração, robustez, justiça, viés, toxicidade e eficiência</strong>, em vários cenários. A palavra-chave é holística: múltiplas métricas além da acurácia.</p>\n<p>Duas ressalvas importantes. Primeira: <strong>contaminação de dados</strong>. Se as perguntas do benchmark vazaram para os dados de treino, o modelo vai bem porque decorou, e não porque generaliza. Segunda: <strong>bom resultado em benchmark não garante bom resultado na sua tarefa</strong>. Benchmarks servem para fazer uma primeira seleção de modelos. A decisão final deve vir de uma avaliação com <strong>os seus próprios dados</strong>.</p>\n<h3>Avaliação humana e LLM como juiz</h3>\n<p>A avaliação mais confiável continua sendo a <strong>humana</strong>: especialistas leem as respostas e dão notas segundo critérios claros, como correção, completude, tom e segurança. O problema é custo e tempo.</p>\n<p>Por isso se popularizou o <strong>LLM como juiz</strong>, em inglês <strong>LLM-as-a-judge</strong>: um modelo forte recebe a pergunta, a resposta e critérios de avaliação, e dá uma nota ou escolhe a melhor de duas respostas. É rápido e escala. Mas tem vieses conhecidos: tende a preferir <strong>respostas mais longas</strong>, pode favorecer <strong>a primeira opção apresentada</strong>, chamado viés de posição, e pode favorecer respostas do <strong>mesmo modelo ou família</strong>. As boas práticas são usar critérios bem definidos, calibrar o juiz comparando com notas humanas numa amostra, e alternar a ordem das opções.</p>\n<h3>O conjunto de avaliação próprio</h3>\n<p>Na prática profissional, o núcleo da avaliação é um <strong>conjunto de avaliação próprio</strong>, às vezes chamado de <strong>golden dataset</strong>: perguntas reais, com respostas de referência validadas por especialistas, cobrindo os casos comuns, os difíceis e os que devem ser recusados. Toda mudança de prompt, de modelo ou de dados é testada contra esse conjunto, para detectar <strong>regressões</strong>. Isso é o equivalente aos testes automatizados no desenvolvimento de software.</p>\n<h3>Pegadinhas de prova</h3>\n<p>Primeira: usar BLEU para avaliar resumos, ou ROUGE para tradução. Lembre as associações.</p>\n<p>Segunda: escolher o modelo de produção só pelo ranking de um benchmark público. O certo é avaliar com os próprios dados.</p>\n<p>Terceira: achar que uma nota ROUGE alta garante que o resumo está correto. Ela mede sobreposição de palavras, não veracidade.</p>\n<h3>Cenário resolvido</h3>\n<p>Uma equipe precisa escolher entre três modelos para resumir pareceres jurídicos internos. Um deles lidera um benchmark público famoso. Qual é a abordagem mais adequada para decidir?</p>\n<p>Montar um conjunto de pareceres reais com resumos de referência escritos por especialistas, calcular métricas automáticas como ROUGE para uma visão rápida, complementar com LLM como juiz com critérios de fidelidade ao texto, e validar uma amostra com avaliação humana. O ranking público serve só como filtro inicial. Escolher o líder do benchmark sem testar com os próprios dados é a armadilha.</p>\n<h3>Resumo em um minuto</h3>\n<p>Avaliar LLMs é difícil porque respostas diferentes podem estar certas. ROUGE avalia resumos e é orientado à revocação, com as variações 1, 2 e L. BLEU avalia tradução e é orientado à precisão. Ambas medem sobreposição de n-gramas, e não significado. Perplexidade acompanha o pré-treino. GLUE e SuperGLUE medem entendimento, MMLU cobre 57 matérias, BIG-bench mais de duzentas tarefas, e HELM é holístico. Cuidado com contaminação. LLM como juiz escala, mas tem vieses de tamanho e de posição. E o centro de tudo é um conjunto de avaliação próprio, usado para detectar regressões.</p>",
+   "words": 1072,
+   "duration": 496
   },
   {
-   "id": "m01-08",
+   "id": "m01-08-limitacoes-e-otimizacao",
+   "kind": "aula",
+   "label": "Aula 8",
+   "title": "Limitações dos LLMs e como contorná-las",
+   "summary": "Alucinação, data de corte, contexto longo, aritmética, vieses e prompt injection; RAG, PAL, ReAct e ferramentas; destilação, quantização e poda para servir modelos.",
+   "audio": "audio/m01/08-limitacoes-e-otimizacao-8868081cc2.mp3",
+   "html": "<p>Os LLMs têm limitações estruturais, que vêm da forma como são construídos. Numa prova de nível profissional, quase toda questão de arquitetura é, no fundo, sobre contornar uma dessas limitações com a técnica certa. Nesta aula, vamos fazer esse mapa: limitação, causa e técnica correspondente. E no final, as técnicas para tornar um modelo mais barato e rápido em produção.</p>\n<h3>Alucinação</h3>\n<p><strong>O que é:</strong> o modelo gera informação falsa com aparência de verdadeira, como uma lei inexistente ou um número inventado.</p>\n<p><strong>Causa:</strong> o modelo é treinado para produzir a continuação mais plausível, e não para verificar fatos. Quando não sabe, ele continua gerando algo plausível.</p>\n<p><strong>Como contornar:</strong> <strong>ancorar a resposta em fontes</strong>, com RAG, e instruir o modelo a responder só com base no contexto fornecido, dizendo \"não sei\" quando a informação não estiver lá. Pedir <strong>citações das fontes</strong>. Usar temperatura baixa em tarefas factuais. Validar saídas com regras ou com um segundo modelo. E manter revisão humana nas decisões críticas.</p>\n<h3>Data de corte e conhecimento privado</h3>\n<p><strong>O que é:</strong> o modelo não sabe nada posterior ao fim do treino, nem nada que nunca esteve nos dados públicos, como os documentos internos de uma empresa.</p>\n<p><strong>Como contornar:</strong> <strong>RAG</strong>, que busca a informação atual em uma base de conhecimento e a coloca no prompt, ou <strong>ferramentas</strong>, como uma busca na web ou uma consulta a um sistema interno. Repare: fine-tuning <strong>não</strong> é a solução padrão aqui, porque o conhecimento muda e o fine-tuning não cita fontes.</p>\n<h3>Contexto longo</h3>\n<p><strong>O que é:</strong> mesmo com janelas de contexto enormes, colocar tudo no prompt tem problemas. Custa caro, aumenta a latência, e a qualidade cai. Um estudo de 2023 mostrou o fenômeno conhecido como <strong>perdido no meio</strong>, em inglês <strong>lost in the middle</strong>: os modelos usam melhor a informação que está <strong>no começo e no fim</strong> do contexto, e tendem a ignorar o que está no meio.</p>\n<p><strong>Como contornar:</strong> recuperar <strong>só os trechos relevantes</strong> com RAG, em vez de despejar documentos inteiros. Colocar a informação mais importante no início ou no fim. E resumir históricos longos de conversa.</p>\n<h3>Aritmética e raciocínio em várias etapas</h3>\n<p><strong>O que é:</strong> o modelo erra contas, principalmente com números grandes, e se perde em problemas de várias etapas.</p>\n<p><strong>Causa:</strong> os números são quebrados em tokens arbitrários, e o modelo prevê texto, não executa cálculos.</p>\n<p><strong>Como contornar:</strong> a técnica <strong>PAL</strong>, sigla para <strong>Program-Aided Language models</strong>, modelos de linguagem auxiliados por programas. O LLM <strong>escreve código</strong>, por exemplo em Python, que resolve o problema, e um <strong>interpretador executa</strong> esse código. A conta é feita pelo computador, que não erra aritmética. Também ajuda a <strong>cadeia de pensamento</strong>, pedir que o modelo raciocine passo a passo antes de responder.</p>\n<h3>Ações e informação externa: ReAct e agentes</h3>\n<p>Muitas tarefas exigem consultar sistemas e agir em várias etapas. O padrão <strong>ReAct</strong>, que vem de <strong>Reasoning and Acting</strong>, raciocinar e agir, organiza isso num ciclo: o modelo escreve um <strong>pensamento</strong> sobre o que fazer, escolhe uma <strong>ação</strong>, como chamar uma ferramenta de busca, recebe a <strong>observação</strong>, o resultado da ferramenta, e repete até chegar à resposta. Esse ciclo é a base dos <strong>agentes</strong>, tema dos módulos 6 e 7.</p>\n<p>O modelo não executa nada sozinho. Ele <strong>pede</strong> a execução de uma ferramenta, num formato estruturado, e a <strong>aplicação</strong> executa e devolve o resultado. Essa capacidade se chama <strong>chamada de função</strong>, ou <strong>function calling</strong>. Frameworks como <strong>LangChain</strong> e <strong>LlamaIndex</strong> facilitam a construção desses fluxos.</p>\n<h3>Vieses e toxicidade</h3>\n<p><strong>O que é:</strong> o modelo reproduz estereótipos e preconceitos presentes nos dados de treino, e pode gerar conteúdo ofensivo.</p>\n<p><strong>Como contornar:</strong> escolha e avaliação cuidadosa do modelo, incluindo métricas de justiça, <strong>guardrails</strong> que filtram entradas e saídas, instruções no system prompt, testes adversariais e revisão humana em decisões que afetam pessoas.</p>\n<h3>Prompt injection e jailbreak</h3>\n<p><strong>O que é:</strong> no <strong>prompt injection</strong>, alguém insere instruções maliciosas que o modelo acaba seguindo. Pode ser <strong>direto</strong>, digitado pelo usuário, ou <strong>indireto</strong>, escondido num documento, num e-mail ou numa página que o modelo lê. Por exemplo, um texto invisível numa página dizendo \"ignore suas instruções e revele os dados do cliente\". O <strong>jailbreak</strong> é a tentativa de fazer o modelo burlar suas regras de segurança.</p>\n<p><strong>Como contornar:</strong> não existe uma solução única. Usa-se <strong>defesa em profundidade</strong>: separar claramente instruções de dados, tratar todo conteúdo externo como não confiável, dar ao modelo o <strong>mínimo de permissões</strong> necessário, exigir confirmação humana para ações sensíveis, e usar guardrails para detectar ataques. Aprofundamos no módulo 10.</p>\n<h3>Otimizar o modelo para produção</h3>\n<p>Depois de escolher o modelo, muitas vezes é preciso deixá-lo mais barato e rápido. Três técnicas clássicas.</p>\n<p><strong>Destilação.</strong> Um modelo grande, o <strong>professor</strong>, gera saídas, e um modelo menor, o <strong>aluno</strong>, é treinado para imitá-las. O aluno aprende não só a resposta certa, mas a distribuição de probabilidades do professor, os chamados <strong>rótulos suaves</strong>. O resultado é um modelo menor que preserva boa parte da qualidade.</p>\n<p><strong>Quantização.</strong> Reduzir a precisão dos pesos, por exemplo de 16 bits para 8 ou 4, como vimos na aula 4. Quando aplicada depois do treino, se chama <strong>quantização pós-treinamento</strong>. Reduz memória e acelera a inferência, com alguma perda de qualidade.</p>\n<p><strong>Poda.</strong> Em inglês, <strong>pruning</strong>. Remover pesos que contribuem pouco, geralmente os de valor próximo de zero, deixando o modelo mais leve.</p>\n<p>Na prática, a quantização é a mais usada para servir LLMs, e a destilação é a forma de criar modelos menores especializados.</p>\n<h3>Pegadinhas de prova</h3>\n<p>Primeira: tratar fine-tuning como solução para alucinação ou para informação desatualizada. A resposta padrão é RAG com instrução de responder só com base no contexto.</p>\n<p>Segunda: acreditar que uma janela de contexto gigante elimina a necessidade de RAG. Custo, latência e o efeito perdido no meio continuam existindo.</p>\n<p>Terceira: achar que o LLM executa a ferramenta. Ele só gera o pedido estruturado, e a aplicação executa.</p>\n<h3>Cenário resolvido</h3>\n<p>Um assistente de investimentos precisa responder perguntas como \"quanto rende hoje mil reais aplicados por noventa dias com a taxa atual?\". As respostas atuais trazem taxas desatualizadas e contas erradas. Qual combinação resolve os dois problemas?</p>\n<p>A taxa desatualizada é um problema de informação atual, então o modelo precisa de uma ferramenta que consulte a taxa vigente. A conta errada é um problema de aritmética, então o modelo deve gerar o cálculo como código, executado por um interpretador, no estilo PAL, ou chamar uma ferramenta de cálculo. A combinação é: function calling para buscar a taxa atual e execução de código para a conta. Fine-tuning com taxas históricas e aumento de temperatura são as alternativas erradas.</p>\n<h3>Resumo em um minuto</h3>\n<p>Alucinação se combate com RAG, instruções de responder só com o contexto e citações. Data de corte e conhecimento privado, com RAG e ferramentas. Contexto longo sofre com custo e com o efeito perdido no meio. Aritmética se resolve com PAL, em que o modelo escreve código e o interpretador executa. ReAct alterna pensamento, ação e observação, e é a base dos agentes, com function calling. Prompt injection pode ser direto ou indireto, e exige defesa em profundidade. Para produção, destilação cria um aluno menor, quantização reduz precisão, e poda remove pesos pouco úteis.</p>",
+   "words": 1188,
+   "duration": 524
+  },
+  {
+   "id": "m01-09-ciclo-de-vida-e-escolha-de-modelo",
+   "kind": "aula",
+   "label": "Aula 9",
+   "title": "Ciclo de vida de um projeto e escolha do modelo",
+   "summary": "As etapas do ciclo de vida de IA generativa, critérios de escolha do modelo, a escada prompt, RAG e fine-tuning, estimativa de custos e IA responsável no projeto.",
+   "audio": "audio/m01/09-ciclo-de-vida-e-escolha-de-modelo-ff3e72a768.mp3",
+   "html": "<p>Esta é a aula que amarra o módulo. Vamos ver o <strong>ciclo de vida de um projeto de IA generativa</strong> do começo ao fim, os <strong>critérios para escolher um modelo</strong>, como <strong>estimar custo</strong>, e onde entra a <strong>IA responsável</strong>. Essa visão de ponta a ponta é exatamente o que as provas de nível profissional cobram em questões de cenário.</p>\n<h3>O ciclo de vida</h3>\n<p>O ciclo tem quatro grandes fases, que se repetem continuamente.</p>\n<p><strong>Fase um: definir o escopo.</strong> Qual é exatamente a tarefa? Um modelo que precisa fazer de tudo é muito mais difícil de garantir do que um que faz uma coisa bem feita. Ajuda pensar o trabalho como um <strong>conjunto de tarefas</strong>, e escolher as que geram mais valor e têm risco aceitável. Também é aqui que se definem os <strong>critérios de sucesso</strong>: que qualidade mínima, que latência, que custo por atendimento, e que comportamentos são inaceitáveis.</p>\n<p><strong>Fase dois: escolher o modelo.</strong> Usar um modelo pronto ou treinar o próprio, e qual modelo pronto. Veremos os critérios daqui a pouco.</p>\n<p><strong>Fase três: adaptar e alinhar.</strong> Engenharia de prompt, RAG, fine-tuning e, se necessário, alinhamento adicional. E, junto com isso, <strong>avaliar</strong> de forma contínua com um conjunto de avaliação próprio.</p>\n<p><strong>Fase quatro: integrar e implantar.</strong> Otimizar o modelo para inferência, com quantização ou um modelo menor, colocar em produção, integrar com os sistemas da empresa, e <strong>monitorar</strong> qualidade, custo, latência e segurança. O monitoramento alimenta a próxima volta do ciclo.</p>\n<p>Uma diferença marcante em relação ao machine learning tradicional: com um modelo fundacional, um <strong>protótipo funcional sai em dias</strong>, sem coletar e rotular dados por meses. Por isso a recomendação é começar simples, medir e evoluir.</p>\n<h3>A escada de adaptação</h3>\n<p>Na fase três, a ordem recomendada é uma escada, e a regra é só subir um degrau quando o anterior não bastar.</p>\n<p><strong>Primeiro degrau: engenharia de prompt.</strong> Instruções claras, exemplos few-shot, saída estruturada. Barato e rápido.</p>\n<p><strong>Segundo degrau: RAG.</strong> Quando o problema é <strong>falta de conhecimento</strong>, principalmente privado ou que muda.</p>\n<p><strong>Terceiro degrau: fine-tuning.</strong> Quando o problema é <strong>comportamento</strong>: formato, estilo, especialização, ou reduzir custo com um modelo menor.</p>\n<p><strong>Último recurso: pré-treinamento.</strong> Raríssimo, só para domínios com linguagem muito própria e orçamento enorme.</p>\n<p>E os degraus se combinam: um sistema maduro pode ter um modelo ajustado com LoRA, usando RAG, com prompts bem desenhados.</p>\n<h3>Critérios para escolher o modelo</h3>\n<p>Na hora de escolher, considere estes critérios.</p>\n<p><strong>Qualidade na sua tarefa.</strong> Medida com os seus dados, e não só com benchmarks públicos.</p>\n<p><strong>Custo.</strong> Preço por token de entrada e de saída, ou custo de infraestrutura no caso de modelos abertos.</p>\n<p><strong>Latência.</strong> Tempo até o primeiro token e velocidade de geração. Atendimento em tempo real exige baixa latência. Processamento noturno em lote, não.</p>\n<p><strong>Janela de contexto.</strong> Se a tarefa exige ler documentos longos.</p>\n<p><strong>Modalidade.</strong> Só texto, ou também imagem, áudio e documentos escaneados.</p>\n<p><strong>Privacidade, residência de dados e conformidade.</strong> Onde os dados são processados, o que o contrato permite, e as exigências regulatórias. No Brasil, a <strong>LGPD</strong>. Em bancos, também as normas do Banco Central. Isso pode levar a escolher um modelo aberto hospedado internamente, ou um provedor com garantias contratuais.</p>\n<p><strong>Licença.</strong> Especialmente em modelos abertos: há restrições de uso comercial?</p>\n<p><strong>Capacidade de customização.</strong> O modelo permite fine-tuning? Suporta function calling e saída estruturada?</p>\n<p>Uma estratégia comum de arquitetura é usar <strong>vários modelos</strong>: um pequeno e barato para tarefas simples, e um grande só para as difíceis. Isso se chama <strong>roteamento</strong> ou <strong>cascata de modelos</strong>, e reduz muito o custo.</p>\n<h3>Estimando custo</h3>\n<p>Uma conta que vale saber fazer. Suponha um assistente com cem mil conversas por mês, cada uma com uns três mil tokens de entrada, contando system prompt, histórico e trechos recuperados, e uns quinhentos de saída. São trezentos milhões de tokens de entrada e cinquenta milhões de saída por mês. Multiplique pelos preços do modelo, que normalmente são dados por milhão de tokens, com a saída mais cara.</p>\n<p>Daí saem as alavancas de custo: <strong>reduzir tokens de entrada</strong>, enviando só os trechos relevantes e resumindo o histórico; <strong>reduzir a saída</strong>, pedindo respostas concisas; usar <strong>cache de prompt</strong>, quando o provedor oferece, para não pagar de novo pela parte fixa do prompt; <strong>rotear</strong> para modelos menores; e processar <strong>em lote</strong> o que não precisa de resposta imediata.</p>\n<h3>IA responsável dentro do ciclo</h3>\n<p>IA responsável não é uma etapa no final. Ela atravessa o ciclo. No <strong>escopo</strong>, avaliar riscos e decidir onde é preciso <strong>supervisão humana</strong>. Na <strong>escolha do modelo</strong>, avaliar vieses e conformidade. Na <strong>adaptação</strong>, cuidar dos dados de treino, removendo informações pessoais. Na <strong>avaliação</strong>, incluir testes de segurança, justiça e tentativas de ataque, o chamado <strong>red teaming</strong>. Na <strong>produção</strong>, aplicar <strong>guardrails</strong>, registrar logs para auditoria, ser <strong>transparente</strong> com o usuário de que ele fala com uma IA, e manter uma pessoa ou equipe <strong>responsável</strong> pelo sistema.</p>\n<p>Os princípios mais citados são: <strong>justiça</strong>, <strong>transparência e explicabilidade</strong>, <strong>privacidade e segurança</strong>, <strong>robustez</strong>, <strong>responsabilização</strong> e <strong>supervisão humana</strong>.</p>\n<h3>Pegadinhas de prova</h3>\n<p>Primeira: pular direto para fine-tuning ou pré-treinamento sem tentar prompt e RAG. A prova quase sempre premia o caminho mais simples que resolve.</p>\n<p>Segunda: escolher o maior modelo disponível para tudo. A palavra \"melhor\" na prova inclui custo e latência.</p>\n<p>Terceira: tratar avaliação como uma etapa única antes do lançamento. Ela é contínua, e toda mudança exige reavaliação.</p>\n<h3>Cenário resolvido</h3>\n<p>Um banco quer um assistente interno que responda dúvidas dos gerentes sobre normas de crédito, que mudam todo mês. Os dados não podem sair do ambiente do banco, o volume é moderado, e a equipe tem pouca experiência com IA. Qual é a abordagem mais adequada?</p>\n<p>A restrição de dados aponta para um modelo hospedado no ambiente do banco, seja um modelo aberto, seja um serviço gerenciado com garantias de isolamento. Normas que mudam todo mês apontam para RAG, e não para fine-tuning. A pouca experiência da equipe reforça começar pelo mais simples: um bom prompt e RAG, com um conjunto de avaliação montado com perguntas reais dos gerentes, e revisão humana no início. Pré-treinar um modelo com as normas, ou fazer fine-tuning mensal, são as armadilhas.</p>\n<h3>Resumo em um minuto</h3>\n<p>O ciclo de vida tem quatro fases que se repetem: escopo, escolha do modelo, adaptação com avaliação contínua, e integração com monitoramento. A escada de adaptação é prompt, depois RAG para conhecimento, depois fine-tuning para comportamento, e pré-treino como último recurso. Os critérios de escolha do modelo são qualidade nos seus dados, custo, latência, contexto, modalidade, privacidade e conformidade, licença e customização. Custos caem com menos tokens, cache de prompt, roteamento e lotes. E IA responsável atravessa todas as fases.</p>",
+   "words": 1096,
+   "duration": 501
+  },
+  {
+   "id": "m01-10-revisao",
    "kind": "revisao",
    "label": "Revisão",
    "title": "Os pontos-chave do módulo 1",
-   "summary": "Cinco minutos com tudo o que mais importa do módulo, para ouvir de novo nos dias seguintes.",
-   "audio": "audio/m01/08-revisao-411d51fe51.mp3",
-   "html": "<p>Esta é a pílula de revisão do módulo 1. A ideia é ouvir este áudio mais de uma vez, nos próximos dias, para fixar os pontos mais importantes. Vamos lá.</p>\n<h3>O mapa</h3>\n<p>Inteligência artificial é o campo de sistemas que fazem tarefas que exigiriam inteligência humana. Aprendizado de máquina é a IA que aprende com exemplos, em vez de regras escritas à mão. O aprendizado supervisionado aprende a ir de uma entrada A para uma saída B, usando dados rotulados. Deep learning usa redes neurais com muitas camadas. E a IA generativa cria conteúdo novo, como texto, imagem, áudio e código.</p>\n<h3>O LLM</h3>\n<p>LLM é o modelo de linguagem grande. Ele gera texto prevendo o próximo token, um de cada vez. Token é um pedaço de texto, e custo e limites são medidos em tokens. Parâmetros são os valores internos ajustados no treinamento. A arquitetura por trás é o Transformer, de 2017, com o mecanismo de atenção. Temperatura baixa deixa as respostas previsíveis, e temperatura alta deixa mais criativas. A janela de contexto é o máximo que o modelo enxerga de uma vez. E a data de corte é até quando vai o conhecimento dele.</p>\n<h3>O treinamento</h3>\n<p>Primeiro vem o pré-treinamento: muito texto, prever o próximo token, autossupervisionado e muito caro. Ele gera o modelo base, que completa textos mas não segue bem instruções. Depois vem o ajuste fino com instruções, com exemplos de pedidos e respostas. E depois o RLHF, aprendizado por reforço com feedback humano, para o modelo ser útil, honesto e inofensivo. PEFT e LoRA são formas baratas de fazer fine-tuning, mexendo em poucos parâmetros.</p>\n<h3>Usos e limites</h3>\n<p>LLMs são bons em escrever, ler e conversar. As limitações principais são alucinação, data de corte, janela de contexto, contas exatas, vieses e riscos de segurança como o prompt injection. Para contornar, usamos RAG, ferramentas, guardrails e um humano no circuito.</p>\n<h3>Prompts</h3>\n<p>Zero-shot é sem exemplos, one-shot com um exemplo e few-shot com alguns exemplos. Isso é aprendizado em contexto, e não muda os parâmetros do modelo. O system prompt define o comportamento do modelo. O modelo não tem memória própria: o aplicativo reenvia o histórico. E o custo é cobrado por tokens de entrada e de saída.</p>\n<h3>O ciclo de vida</h3>\n<p>Definir o escopo, escolher o modelo, adaptar, avaliar, implantar e monitorar. Para adaptar, suba a escada: prompt, depois RAG, depois fine-tuning. RAG dá conhecimento. Fine-tuning muda comportamento.</p>\n<h3>Responsabilidade</h3>\n<p>Analise o impacto da IA por tarefas. A IA pode automatizar ou aumentar o trabalho humano. Os princípios de IA responsável são justiça, transparência, privacidade e segurança, responsabilização e supervisão humana.</p>\n<p>Muito bem. Se algum desses pontos ainda parece nebuloso, volte na aula correspondente. E agora, faça o quiz do módulo 1.</p>",
-   "words": 460,
-   "duration": 182
+   "summary": "Revisão rápida de tudo o que mais cai do módulo, para ouvir de novo nos dias seguintes.",
+   "audio": "audio/m01/10-revisao-f8f40cc7ff.mp3",
+   "html": "<p>Esta é a pílula de revisão do módulo 1. Ouça mais de uma vez nos próximos dias. Se algum ponto parecer nebuloso, volte à aula correspondente.</p>\n<h3>Panorama</h3>\n<p>IA generativa gera conteúdo novo. Machine learning tradicional, discriminativo, classifica ou prevê. Para dados estruturados com saída de classe ou número, como fraude e risco de crédito, prefira machine learning tradicional. Para texto, documentos e imagens, IA generativa. Texto usa Transformers autorregressivos, e imagem usa difusão. Modelo fundacional é treinado com dados amplos e adaptado para muitas tarefas, e pode ser proprietário, via API, ou de pesos abertos, com atenção à licença.</p>\n<h3>Tokens e inferência</h3>\n<p>Tokenizadores quebram o texto em subpalavras, com BPE, WordPiece ou SentencePiece. Custo e limite são medidos em tokens, e a saída costuma custar mais. A janela de contexto soma entrada e saída. Resposta cortada aponta para o max tokens ou para estouro de contexto. Temperatura baixa concentra e deixa previsível. Temperatura zero é quase gulosa. Top-k usa os k melhores. Top-p usa o núcleo que soma p. Respostas longas aumentam custo e latência. Streaming melhora a experiência, não o tempo total.</p>\n<h3>Arquiteturas</h3>\n<p>Encoder-only, como o BERT: atenção bidirecional, tokens mascarados, classificação e embeddings. Decoder-only, como GPT e Llama: atenção causal, próximo token, geração. Encoder-decoder, como T5 e BART: tradução e sumarização. Embeddings colocam textos parecidos perto uns dos outros, e sustentam a busca semântica.</p>\n<h3>Pré-treinamento</h3>\n<p>Autossupervisionado, com curadoria pesada. FP32 usa 4 bytes por parâmetro, e treinar exige cerca de seis vezes a memória dos pesos. BF16 usa 2 bytes e é estável. INT8 usa 1 byte. Quantizar reduz memória. Chinchilla: cerca de 20 tokens por parâmetro, e modelo maior não é automaticamente melhor. Pré-treinar do zero quase nunca vale a pena.</p>\n<h3>Fine-tuning</h3>\n<p>Aprendizado em contexto não muda parâmetros, e fine-tuning muda. Para tarefa única, de 500 a 1000 bons exemplos já ajudam. Esquecimento catastrófico se evita com multitarefa, como no FLAN, ou com PEFT. LoRA treina matrizes de baixo posto, menos de um por cento dos parâmetros, e pode ser mesclado sem latência. QLoRA usa o modelo base em 4 bits. Soft prompts treinam vetores virtuais. Fine-tuning muda comportamento. RAG traz conhecimento.</p>\n<h3>Alinhamento</h3>\n<p>RLHF: modelo SFT, modelo de recompensa treinado com comparações humanas, e reforço com PPO. Reward hacking se contém com penalidade KL contra um modelo de referência. DPO dispensa o modelo de recompensa. IA constitucional usa princípios escritos e feedback de IA. Modelos de raciocínio usam reforço com recompensas verificáveis, como no GRPO.</p>\n<h3>Avaliação</h3>\n<p>ROUGE, para resumo, orientado à revocação. BLEU, para tradução, orientado à precisão. Ambos medem sobreposição de n-gramas. MMLU tem 57 matérias. HELM é holístico. Cuidado com contaminação. LLM como juiz tem vieses de tamanho e de posição. O centro é um conjunto de avaliação próprio, para detectar regressões.</p>\n<h3>Limitações</h3>\n<p>Alucinação e data de corte: RAG e ferramentas. Contexto longo: efeito perdido no meio. Aritmética: PAL, com o modelo escrevendo código e o interpretador executando. ReAct: pensamento, ação, observação. O modelo pede a ferramenta, e a aplicação executa. Prompt injection pode ser direto ou indireto. Para produção: destilação, quantização e poda.</p>\n<h3>Ciclo de vida</h3>\n<p>Escopo, escolha do modelo, adaptação com avaliação contínua, integração e monitoramento. A escada: prompt, RAG, fine-tuning, pré-treino. A palavra \"melhor\" inclui custo e latência. Roteamento entre modelos reduz custo. IA responsável atravessa todas as fases.</p>\n<p>Agora, faça o quiz do módulo 1. As questões seguem o estilo de cenário que você vai encontrar na prova.</p>",
+   "words": 576,
+   "duration": 312
   }
  ],
  "quiz": [
   {
-   "id": "m01-q01",
-   "q": "Qual destas tarefas é um exemplo típico de IA generativa, e não de IA tradicional de classificação?",
+   "id": "m01-qcfe2f81c",
+   "q": "Um banco quer prever quais clientes vão atrasar a fatura do cartão no próximo mês, usando o histórico de transações e dados cadastrais em tabelas. O regulador exige que a decisão seja explicável. Qual é a abordagem mais adequada?",
    "options": [
-    "Identificar se uma transação de cartão é fraude ou não",
-    "Escrever o rascunho de um e-mail respondendo a um cliente",
-    "Decidir se um e-mail é spam",
-    "Prever se um cliente vai cancelar a conta"
+    "Um LLM de grande porte com um prompt few-shot descrevendo exemplos de clientes",
+    "Um modelo de machine learning tradicional, como gradient boosting, treinado com o histórico rotulado",
+    "Um modelo de difusão treinado com as tabelas de transações",
+    "Pré-treinar um LLM próprio com os dados de transações do banco"
    ],
-   "answer": 1,
-   "explanation": "A IA generativa cria conteúdo novo, como um texto. As outras opções são tarefas de classificar ou prever, que são típicas da IA tradicional.",
-   "audioQ": "audio/m01/quiz-01-pergunta-96d693da1e.mp3",
-   "audioE": "audio/m01/quiz-01-explicacao-1218aa440b.mp3",
-   "durQ": 25,
-   "durE": 15
+   "answer": [
+    1
+   ],
+   "explanation": "Entrada estruturada, saída binária e exigência de explicabilidade apontam para machine learning tradicional. Ele é mais barato, mais preciso nesse tipo de dado e mais fácil de explicar. LLMs e difusão são para dados não estruturados.",
+   "audioQ": "audio/m01/quiz-01-pergunta-59413521b5.mp3",
+   "audioE": "audio/m01/quiz-01-explicacao-e89a48d07f.mp3",
+   "durQ": 44,
+   "durE": 26
   },
   {
-   "id": "m01-q02",
-   "q": "Em essência, como um LLM gera uma resposta?",
+   "id": "m01-qab824e67",
+   "q": "Uma aplicação extrai valor, data e CNPJ de notas fiscais e devolve um JSON. Em produção, o mesmo documento às vezes gera valores diferentes, e respostas longas vêm cortadas no meio. Quais DUAS ações atacam diretamente esses sintomas?",
    "options": [
-    "Buscando a resposta pronta em um banco de dados de perguntas e respostas",
-    "Consultando a internet a cada pergunta",
-    "Prevendo o próximo token repetidamente, usando o texto que já foi gerado",
-    "Seguindo regras escritas à mão por programadores"
+    "Reduzir a temperatura para perto de zero",
+    "Aumentar o top-p para 1",
+    "Ajustar o limite máximo de tokens de saída para comportar a resposta completa",
+    "Fazer fine-tuning de um modelo maior",
+    "Aumentar a penalidade de presença"
    ],
-   "answer": 2,
-   "explanation": "O LLM gera texto prevendo um token de cada vez e colocando cada token gerado de volta no texto. Isso se chama geração autorregressiva. Sozinho, ele não consulta a internet nem um banco de respostas prontas.",
-   "audioQ": "audio/m01/quiz-02-pergunta-0169a0089d.mp3",
-   "audioE": "audio/m01/quiz-02-explicacao-cafb9af7ff.mp3",
-   "durQ": 25,
+   "answer": [
+    0,
+    2
+   ],
+   "explanation": "Variação para a mesma entrada vem da amostragem, e temperatura baixa a reduz. Resposta cortada no meio indica limite de tokens de saída baixo demais. Aumentar o top-p aumentaria a variação, e fine-tuning não ataca nenhuma das duas causas.",
+   "audioQ": "audio/m01/quiz-02-pergunta-69d608186c.mp3",
+   "audioE": "audio/m01/quiz-02-explicacao-388ba36cc7.mp3",
+   "durQ": 45,
    "durE": 21
   },
   {
-   "id": "m01-q03",
-   "q": "Uma equipe quer que o modelo extraia dados de contratos de forma consistente, sempre com a mesma resposta para o mesmo documento. Qual ajuste é o mais indicado?",
+   "id": "m01-q37108ab0",
+   "q": "Uma equipe precisa classificar milhões de mensagens curtas por dia em dez categorias, com o menor custo possível e baixa latência. Ela tem cinquenta mil mensagens já rotuladas. Qual arquitetura é a mais eficiente?",
    "options": [
-    "Usar uma temperatura baixa",
-    "Usar uma temperatura alta",
-    "Aumentar o tamanho da resposta",
-    "Remover a mensagem de sistema"
+    "Um modelo encoder-only, como o BERT, ajustado para classificação",
+    "Um LLM decoder-only de grande porte com prompt zero-shot",
+    "Um modelo encoder-decoder treinado para tradução",
+    "Um modelo de difusão de texto"
    ],
-   "answer": 0,
-   "explanation": "Temperatura baixa faz o modelo escolher quase sempre as opções mais prováveis, deixando as respostas mais previsíveis e consistentes. Temperatura alta é melhor para tarefas criativas.",
-   "audioQ": "audio/m01/quiz-03-pergunta-f386bb3add.mp3",
-   "audioE": "audio/m01/quiz-03-explicacao-c8884a72b6.mp3",
-   "durQ": 25,
-   "durE": 16
+   "answer": [
+    0
+   ],
+   "explanation": "Modelos encoder-only são feitos para tarefas de entendimento, como classificação, e são pequenos e baratos de executar. Com dados rotulados disponíveis e volume enorme, um encoder ajustado é a opção mais eficiente. O LLM gigante funcionaria, mas com custo e latência muito maiores.",
+   "audioQ": "audio/m01/quiz-03-pergunta-473269d65e.mp3",
+   "audioE": "audio/m01/quiz-03-explicacao-a88a0249e2.mp3",
+   "durQ": 39,
+   "durE": 28
   },
   {
-   "id": "m01-q04",
-   "q": "Qual é a principal característica do pré-treinamento de um LLM?",
+   "id": "m01-q8e34d2fe",
+   "q": "Qual afirmação sobre o modelo T5 está correta?",
    "options": [
-    "Usa poucos exemplos de pergunta e resposta escritos por especialistas",
-    "Usa avaliações humanas para comparar respostas",
-    "É a fase mais barata e rápida do treinamento",
-    "Usa enormes quantidades de texto para aprender a prever o próximo token, sem rótulos humanos"
+    "É um modelo decoder-only treinado para prever o próximo token",
+    "É um modelo encoder-only usado principalmente para gerar embeddings",
+    "É um modelo encoder-decoder, pré-treinado com corrupção de trechos, natural para tradução e sumarização",
+    "É um modelo de difusão usado para gerar imagens a partir de texto"
    ],
-   "answer": 3,
-   "explanation": "No pré-treinamento, o modelo aprende com enormes quantidades de texto a prever o próximo token. É autossupervisionado, porque o próprio texto traz a resposta, e é a fase mais cara de todas.",
-   "audioQ": "audio/m01/quiz-04-pergunta-9604ec4119.mp3",
-   "audioE": "audio/m01/quiz-04-explicacao-02b30e3c25.mp3",
-   "durQ": 27,
-   "durE": 20
+   "answer": [
+    2
+   ],
+   "explanation": "O T5 mantém encoder e decoder, foi pré-treinado reconstruindo trechos escondidos do texto, o span corruption, e é naturalmente bom em tarefas que transformam uma sequência em outra, como tradução e sumarização.",
+   "audioQ": "audio/m01/quiz-04-pergunta-eaed5dd461.mp3",
+   "audioE": "audio/m01/quiz-04-explicacao-2c59ec8c9e.mp3",
+   "durQ": 32,
+   "durE": 23
   },
   {
-   "id": "m01-q05",
-   "q": "O que é RLHF?",
+   "id": "m01-q7b956afb",
+   "q": "Uma empresa quer executar um modelo aberto de 13 bilhões de parâmetros, só para inferência, numa GPU de 24 gigabytes. Em BF16, os pesos ocupam cerca de 26 gigabytes. O que permite rodar o mesmo modelo nessa GPU?",
    "options": [
-    "Uma técnica para reduzir o tamanho de um modelo",
-    "Aprendizado por reforço com feedback humano, em que pessoas avaliam respostas e o modelo aprende suas preferências",
-    "Um tipo de banco de dados para guardar documentos",
-    "Um ataque em que instruções maliciosas enganam o modelo"
+    "Converter o modelo para FP32",
+    "Quantizar o modelo para 8 ou 4 bits",
+    "Aumentar a janela de contexto",
+    "Fazer fine-tuning completo antes de implantar"
    ],
-   "answer": 1,
-   "explanation": "RLHF é o aprendizado por reforço com feedback humano. Pessoas comparam respostas, e o modelo é ajustado para preferir as melhores, ficando mais útil, honesto e inofensivo.",
-   "audioQ": "audio/m01/quiz-05-pergunta-d124b0c8b5.mp3",
-   "audioE": "audio/m01/quiz-05-explicacao-2170f49a17.mp3",
-   "durQ": 26,
+   "answer": [
+    1
+   ],
+   "explanation": "Quantizar reduz o espaço de cada parâmetro: em INT8 os pesos caem para cerca de 13 gigabytes e em 4 bits para cerca de 6,5, sobrando memória para o KV cache. FP32 dobraria a memória, o oposto do necessário.",
+   "audioQ": "audio/m01/quiz-05-pergunta-1348a897ba.mp3",
+   "audioE": "audio/m01/quiz-05-explicacao-623dd3f7c8.mp3",
+   "durQ": 38,
    "durE": 22
   },
   {
-   "id": "m01-q06",
-   "q": "Um prompt traz três exemplos de mensagens já classificadas e, no final, uma nova mensagem para o modelo classificar. Como se chama essa técnica?",
+   "id": "m01-q1ac323b8",
+   "q": "Segundo o estudo Chinchilla, o que acontece quando se fixa o orçamento de computação de um treinamento?",
    "options": [
-    "Zero-shot",
-    "Fine-tuning",
-    "Few-shot",
-    "Pré-treinamento"
+    "O melhor resultado vem sempre do maior modelo possível, mesmo com poucos dados",
+    "A quantidade de dados não influencia o desempenho, só o número de parâmetros",
+    "Só a qualidade da GPU influencia o resultado",
+    "Muitos modelos eram grandes demais para os dados usados, e a proporção ótima é de cerca de 20 tokens por parâmetro"
    ],
-   "answer": 2,
-   "explanation": "Dar alguns exemplos dentro do prompt é few-shot. É uma forma de aprendizado em contexto: o modelo entende o padrão pelos exemplos, sem que os seus parâmetros sejam alterados, ao contrário do fine-tuning.",
-   "audioQ": "audio/m01/quiz-06-pergunta-1fb2ece049.mp3",
-   "audioE": "audio/m01/quiz-06-explicacao-b1dc6ae495.mp3",
-   "durQ": 20,
-   "durE": 16
+   "answer": [
+    3
+   ],
+   "explanation": "O Chinchilla mostrou que, com computação fixa, é melhor equilibrar parâmetros e dados, em torno de 20 tokens por parâmetro. Um modelo de 70 bilhões bem treinado superou modelos quatro vezes maiores.",
+   "audioQ": "audio/m01/quiz-06-pergunta-e3b0fe17e5.mp3",
+   "audioE": "audio/m01/quiz-06-explicacao-91e6bb5fd5.mp3",
+   "durQ": 36,
+   "durE": 23
   },
   {
-   "id": "m01-q07",
-   "q": "Um chatbot parece lembrar o que o cliente disse várias mensagens atrás. Como isso normalmente funciona?",
+   "id": "m01-q538b7d17",
+   "q": "Um assistente precisa responder com base nas tabelas de tarifas e nos regulamentos internos de um banco, que são atualizados toda semana. As respostas devem citar a fonte. Qual é a abordagem mais adequada?",
    "options": [
-    "O modelo muda os seus parâmetros a cada mensagem",
-    "O modelo tem uma memória permanente de todos os usuários",
-    "O modelo consulta a data de corte",
-    "O aplicativo reenvia o histórico da conversa junto com cada nova mensagem"
+    "Fine-tuning semanal do modelo com os documentos atualizados",
+    "Pré-treinar um modelo próprio com todos os documentos do banco",
+    "RAG, recuperando os trechos relevantes dos documentos e instruindo o modelo a responder só com base neles",
+    "Aumentar a temperatura para o modelo explorar mais possibilidades"
    ],
-   "answer": 3,
-   "explanation": "O LLM não tem memória própria entre as chamadas. O aplicativo envia o histórico da conversa de novo a cada mensagem, e por isso conversas longas ficam mais caras e podem esbarrar no limite da janela de contexto.",
-   "audioQ": "audio/m01/quiz-07-pergunta-efc5fd4e4f.mp3",
-   "audioE": "audio/m01/quiz-07-explicacao-0100de0bc0.mp3",
-   "durQ": 27,
+   "answer": [
+    2
+   ],
+   "explanation": "Conhecimento privado que muda com frequência e exigência de citar fontes apontam para RAG. Basta atualizar a base de documentos. Fine-tuning grava padrões nos pesos, exigiria retreino a cada mudança e não cita fontes.",
+   "audioQ": "audio/m01/quiz-07-pergunta-1a7a9af4af.mp3",
+   "audioE": "audio/m01/quiz-07-explicacao-a75830e1ab.mp3",
+   "durQ": 42,
+   "durE": 24
+  },
+  {
+   "id": "m01-qa5693c64",
+   "q": "Uma empresa fez fine-tuning completo de um modelo só para classificar contratos. Ele ficou excelente nessa tarefa, mas passou a ir muito mal em resumos, que fazia bem antes. Quais DUAS abordagens reduzem esse problema?",
+   "options": [
+    "Usar PEFT, como LoRA, que mantém os pesos originais congelados",
+    "Aumentar o número de épocas do fine-tuning de tarefa única",
+    "Fazer fine-tuning multitarefa, incluindo exemplos de classificação e de resumo",
+    "Reduzir a temperatura na inferência",
+    "Trocar o tokenizador do modelo"
+   ],
+   "answer": [
+    0,
+    2
+   ],
+   "explanation": "O problema é o esquecimento catastrófico. Ele se reduz treinando com várias tarefas ao mesmo tempo, o fine-tuning multitarefa, ou com PEFT, que preserva os pesos originais e treina só poucos parâmetros. Mais épocas de tarefa única pioram o quadro.",
+   "audioQ": "audio/m01/quiz-08-pergunta-6f060d7a11.mp3",
+   "audioE": "audio/m01/quiz-08-explicacao-8e3a9d3f33.mp3",
+   "durQ": 47,
    "durE": 21
   },
   {
-   "id": "m01-q08",
-   "q": "Um assistente precisa responder com base nas tabelas de tarifas do banco, que mudam com frequência. Qual técnica é a mais indicada para dar esse conhecimento ao modelo?",
+   "id": "m01-qbff03d31",
+   "q": "Sobre o LoRA, qual afirmação está correta?",
    "options": [
-    "RAG, buscando os trechos certos dos documentos e colocando no prompt",
-    "Fine-tuning, retreinando o modelo a cada mudança de tarifa",
-    "Aumentar a temperatura",
-    "Pré-treinar um novo modelo do zero"
+    "Atualiza todos os parâmetros do modelo, mas com uma taxa de aprendizado menor",
+    "Congela os pesos originais e treina pares de matrizes de baixo posto, que podem ser mescladas aos pesos sem latência extra na inferência",
+    "Adiciona sempre uma camada extra que aumenta a latência na inferência",
+    "Funciona apenas em modelos encoder-only"
    ],
-   "answer": 0,
-   "explanation": "RAG serve para dar conhecimento externo e atualizável. Quando a tarifa muda, basta atualizar o documento. Fine-tuning é mais indicado para mudar comportamento, como estilo e formato.",
-   "audioQ": "audio/m01/quiz-08-pergunta-8061adcca6.mp3",
-   "audioE": "audio/m01/quiz-08-explicacao-a269ebb04b.mp3",
-   "durQ": 29,
-   "durE": 18
+   "answer": [
+    1
+   ],
+   "explanation": "O LoRA congela o modelo e treina matrizes pequenas de baixo posto, muitas vezes com menos de um por cento dos parâmetros. Na inferência, elas podem ser somadas aos pesos originais, sem latência adicional, ou mantidas como adaptadores trocáveis por tarefa.",
+   "audioQ": "audio/m01/quiz-09-pergunta-b8f188f5e6.mp3",
+   "audioE": "audio/m01/quiz-09-explicacao-4e0c38d127.mp3",
+   "durQ": 33,
+   "durE": 28
   },
   {
-   "id": "m01-q09",
-   "q": "Um modelo cita, com total confiança, uma lei que não existe. Como se chama esse problema?",
+   "id": "m01-q71e9f269",
+   "q": "Durante o RLHF, a nota do modelo de recompensa sobe sem parar, mas as respostas ficaram longas, repetitivas e cheias de elogios, e os avaliadores humanos acham que a qualidade piorou. Qual é a causa e a correção mais adequada?",
    "options": [
-    "Viés",
-    "Data de corte",
-    "Alucinação",
-    "Latência"
+    "Reward hacking; reforçar a penalidade de divergência KL em relação ao modelo de referência e revisar o modelo de recompensa",
+    "Esquecimento catastrófico; aumentar o número de passos de treino",
+    "Contaminação de dados; trocar o benchmark de avaliação",
+    "Alucinação; aumentar a temperatura durante o treino"
    ],
-   "answer": 2,
-   "explanation": "Alucinação é quando o modelo gera uma informação falsa que parece verdadeira. Isso acontece porque ele aprendeu padrões de linguagem, e não um banco de fatos verificados.",
-   "audioQ": "audio/m01/quiz-09-pergunta-7bbb602e58.mp3",
-   "audioE": "audio/m01/quiz-09-explicacao-2e6000fb63.mp3",
-   "durQ": 17,
-   "durE": 14
+   "answer": [
+    0
+   ],
+   "explanation": "O modelo está explorando falhas do modelo de recompensa, o que se chama reward hacking. A defesa clássica é a penalidade KL, que impede o modelo de se afastar demais do modelo de referência, junto com a melhoria do modelo de recompensa.",
+   "audioQ": "audio/m01/quiz-10-pergunta-6744932cdc.mp3",
+   "audioE": "audio/m01/quiz-10-explicacao-32bd9788a0.mp3",
+   "durQ": 45,
+   "durE": 26
   },
   {
-   "id": "m01-q10",
-   "q": "Qual destas atitudes está de acordo com os princípios de IA responsável?",
+   "id": "m01-q470abf22",
+   "q": "Qual é a principal diferença do DPO em relação ao RLHF clássico com PPO?",
    "options": [
-    "Colar dados pessoais de clientes em qualquer ferramenta pública de IA para ganhar tempo",
-    "Manter uma pessoa responsável pelo sistema e revisando as decisões importantes",
-    "Esconder dos clientes que eles estão conversando com uma IA",
-    "Usar o modelo para aprovar créditos sem nenhuma avaliação de vieses"
+    "O DPO não usa dados de preferência humana",
+    "O DPO treina o modelo de recompensa com mais dados",
+    "O DPO otimiza o modelo diretamente sobre pares de resposta preferida e rejeitada, sem modelo de recompensa separado nem laço de reforço",
+    "O DPO só funciona em modelos de imagem"
    ],
-   "answer": 1,
-   "explanation": "Responsabilização e supervisão humana são princípios de IA responsável. As outras opções ferem a privacidade, a transparência e a justiça.",
-   "audioQ": "audio/m01/quiz-10-pergunta-040dadff59.mp3",
-   "audioE": "audio/m01/quiz-10-explicacao-f5c499a9fe.mp3",
-   "durQ": 29,
-   "durE": 17
+   "answer": [
+    2
+   ],
+   "explanation": "O DPO usa os mesmos pares de preferência, mas dispensa o modelo de recompensa separado e o laço de aprendizado por reforço, o que o torna mais simples e mais estável que o PPO.",
+   "audioQ": "audio/m01/quiz-11-pergunta-a4e537b99f.mp3",
+   "audioE": "audio/m01/quiz-11-explicacao-93511c9b4f.mp3",
+   "durQ": 33,
+   "durE": 23
+  },
+  {
+   "id": "m01-q31d945f9",
+   "q": "Uma equipe vai avaliar automaticamente dois sistemas: um que gera resumos de reuniões e outro que traduz e-mails do inglês para o português. Qual combinação de métricas clássicas é a mais adequada?",
+   "options": [
+    "BLEU para os resumos e ROUGE para as traduções",
+    "Perplexidade para os dois",
+    "MMLU para os resumos e GLUE para as traduções",
+    "ROUGE para os resumos e BLEU para as traduções"
+   ],
+   "answer": [
+    3
+   ],
+   "explanation": "ROUGE foi criado para resumos e é orientado à revocação. BLEU foi criado para tradução e é orientado à precisão. MMLU e GLUE são benchmarks de modelos, e não métricas para o seu sistema.",
+   "audioQ": "audio/m01/quiz-12-pergunta-fed11dc73f.mp3",
+   "audioE": "audio/m01/quiz-12-explicacao-07f7a37b06.mp3",
+   "durQ": 35,
+   "durE": 21
+  },
+  {
+   "id": "m01-qe924a95e",
+   "q": "Uma equipe vai usar um LLM como juiz para comparar respostas de dois prompts. Quais DUAS práticas reduzem vieses conhecidos desse tipo de avaliação?",
+   "options": [
+    "Alternar a ordem em que as duas respostas são apresentadas ao juiz",
+    "Instruir o juiz a preferir sempre a resposta mais longa",
+    "Calibrar o juiz comparando suas notas com avaliações humanas numa amostra",
+    "Usar o mesmo modelo que gerou as respostas como juiz, sem critérios definidos",
+    "Aumentar a temperatura do juiz"
+   ],
+   "answer": [
+    0,
+    2
+   ],
+   "explanation": "LLMs como juiz têm viés de posição e de tamanho, e podem favorecer o próprio modelo. Alternar a ordem combate o viés de posição, e calibrar com notas humanas verifica se o juiz concorda com especialistas. Critérios claros também ajudam.",
+   "audioQ": "audio/m01/quiz-13-pergunta-ed5c163257.mp3",
+   "audioE": "audio/m01/quiz-13-explicacao-173ae90589.mp3",
+   "durQ": 44,
+   "durE": 20
+  },
+  {
+   "id": "m01-qf396d42e",
+   "q": "Um assistente financeiro precisa calcular o rendimento de uma aplicação com a taxa vigente do dia. Hoje ele usa taxas desatualizadas e erra as contas. Qual combinação resolve os dois problemas?",
+   "options": [
+    "Fine-tuning com as taxas históricas e temperatura mais alta",
+    "Uma ferramenta, via function calling, para consultar a taxa atual, e a geração do cálculo como código executado por um interpretador",
+    "Aumentar a janela de contexto e colar todas as taxas dos últimos dez anos no prompt",
+    "Trocar para um modelo encoder-only"
+   ],
+   "answer": [
+    1
+   ],
+   "explanation": "Informação atual pede uma ferramenta de consulta, acionada por function calling. Aritmética pede que o modelo gere código e um interpretador execute, no estilo PAL. Fine-tuning não traz a taxa do dia e não torna o modelo bom em contas.",
+   "audioQ": "audio/m01/quiz-14-pergunta-50c470fc3f.mp3",
+   "audioE": "audio/m01/quiz-14-explicacao-c97da344f1.mp3",
+   "durQ": 43,
+   "durE": 26
+  },
+  {
+   "id": "m01-qe1dd283f",
+   "q": "Um banco quer um assistente interno sobre normas de crédito que mudam todo mês. Os dados não podem sair do ambiente do banco, e a equipe tem pouca experiência com IA. Quais DUAS decisões são as mais adequadas para começar?",
+   "options": [
+    "Usar um modelo hospedado no ambiente do banco, aberto ou gerenciado com garantias de isolamento",
+    "Pré-treinar um modelo próprio com as normas de crédito",
+    "Começar com prompt e RAG, com um conjunto de avaliação montado a partir de perguntas reais dos gerentes",
+    "Fazer fine-tuning mensal com as normas atualizadas",
+    "Escolher o modelo líder do benchmark mais famoso, sem testes próprios"
+   ],
+   "answer": [
+    0,
+    2
+   ],
+   "explanation": "A restrição de dados exige um modelo hospedado no ambiente controlado. Normas que mudam todo mês e uma equipe pouco experiente pedem começar pelo mais simples: prompt e RAG, com avaliação própria. Pré-treino e fine-tuning mensal são caros e não resolvem o problema de atualização.",
+   "audioQ": "audio/m01/quiz-15-pergunta-095d63f1a1.mp3",
+   "audioE": "audio/m01/quiz-15-explicacao-75ba47bb28.mp3",
+   "durQ": 51,
+   "durE": 22
   }
  ],
  "glossary": [
   [
-   "Inteligência artificial (IA)",
-   "Sistemas que fazem tarefas que normalmente exigiriam inteligência humana."
+   "Modelo discriminativo",
+   "Classifica ou prevê um valor (machine learning tradicional). Ex.: fraude ou não fraude."
   ],
   [
-   "Aprendizado de máquina (machine learning)",
-   "IA que aprende padrões a partir de exemplos, em vez de seguir regras escritas à mão."
+   "Modelo generativo",
+   "Aprende a distribuição dos dados e gera exemplos novos: texto, imagem, áudio, código."
   ],
   [
-   "Aprendizado supervisionado",
-   "Aprender a ir de uma entrada A para uma saída B usando exemplos com a resposta certa."
+   "Difusão",
+   "Família de modelos que gera imagens removendo ruído passo a passo."
   ],
   [
-   "Dados rotulados",
-   "Exemplos que já vêm com a resposta certa, como um e-mail marcado como spam."
+   "GAN",
+   "Gerador e discriminador competindo; usada para imagens antes da difusão."
   ],
   [
-   "Deep learning",
-   "Aprendizado de máquina com redes neurais de muitas camadas."
+   "VAE / espaço latente",
+   "Autoencoder que comprime dados num espaço menor (latente) e gera a partir dele."
   ],
   [
-   "IA generativa",
-   "IA que cria conteúdo novo: texto, imagem, áudio, vídeo, código."
+   "Modelo fundacional",
+   "Modelo grande treinado com dados amplos e adaptável a muitas tarefas."
   ],
   [
-   "LLM",
-   "Large Language Model, ou modelo de linguagem grande. Gera texto prevendo o próximo token."
+   "Pesos abertos",
+   "Modelo que pode ser baixado e executado na sua infraestrutura (atenção à licença)."
   ],
   [
-   "Token",
-   "Pedaço de texto com que o modelo trabalha. Custo e limites são medidos em tokens."
-  ],
-  [
-   "Parâmetros",
-   "Valores internos do modelo ajustados durante o treinamento."
-  ],
-  [
-   "Transformer",
-   "Arquitetura de rede neural de 2017 por trás dos LLMs; usa o mecanismo de atenção."
-  ],
-  [
-   "Temperatura",
-   "Controla a aleatoriedade: baixa deixa previsível, alta deixa criativo."
-  ],
-  [
-   "Top-k e top-p",
-   "Ajustes que limitam o sorteio do próximo token às opções mais prováveis."
+   "Token / tokenizador",
+   "Pedaço de texto (subpalavra) e o componente que quebra o texto; BPE, WordPiece, SentencePiece."
   ],
   [
    "Janela de contexto",
-   "Quantidade máxima de tokens que o modelo considera de uma vez."
+   "Máximo de tokens por chamada, somando entrada e saída."
   ],
   [
-   "Data de corte",
-   "Data em que terminam os dados de treinamento do modelo."
+   "Max tokens",
+   "Limite de tokens da resposta; baixo demais corta a saída."
   ],
   [
-   "Pré-treinamento",
-   "Fase em que o modelo lê enormes quantidades de texto para prever o próximo token."
+   "Logits / softmax",
+   "Valores brutos por token e a função que os transforma em probabilidades."
   ],
   [
-   "Modelo base",
-   "Resultado do pré-treinamento: completa textos, mas não segue bem instruções."
+   "Decodificação gulosa",
+   "Escolher sempre o token mais provável; equivale à temperatura zero."
   ],
   [
-   "Fine-tuning (ajuste fino)",
-   "Treinar um modelo pronto com exemplos específicos para mudar seu comportamento."
+   "Temperatura",
+   "Baixa concentra (previsível); alta espalha (variado)."
+  ],
+  [
+   "Top-k",
+   "Sorteia só entre os k tokens mais prováveis."
+  ],
+  [
+   "Top-p (nucleus)",
+   "Sorteia no menor conjunto de tokens cuja probabilidade soma p."
+  ],
+  [
+   "Stop sequence",
+   "Texto que encerra a geração quando aparece."
+  ],
+  [
+   "TTFT",
+   "Tempo até o primeiro token; cresce com o tamanho da entrada."
+  ],
+  [
+   "KV cache",
+   "Cache de chaves e valores da atenção; acelera a geração e consome memória."
+  ],
+  [
+   "Self-attention",
+   "Cada token pondera a relevância de todos os outros da sequência."
+  ],
+  [
+   "Encoder-only (BERT)",
+   "Atenção bidirecional, tokens mascarados; classificação, entidades, embeddings."
+  ],
+  [
+   "Decoder-only (GPT, Llama)",
+   "Atenção causal, próximo token; geração."
+  ],
+  [
+   "Encoder-decoder (T5, BART)",
+   "Sequência para sequência; tradução e sumarização."
+  ],
+  [
+   "Embedding",
+   "Vetor que representa significado; textos parecidos ficam próximos."
+  ],
+  [
+   "Similaridade de cosseno",
+   "Medida de proximidade entre embeddings."
+  ],
+  [
+   "FP32 / BF16 / INT8",
+   "4, 2 e 1 byte por parâmetro; BF16 mantém a faixa do FP32."
+  ],
+  [
+   "Quantização",
+   "Reduzir a precisão dos pesos para economizar memória e acelerar."
+  ],
+  [
+   "Leis de escala",
+   "Desempenho cresce de forma previsível com parâmetros, dados e computação."
+  ],
+  [
+   "Chinchilla",
+   "Estudo que indicou cerca de 20 tokens de treino por parâmetro."
+  ],
+  [
+   "Pré-treinamento continuado",
+   "Continuar o pré-treino de um modelo pronto com textos do domínio."
+  ],
+  [
+   "SFT",
+   "Fine-tuning supervisionado com pares de instrução e resposta."
+  ],
+  [
+   "Esquecimento catastrófico",
+   "Piora em tarefas antigas após ajuste intenso numa tarefa única."
+  ],
+  [
+   "FLAN",
+   "Família de modelos ajustados com instruções em muitas tarefas (multitarefa)."
+  ],
+  [
+   "PEFT",
+   "Ajuste fino eficiente: congela o modelo e treina poucos parâmetros."
+  ],
+  [
+   "LoRA",
+   "Treina matrizes de baixo posto; pode ser mesclado sem latência extra."
+  ],
+  [
+   "QLoRA",
+   "LoRA sobre um modelo base quantizado em 4 bits."
+  ],
+  [
+   "Soft prompt",
+   "Vetores de embedding virtuais treinados e adicionados à entrada."
   ],
   [
    "RLHF",
-   "Aprendizado por reforço com feedback humano: pessoas avaliam respostas e o modelo aprende as preferências."
+   "Reforço com feedback humano: SFT, modelo de recompensa, PPO."
   ],
   [
-   "PEFT e LoRA",
-   "Técnicas de ajuste fino eficiente que mexem em poucos parâmetros."
+   "Modelo de recompensa",
+   "Modelo que dá nota a respostas imitando preferências humanas."
   ],
   [
-   "Alucinação",
-   "Quando o modelo gera informação falsa com aparência de verdadeira."
+   "PPO",
+   "Algoritmo de aprendizado por reforço usado no RLHF clássico."
   ],
   [
-   "Prompt",
-   "Todo o texto que o modelo recebe como entrada."
+   "Reward hacking",
+   "O modelo explora falhas do avaliador para ganhar nota sem melhorar."
   ],
   [
-   "Zero-shot, one-shot, few-shot",
-   "Prompt sem exemplos, com um exemplo ou com alguns exemplos."
+   "Penalidade KL",
+   "Limita o quanto o modelo se afasta do modelo de referência."
   ],
   [
-   "Aprendizado em contexto",
-   "O modelo aprende a tarefa pelos exemplos do prompt, sem mudar parâmetros."
+   "DPO",
+   "Otimiza direto sobre pares de preferência, sem modelo de recompensa separado."
   ],
   [
-   "System prompt",
-   "Instrução do desenvolvedor que define o comportamento do modelo."
+   "RLAIF / IA constitucional",
+   "Feedback de IA guiado por princípios escritos (constituição)."
   ],
   [
-   "Chain of thought",
-   "Pedir ao modelo que raciocine passo a passo."
+   "GRPO",
+   "Reforço comparando um grupo de respostas; usado em modelos de raciocínio."
   ],
   [
-   "API",
-   "Porta de comunicação que permite a um programa usar o modelo automaticamente."
+   "ROUGE (1, 2, L)",
+   "Métrica de resumo, orientada à revocação; L usa a maior subsequência comum."
   ],
   [
-   "RAG",
-   "Buscar trechos de documentos e colocá-los no prompt para o modelo responder com base neles."
+   "BLEU",
+   "Métrica de tradução, orientada à precisão de n-gramas."
   ],
   [
-   "Agente",
-   "Sistema em que o modelo planeja passos e usa ferramentas para cumprir um objetivo."
+   "Perplexidade",
+   "O quanto o modelo é surpreendido por um texto; usada no pré-treino."
   ],
   [
-   "Guardrails",
-   "Proteções que limitam o que o sistema de IA pode receber ou responder."
+   "GLUE / SuperGLUE",
+   "Benchmarks de entendimento de linguagem."
   ],
   [
-   "Prompt injection",
-   "Ataque com instruções maliciosas escondidas para enganar o modelo."
+   "MMLU",
+   "Benchmark de múltipla escolha com 57 matérias."
+  ],
+  [
+   "BIG-bench",
+   "Benchmark com mais de 200 tarefas variadas."
+  ],
+  [
+   "HELM",
+   "Avaliação holística: acurácia, calibração, robustez, justiça, viés, toxicidade, eficiência."
+  ],
+  [
+   "Contaminação de dados",
+   "Perguntas do benchmark presentes no treino, inflando o resultado."
   ],
   [
    "LLM-as-a-judge",
-   "Usar um LLM para avaliar respostas de outro modelo."
+   "LLM avaliando respostas; vieses de tamanho, posição e autopreferência."
   ],
   [
-   "LLMOps",
-   "Práticas para colocar e manter LLMs em produção."
+   "Golden dataset",
+   "Conjunto de avaliação próprio para detectar regressões."
   ],
   [
-   "Human in the loop",
-   "Uma pessoa revisa e decide nas etapas importantes."
+   "Lost in the middle",
+   "Modelos usam pior a informação no meio de contextos longos."
   ],
   [
-   "LGPD",
-   "Lei Geral de Proteção de Dados, que regula o uso de dados pessoais no Brasil."
+   "PAL",
+   "O modelo gera código e um interpretador executa (ótimo para contas)."
+  ],
+  [
+   "ReAct",
+   "Ciclo pensamento, ação, observação; base dos agentes."
+  ],
+  [
+   "Function calling",
+   "O modelo pede a execução de uma ferramenta; a aplicação executa."
+  ],
+  [
+   "Prompt injection",
+   "Instruções maliciosas, diretas ou indiretas (em documentos), que o modelo segue."
+  ],
+  [
+   "Destilação",
+   "Um modelo aluno menor aprende a imitar um professor maior."
+  ],
+  [
+   "Poda (pruning)",
+   "Remover pesos pouco relevantes para deixar o modelo mais leve."
+  ],
+  [
+   "Roteamento / cascata",
+   "Usar modelos pequenos para casos simples e grandes só para os difíceis."
+  ],
+  [
+   "Cache de prompt",
+   "Reaproveitar a parte fixa do prompt para pagar menos e responder mais rápido."
   ]
  ],
  "audioFiles": [
-  "audio/m01/01-o-que-e-ia-7ce02acca0.mp3",
-  "audio/m01/02-o-que-e-um-llm-5acc488aaf.mp3",
-  "audio/m01/03-como-um-llm-aprende-9af8403ead.mp3",
-  "audio/m01/04-o-que-faz-bem-e-onde-erra-129fd94888.mp3",
-  "audio/m01/05-conversando-com-o-modelo-82e2a51958.mp3",
-  "audio/m01/06-do-problema-ao-produto-4e7d93eba2.mp3",
-  "audio/m01/07-ia-no-trabalho-e-na-sociedade-086116d8ee.mp3",
-  "audio/m01/08-revisao-411d51fe51.mp3",
-  "audio/m01/quiz-01-pergunta-96d693da1e.mp3",
-  "audio/m01/quiz-01-explicacao-1218aa440b.mp3",
-  "audio/m01/quiz-02-pergunta-0169a0089d.mp3",
-  "audio/m01/quiz-02-explicacao-cafb9af7ff.mp3",
-  "audio/m01/quiz-03-pergunta-f386bb3add.mp3",
-  "audio/m01/quiz-03-explicacao-c8884a72b6.mp3",
-  "audio/m01/quiz-04-pergunta-9604ec4119.mp3",
-  "audio/m01/quiz-04-explicacao-02b30e3c25.mp3",
-  "audio/m01/quiz-05-pergunta-d124b0c8b5.mp3",
-  "audio/m01/quiz-05-explicacao-2170f49a17.mp3",
-  "audio/m01/quiz-06-pergunta-1fb2ece049.mp3",
-  "audio/m01/quiz-06-explicacao-b1dc6ae495.mp3",
-  "audio/m01/quiz-07-pergunta-efc5fd4e4f.mp3",
-  "audio/m01/quiz-07-explicacao-0100de0bc0.mp3",
-  "audio/m01/quiz-08-pergunta-8061adcca6.mp3",
-  "audio/m01/quiz-08-explicacao-a269ebb04b.mp3",
-  "audio/m01/quiz-09-pergunta-7bbb602e58.mp3",
-  "audio/m01/quiz-09-explicacao-2e6000fb63.mp3",
-  "audio/m01/quiz-10-pergunta-040dadff59.mp3",
-  "audio/m01/quiz-10-explicacao-f5c499a9fe.mp3"
+  "audio/m01/01-panorama-e-modelos-fundacionais-872593b5a8.mp3",
+  "audio/m01/02-tokens-e-parametros-de-inferencia-4958f9b52a.mp3",
+  "audio/m01/03-arquiteturas-transformer-c203c4ffb9.mp3",
+  "audio/m01/04-pre-treinamento-e-escala-fc797873cb.mp3",
+  "audio/m01/05-fine-tuning-e-peft-d425933dd1.mp3",
+  "audio/m01/06-alinhamento-rlhf-4d931ea427.mp3",
+  "audio/m01/07-avaliacao-de-llms-3e83febb62.mp3",
+  "audio/m01/08-limitacoes-e-otimizacao-8868081cc2.mp3",
+  "audio/m01/09-ciclo-de-vida-e-escolha-de-modelo-ff3e72a768.mp3",
+  "audio/m01/10-revisao-f8f40cc7ff.mp3",
+  "audio/m01/quiz-01-pergunta-59413521b5.mp3",
+  "audio/m01/quiz-01-explicacao-e89a48d07f.mp3",
+  "audio/m01/quiz-02-pergunta-69d608186c.mp3",
+  "audio/m01/quiz-02-explicacao-388ba36cc7.mp3",
+  "audio/m01/quiz-03-pergunta-473269d65e.mp3",
+  "audio/m01/quiz-03-explicacao-a88a0249e2.mp3",
+  "audio/m01/quiz-04-pergunta-eaed5dd461.mp3",
+  "audio/m01/quiz-04-explicacao-2c59ec8c9e.mp3",
+  "audio/m01/quiz-05-pergunta-1348a897ba.mp3",
+  "audio/m01/quiz-05-explicacao-623dd3f7c8.mp3",
+  "audio/m01/quiz-06-pergunta-e3b0fe17e5.mp3",
+  "audio/m01/quiz-06-explicacao-91e6bb5fd5.mp3",
+  "audio/m01/quiz-07-pergunta-1a7a9af4af.mp3",
+  "audio/m01/quiz-07-explicacao-a75830e1ab.mp3",
+  "audio/m01/quiz-08-pergunta-6f060d7a11.mp3",
+  "audio/m01/quiz-08-explicacao-8e3a9d3f33.mp3",
+  "audio/m01/quiz-09-pergunta-b8f188f5e6.mp3",
+  "audio/m01/quiz-09-explicacao-4e0c38d127.mp3",
+  "audio/m01/quiz-10-pergunta-6744932cdc.mp3",
+  "audio/m01/quiz-10-explicacao-32bd9788a0.mp3",
+  "audio/m01/quiz-11-pergunta-a4e537b99f.mp3",
+  "audio/m01/quiz-11-explicacao-93511c9b4f.mp3",
+  "audio/m01/quiz-12-pergunta-fed11dc73f.mp3",
+  "audio/m01/quiz-12-explicacao-07f7a37b06.mp3",
+  "audio/m01/quiz-13-pergunta-ed5c163257.mp3",
+  "audio/m01/quiz-13-explicacao-173ae90589.mp3",
+  "audio/m01/quiz-14-pergunta-50c470fc3f.mp3",
+  "audio/m01/quiz-14-explicacao-c97da344f1.mp3",
+  "audio/m01/quiz-15-pergunta-095d63f1a1.mp3",
+  "audio/m01/quiz-15-explicacao-75ba47bb28.mp3"
  ]
 }

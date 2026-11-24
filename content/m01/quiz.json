@@ -1,112 +1,171 @@
 [
  {
-  "pergunta": "Qual destas tarefas é um exemplo típico de IA generativa, e não de IA tradicional de classificação?",
+  "pergunta": "Um banco quer prever quais clientes vão atrasar a fatura do cartão no próximo mês, usando o histórico de transações e dados cadastrais em tabelas. O regulador exige que a decisão seja explicável. Qual é a abordagem mais adequada?",
   "opcoes": [
-   "Identificar se uma transação de cartão é fraude ou não",
-   "Escrever o rascunho de um e-mail respondendo a um cliente",
-   "Decidir se um e-mail é spam",
-   "Prever se um cliente vai cancelar a conta"
+   "Um LLM de grande porte com um prompt few-shot descrevendo exemplos de clientes",
+   "Um modelo de machine learning tradicional, como gradient boosting, treinado com o histórico rotulado",
+   "Um modelo de difusão treinado com as tabelas de transações",
+   "Pré-treinar um LLM próprio com os dados de transações do banco"
   ],
   "certa": 1,
-  "explicacao": "A IA generativa cria conteúdo novo, como um texto. As outras opções são tarefas de classificar ou prever, que são típicas da IA tradicional."
+  "explicacao": "Entrada estruturada, saída binária e exigência de explicabilidade apontam para machine learning tradicional. Ele é mais barato, mais preciso nesse tipo de dado e mais fácil de explicar. LLMs e difusão são para dados não estruturados."
  },
  {
-  "pergunta": "Em essência, como um LLM gera uma resposta?",
+  "pergunta": "Uma aplicação extrai valor, data e CNPJ de notas fiscais e devolve um JSON. Em produção, o mesmo documento às vezes gera valores diferentes, e respostas longas vêm cortadas no meio. Quais DUAS ações atacam diretamente esses sintomas?",
   "opcoes": [
-   "Buscando a resposta pronta em um banco de dados de perguntas e respostas",
-   "Consultando a internet a cada pergunta",
-   "Prevendo o próximo token repetidamente, usando o texto que já foi gerado",
-   "Seguindo regras escritas à mão por programadores"
+   "Reduzir a temperatura para perto de zero",
+   "Aumentar o top-p para 1",
+   "Ajustar o limite máximo de tokens de saída para comportar a resposta completa",
+   "Fazer fine-tuning de um modelo maior",
+   "Aumentar a penalidade de presença"
   ],
-  "certa": 2,
-  "explicacao": "O LLM gera texto prevendo um token de cada vez e colocando cada token gerado de volta no texto. Isso se chama geração autorregressiva. Sozinho, ele não consulta a internet nem um banco de respostas prontas."
+  "certa": [0, 2],
+  "explicacao": "Variação para a mesma entrada vem da amostragem, e temperatura baixa a reduz. Resposta cortada no meio indica limite de tokens de saída baixo demais. Aumentar o top-p aumentaria a variação, e fine-tuning não ataca nenhuma das duas causas."
  },
  {
-  "pergunta": "Uma equipe quer que o modelo extraia dados de contratos de forma consistente, sempre com a mesma resposta para o mesmo documento. Qual ajuste é o mais indicado?",
+  "pergunta": "Uma equipe precisa classificar milhões de mensagens curtas por dia em dez categorias, com o menor custo possível e baixa latência. Ela tem cinquenta mil mensagens já rotuladas. Qual arquitetura é a mais eficiente?",
   "opcoes": [
-   "Usar uma temperatura baixa",
-   "Usar uma temperatura alta",
-   "Aumentar o tamanho da resposta",
-   "Remover a mensagem de sistema"
+   "Um modelo encoder-only, como o BERT, ajustado para classificação",
+   "Um LLM decoder-only de grande porte com prompt zero-shot",
+   "Um modelo encoder-decoder treinado para tradução",
+   "Um modelo de difusão de texto"
   ],
   "certa": 0,
-  "explicacao": "Temperatura baixa faz o modelo escolher quase sempre as opções mais prováveis, deixando as respostas mais previsíveis e consistentes. Temperatura alta é melhor para tarefas criativas."
+  "explicacao": "Modelos encoder-only são feitos para tarefas de entendimento, como classificação, e são pequenos e baratos de executar. Com dados rotulados disponíveis e volume enorme, um encoder ajustado é a opção mais eficiente. O LLM gigante funcionaria, mas com custo e latência muito maiores."
  },
  {
-  "pergunta": "Qual é a principal característica do pré-treinamento de um LLM?",
+  "pergunta": "Qual afirmação sobre o modelo T5 está correta?",
   "opcoes": [
-   "Usa poucos exemplos de pergunta e resposta escritos por especialistas",
-   "Usa avaliações humanas para comparar respostas",
-   "É a fase mais barata e rápida do treinamento",
-   "Usa enormes quantidades de texto para aprender a prever o próximo token, sem rótulos humanos"
-  ],
-  "certa": 3,
-  "explicacao": "No pré-treinamento, o modelo aprende com enormes quantidades de texto a prever o próximo token. É autossupervisionado, porque o próprio texto traz a resposta, e é a fase mais cara de todas."
- },
- {
-  "pergunta": "O que é RLHF?",
-  "opcoes": [
-   "Uma técnica para reduzir o tamanho de um modelo",
-   "Aprendizado por reforço com feedback humano, em que pessoas avaliam respostas e o modelo aprende suas preferências",
-   "Um tipo de banco de dados para guardar documentos",
-   "Um ataque em que instruções maliciosas enganam o modelo"
-  ],
-  "certa": 1,
-  "explicacao": "RLHF é o aprendizado por reforço com feedback humano. Pessoas comparam respostas, e o modelo é ajustado para preferir as melhores, ficando mais útil, honesto e inofensivo."
- },
- {
-  "pergunta": "Um prompt traz três exemplos de mensagens já classificadas e, no final, uma nova mensagem para o modelo classificar. Como se chama essa técnica?",
-  "opcoes": [
-   "Zero-shot",
-   "Fine-tuning",
-   "Few-shot",
-   "Pré-treinamento"
+   "É um modelo decoder-only treinado para prever o próximo token",
+   "É um modelo encoder-only usado principalmente para gerar embeddings",
+   "É um modelo encoder-decoder, pré-treinado com corrupção de trechos, natural para tradução e sumarização",
+   "É um modelo de difusão usado para gerar imagens a partir de texto"
   ],
   "certa": 2,
-  "explicacao": "Dar alguns exemplos dentro do prompt é few-shot. É uma forma de aprendizado em contexto: o modelo entende o padrão pelos exemplos, sem que os seus parâmetros sejam alterados, ao contrário do fine-tuning."
+  "explicacao": "O T5 mantém encoder e decoder, foi pré-treinado reconstruindo trechos escondidos do texto, o span corruption, e é naturalmente bom em tarefas que transformam uma sequência em outra, como tradução e sumarização."
  },
  {
-  "pergunta": "Um chatbot parece lembrar o que o cliente disse várias mensagens atrás. Como isso normalmente funciona?",
+  "pergunta": "Uma empresa quer executar um modelo aberto de 13 bilhões de parâmetros, só para inferência, numa GPU de 24 gigabytes. Em BF16, os pesos ocupam cerca de 26 gigabytes. O que permite rodar o mesmo modelo nessa GPU?",
   "opcoes": [
-   "O modelo muda os seus parâmetros a cada mensagem",
-   "O modelo tem uma memória permanente de todos os usuários",
-   "O modelo consulta a data de corte",
-   "O aplicativo reenvia o histórico da conversa junto com cada nova mensagem"
+   "Converter o modelo para FP32",
+   "Quantizar o modelo para 8 ou 4 bits",
+   "Aumentar a janela de contexto",
+   "Fazer fine-tuning completo antes de implantar"
+  ],
+  "certa": 1,
+  "explicacao": "Quantizar reduz o espaço de cada parâmetro: em INT8 os pesos caem para cerca de 13 gigabytes e em 4 bits para cerca de 6,5, sobrando memória para o KV cache. FP32 dobraria a memória, o oposto do necessário."
+ },
+ {
+  "pergunta": "Segundo o estudo Chinchilla, o que acontece quando se fixa o orçamento de computação de um treinamento?",
+  "opcoes": [
+   "O melhor resultado vem sempre do maior modelo possível, mesmo com poucos dados",
+   "A quantidade de dados não influencia o desempenho, só o número de parâmetros",
+   "Só a qualidade da GPU influencia o resultado",
+   "Muitos modelos eram grandes demais para os dados usados, e a proporção ótima é de cerca de 20 tokens por parâmetro"
   ],
   "certa": 3,
-  "explicacao": "O LLM não tem memória própria entre as chamadas. O aplicativo envia o histórico da conversa de novo a cada mensagem, e por isso conversas longas ficam mais caras e podem esbarrar no limite da janela de contexto."
+  "explicacao": "O Chinchilla mostrou que, com computação fixa, é melhor equilibrar parâmetros e dados, em torno de 20 tokens por parâmetro. Um modelo de 70 bilhões bem treinado superou modelos quatro vezes maiores."
  },
  {
-  "pergunta": "Um assistente precisa responder com base nas tabelas de tarifas do banco, que mudam com frequência. Qual técnica é a mais indicada para dar esse conhecimento ao modelo?",
+  "pergunta": "Um assistente precisa responder com base nas tabelas de tarifas e nos regulamentos internos de um banco, que são atualizados toda semana. As respostas devem citar a fonte. Qual é a abordagem mais adequada?",
   "opcoes": [
-   "RAG, buscando os trechos certos dos documentos e colocando no prompt",
-   "Fine-tuning, retreinando o modelo a cada mudança de tarifa",
-   "Aumentar a temperatura",
-   "Pré-treinar um novo modelo do zero"
+   "Fine-tuning semanal do modelo com os documentos atualizados",
+   "Pré-treinar um modelo próprio com todos os documentos do banco",
+   "RAG, recuperando os trechos relevantes dos documentos e instruindo o modelo a responder só com base neles",
+   "Aumentar a temperatura para o modelo explorar mais possibilidades"
+  ],
+  "certa": 2,
+  "explicacao": "Conhecimento privado que muda com frequência e exigência de citar fontes apontam para RAG. Basta atualizar a base de documentos. Fine-tuning grava padrões nos pesos, exigiria retreino a cada mudança e não cita fontes."
+ },
+ {
+  "pergunta": "Uma empresa fez fine-tuning completo de um modelo só para classificar contratos. Ele ficou excelente nessa tarefa, mas passou a ir muito mal em resumos, que fazia bem antes. Quais DUAS abordagens reduzem esse problema?",
+  "opcoes": [
+   "Usar PEFT, como LoRA, que mantém os pesos originais congelados",
+   "Aumentar o número de épocas do fine-tuning de tarefa única",
+   "Fazer fine-tuning multitarefa, incluindo exemplos de classificação e de resumo",
+   "Reduzir a temperatura na inferência",
+   "Trocar o tokenizador do modelo"
+  ],
+  "certa": [0, 2],
+  "explicacao": "O problema é o esquecimento catastrófico. Ele se reduz treinando com várias tarefas ao mesmo tempo, o fine-tuning multitarefa, ou com PEFT, que preserva os pesos originais e treina só poucos parâmetros. Mais épocas de tarefa única pioram o quadro."
+ },
+ {
+  "pergunta": "Sobre o LoRA, qual afirmação está correta?",
+  "opcoes": [
+   "Atualiza todos os parâmetros do modelo, mas com uma taxa de aprendizado menor",
+   "Congela os pesos originais e treina pares de matrizes de baixo posto, que podem ser mescladas aos pesos sem latência extra na inferência",
+   "Adiciona sempre uma camada extra que aumenta a latência na inferência",
+   "Funciona apenas em modelos encoder-only"
+  ],
+  "certa": 1,
+  "explicacao": "O LoRA congela o modelo e treina matrizes pequenas de baixo posto, muitas vezes com menos de um por cento dos parâmetros. Na inferência, elas podem ser somadas aos pesos originais, sem latência adicional, ou mantidas como adaptadores trocáveis por tarefa."
+ },
+ {
+  "pergunta": "Durante o RLHF, a nota do modelo de recompensa sobe sem parar, mas as respostas ficaram longas, repetitivas e cheias de elogios, e os avaliadores humanos acham que a qualidade piorou. Qual é a causa e a correção mais adequada?",
+  "opcoes": [
+   "Reward hacking; reforçar a penalidade de divergência KL em relação ao modelo de referência e revisar o modelo de recompensa",
+   "Esquecimento catastrófico; aumentar o número de passos de treino",
+   "Contaminação de dados; trocar o benchmark de avaliação",
+   "Alucinação; aumentar a temperatura durante o treino"
   ],
   "certa": 0,
-  "explicacao": "RAG serve para dar conhecimento externo e atualizável. Quando a tarifa muda, basta atualizar o documento. Fine-tuning é mais indicado para mudar comportamento, como estilo e formato."
+  "explicacao": "O modelo está explorando falhas do modelo de recompensa, o que se chama reward hacking. A defesa clássica é a penalidade KL, que impede o modelo de se afastar demais do modelo de referência, junto com a melhoria do modelo de recompensa."
  },
  {
-  "pergunta": "Um modelo cita, com total confiança, uma lei que não existe. Como se chama esse problema?",
+  "pergunta": "Qual é a principal diferença do DPO em relação ao RLHF clássico com PPO?",
   "opcoes": [
-   "Viés",
-   "Data de corte",
-   "Alucinação",
-   "Latência"
+   "O DPO não usa dados de preferência humana",
+   "O DPO treina o modelo de recompensa com mais dados",
+   "O DPO otimiza o modelo diretamente sobre pares de resposta preferida e rejeitada, sem modelo de recompensa separado nem laço de reforço",
+   "O DPO só funciona em modelos de imagem"
   ],
   "certa": 2,
-  "explicacao": "Alucinação é quando o modelo gera uma informação falsa que parece verdadeira. Isso acontece porque ele aprendeu padrões de linguagem, e não um banco de fatos verificados."
+  "explicacao": "O DPO usa os mesmos pares de preferência, mas dispensa o modelo de recompensa separado e o laço de aprendizado por reforço, o que o torna mais simples e mais estável que o PPO."
  },
  {
-  "pergunta": "Qual destas atitudes está de acordo com os princípios de IA responsável?",
+  "pergunta": "Uma equipe vai avaliar automaticamente dois sistemas: um que gera resumos de reuniões e outro que traduz e-mails do inglês para o português. Qual combinação de métricas clássicas é a mais adequada?",
   "opcoes": [
-   "Colar dados pessoais de clientes em qualquer ferramenta pública de IA para ganhar tempo",
-   "Manter uma pessoa responsável pelo sistema e revisando as decisões importantes",
-   "Esconder dos clientes que eles estão conversando com uma IA",
-   "Usar o modelo para aprovar créditos sem nenhuma avaliação de vieses"
+   "BLEU para os resumos e ROUGE para as traduções",
+   "Perplexidade para os dois",
+   "MMLU para os resumos e GLUE para as traduções",
+   "ROUGE para os resumos e BLEU para as traduções"
+  ],
+  "certa": 3,
+  "explicacao": "ROUGE foi criado para resumos e é orientado à revocação. BLEU foi criado para tradução e é orientado à precisão. MMLU e GLUE são benchmarks de modelos, e não métricas para o seu sistema."
+ },
+ {
+  "pergunta": "Uma equipe vai usar um LLM como juiz para comparar respostas de dois prompts. Quais DUAS práticas reduzem vieses conhecidos desse tipo de avaliação?",
+  "opcoes": [
+   "Alternar a ordem em que as duas respostas são apresentadas ao juiz",
+   "Instruir o juiz a preferir sempre a resposta mais longa",
+   "Calibrar o juiz comparando suas notas com avaliações humanas numa amostra",
+   "Usar o mesmo modelo que gerou as respostas como juiz, sem critérios definidos",
+   "Aumentar a temperatura do juiz"
+  ],
+  "certa": [0, 2],
+  "explicacao": "LLMs como juiz têm viés de posição e de tamanho, e podem favorecer o próprio modelo. Alternar a ordem combate o viés de posição, e calibrar com notas humanas verifica se o juiz concorda com especialistas. Critérios claros também ajudam."
+ },
+ {
+  "pergunta": "Um assistente financeiro precisa calcular o rendimento de uma aplicação com a taxa vigente do dia. Hoje ele usa taxas desatualizadas e erra as contas. Qual combinação resolve os dois problemas?",
+  "opcoes": [
+   "Fine-tuning com as taxas históricas e temperatura mais alta",
+   "Uma ferramenta, via function calling, para consultar a taxa atual, e a geração do cálculo como código executado por um interpretador",
+   "Aumentar a janela de contexto e colar todas as taxas dos últimos dez anos no prompt",
+   "Trocar para um modelo encoder-only"
   ],
   "certa": 1,
-  "explicacao": "Responsabilização e supervisão humana são princípios de IA responsável. As outras opções ferem a privacidade, a transparência e a justiça."
+  "explicacao": "Informação atual pede uma ferramenta de consulta, acionada por function calling. Aritmética pede que o modelo gere código e um interpretador execute, no estilo PAL. Fine-tuning não traz a taxa do dia e não torna o modelo bom em contas."
+ },
+ {
+  "pergunta": "Um banco quer um assistente interno sobre normas de crédito que mudam todo mês. Os dados não podem sair do ambiente do banco, e a equipe tem pouca experiência com IA. Quais DUAS decisões são as mais adequadas para começar?",
+  "opcoes": [
+   "Usar um modelo hospedado no ambiente do banco, aberto ou gerenciado com garantias de isolamento",
+   "Pré-treinar um modelo próprio com as normas de crédito",
+   "Começar com prompt e RAG, com um conjunto de avaliação montado a partir de perguntas reais dos gerentes",
+   "Fazer fine-tuning mensal com as normas atualizadas",
+   "Escolher o modelo líder do benchmark mais famoso, sem testes próprios"
+  ],
+  "certa": [0, 2],
+  "explicacao": "A restrição de dados exige um modelo hospedado no ambiente controlado. Normas que mudam todo mês e uma equipe pouco experiente pedem começar pelo mais simples: prompt e RAG, com avaliação própria. Pré-treino e fine-tuning mensal são caros e não resolvem o problema de atualização."
  }
 ]

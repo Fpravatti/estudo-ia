@@ -4,7 +4,11 @@
 const AUDIO_CACHE = 'audio-v1';
 const INTERVALS = [1, 3, 7, 14, 30]; // dias até cada revisão espaçada
 const SPEEDS = [0.8, 1, 1.25, 1.5, 1.75, 2];
-const LETTERS = 'ABCD';
+const LETTERS = 'ABCDE';
+const NUM_WORD = { 2: 'duas', 3: 'três' };
+const sameSet = (a, b) => Array.isArray(a) && a.length === b.length && b.every((x) => a.includes(x));
+const isRight = (q, a) => sameSet(a, q.answer);
+const letters = (arr) => arr.map((k) => LETTERS[k]).join(' e ');
 
 // ------------------------------------------------------------ utilidades
 const $ = (s, el = document) => el.querySelector(s);
@@ -44,6 +48,7 @@ const I = {
   doc: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm2 16H8v-2h8zm0-4H8v-2h8zm-3-5V3.5L18.5 9z"/></svg>',
   lock: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9z"/></svg>',
   train: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-4 0-8 .5-8 4v9.5A3.5 3.5 0 0 0 7.5 19L6 20.5v.5h2.2l2-2h3.6l2 2H18v-.5L16.5 19a3.5 3.5 0 0 0 3.5-3.5V6c0-3.5-4-4-8-4zM7.5 17a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3.5-7H6V6h5zm5.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1.5-7h-5V6h5z"/></svg>',
+  help: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 18h2v-2h-2zm1-16a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-14a4 4 0 0 0-4 4h2a2 2 0 1 1 4 0c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5a4 4 0 0 0-4-4z"/></svg>',
   loop: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V1L8 5l4 4V6a6 6 0 0 1 6 6 5.9 5.9 0 0 1-.7 2.8l1.5 1.5A8 8 0 0 0 12 4zm0 14a6 6 0 0 1-6-6 5.9 5.9 0 0 1 .7-2.8L5.2 7.7A8 8 0 0 0 12 20v3l4-4-4-4z"/></svg>',
 };
 
@@ -51,7 +56,7 @@ const I = {
 const KEY = 'estudo-ia-v1';
 const defaults = () => ({
   settings: { examDate: null, startDate: null, speed: 1, newPerDay: 2, autoNext: true, quizAudio: true },
-  lessons: {}, quiz: {}, wrong: {}, days: {}, sims: [], lastId: null, welcomed: false,
+  lessons: {}, quiz: {}, wrong: {}, days: {}, sims: [], doubts: [], lastId: null, welcomed: false,
 });
 let S = loadState();
 function loadState() {
@@ -88,6 +93,13 @@ async function loadData() {
     });
     md.quiz.forEach((q) => { q.mod = m.id; q.modNum = m.num; D.questions.push(q); });
   }
+  // limpa progresso de conteúdo que foi reescrito
+  const qids = new Set(D.questions.map((q) => q.id));
+  for (const id of Object.keys(S.wrong)) if (!qids.has(id)) delete S.wrong[id];
+  for (const [mid, qz] of Object.entries(S.quiz)) {
+    if (!D.mods[mid] || qz.n !== D.mods[mid].quiz.length) delete S.quiz[mid];
+  }
+  if (!Array.isArray(S.doubts)) S.doubts = [];
   if (!S.settings.examDate) S.settings.examDate = D.cur.examDefault;
   if (!S.settings.startDate) S.settings.startDate = today();
   save();
@@ -355,12 +367,12 @@ const curRoute = () => (location.hash.slice(2) || 'hoje').split('/')[0];
 function route(keepScroll) {
   const [name, arg] = (location.hash.slice(2) || 'hoje').split('/');
   if (name !== 'quiz') stopQuizAudio();
-  const views = { hoje: viewHoje, trilha: viewTrilha, modulo: viewModulo, aula: viewAula, player: viewPlayer, praticar: viewPraticar, quiz: viewQuiz, glossario: viewGlossario, ajustes: viewAjustes };
+  const views = { hoje: viewHoje, trilha: viewTrilha, modulo: viewModulo, aula: viewAula, player: viewPlayer, praticar: viewPraticar, quiz: viewQuiz, glossario: viewGlossario, ajustes: viewAjustes, duvidas: viewDuvidas };
   const view = views[name] || viewHoje;
   const main = $('#main');
   const y = scrollY;
   main.innerHTML = view(arg);
-  const tab = { modulo: 'trilha', aula: 'trilha', glossario: 'trilha', quiz: 'praticar', player: '' }[name] ?? name;
+  const tab = { modulo: 'trilha', aula: 'trilha', glossario: 'trilha', quiz: 'praticar', duvidas: 'praticar', player: '' }[name] ?? name;
   document.querySelectorAll('.tabs a').forEach((a) => a.classList.toggle('on', a.dataset.tab === tab));
   document.querySelectorAll('[id^="dl-"]').forEach((el) => fillDownloadStatus(el.id.slice(3)));
   renderMini();
@@ -438,6 +450,9 @@ function viewHoje() {
     <h2 class="card-h">${I.loop} Volta · revisão</h2>
     ${volta.length ? volta.join('') : '<p class="muted">Nada para revisar hoje. As aulas voltam para revisão 1, 3, 7, 14 e 30 dias depois de ouvidas.</p>'}
   </section>`);
+
+  const nDoubts = S.doubts.filter((x) => !x.sent).length;
+  if (nDoubts) items.push(`<section class="card"><a class="row action" href="#/duvidas"><span class="row-main"><span class="row-sub">Envie quando tiver internet</span><span class="row-title">${I.help} ${nDoubts} ${nDoubts === 1 ? 'dúvida anotada' : 'dúvidas anotadas'}</span></span>${I.chev}</a></section>`);
 
   // Meta do módulo
   const mods = D.cur.modules;
@@ -528,6 +543,7 @@ function viewAula(id) {
     <div class="aula-actions">
       <button class="btn" data-act="play" data-arg="${id}" data-queue="${queue.slice(L.index).join(',')}">${P.id === id && !audio.paused ? I.pause + ' Pausar' : I.play + ' Ouvir aula'}</button>
       ${st.done ? `<span class="ok-text">${I.check} Concluída</span>` : `<button class="btn ghost" data-act="markDone" data-arg="${id}">Marcar como concluída</button>`}
+      <button class="btn ghost" data-act="doubtLesson" data-arg="${id}">${I.help} Dúvida</button>
     </div>
     <article class="prose">${L.html}</article>
     ${next ? `<a class="row action next-link" href="#/aula/${next.id}"><span class="row-main"><span class="row-sub">Próxima: ${esc(next.label)}</span><span class="row-title">${esc(next.title)}</span></span>${I.chev}</a>`
@@ -553,6 +569,7 @@ function viewPlayer() {
     </div>
     <div class="speeds" role="group" aria-label="Velocidade">${SPEEDS.map((s) => `<button data-act="speed" data-speed="${s}" class="${s === S.settings.speed ? 'on' : ''}">${String(s).replace('.', ',')}x</button>`).join('')}</div>
     <label class="toggle"><input type="checkbox" data-act="autoNext" ${S.settings.autoNext ? 'checked' : ''}> Tocar a próxima aula automaticamente</label>
+    <button class="btn ghost wide" data-act="doubtLesson" data-arg="${L.id}">${I.help} Tenho uma dúvida neste trecho</button>
     <a class="btn ghost wide" href="#/aula/${L.id}">${I.doc} Ler o texto da aula</a>
     ${upNext.length ? `<h2 class="section-h">A seguir</h2><ul class="list">${upNext.map((l) => lessonRow(l, { queue: P.queue.slice(P.queue.indexOf(l.id)) })).join('')}</ul>` : ''}
   </div>`;
@@ -570,6 +587,9 @@ function viewPraticar() {
     </section>
     <section class="card"><h2 class="card-h">Revisar erros</h2>
       ${nWrong ? actionRow('startErros', '', `${nWrong} ${nWrong === 1 ? 'questão' : 'questões'} para revisar`, 'Ao acertar, a questão sai da lista') : '<p class="muted">Nenhuma questão errada pendente. Muito bem!</p>'}
+    </section>
+    <section class="card"><h2 class="card-h">Dúvidas</h2>
+      <a class="row action" href="#/duvidas"><span class="row-main"><span class="row-sub">${S.doubts.filter((d) => !d.sent).length} pendente(s) de envio</span><span class="row-title">Minhas dúvidas</span></span>${I.chev}</a>
     </section>
     <section class="card"><h2 class="card-h">Simulado</h2>
       <p class="muted">Questões sorteadas de todos os módulos publicados, com cronômetro, sem mostrar a resposta até o final, como na prova. ${nQ < 50 ? `Por enquanto há ${nQ} questões; o simulado completo terá 50.` : ''}</p>
@@ -638,7 +658,7 @@ function startQuiz(kind, arg) {
   else { items = shuffle(D.questions).slice(0, 50); title = 'Simulado'; }
   if (!items.length) { toast('Nenhuma questão disponível.'); return; }
   audio.pause();
-  Q = { kind, arg, title, items, i: 0, answers: Array(items.length).fill(null), spoken: -1, done: false,
+  Q = { kind, arg, title, items, i: 0, answers: Array(items.length).fill(null), sel: [], spoken: -1, done: false,
     limit: kind === 'sim' ? Math.round(items.length * 90) : 0, started: Date.now() };
   clearInterval(quizTimer);
   if (Q.limit) quizTimer = setInterval(tickTimer, 1000);
@@ -660,14 +680,18 @@ function viewQuiz() {
   const n = Q.items.length;
   const ans = Q.answers[Q.i];
   const sim = Q.kind === 'sim';
+  const need = q.answer.length;
+  const multi = need > 1;
   const answered = ans !== null && !sim;
+  const picked = sim ? (ans || []) : Q.sel;
   const opts = q.options.map((o, k) => {
     let cls = '';
-    if (answered) { if (k === q.answer) cls = 'right'; else if (k === ans) cls = 'wrong'; else cls = 'dim'; }
-    else if (sim && ans === k) cls = 'picked';
+    if (answered) cls = q.answer.includes(k) ? 'right' : (ans.includes(k) ? 'wrong' : 'dim');
+    else if (picked.includes(k)) cls = 'picked';
     return `<button class="opt ${cls}" data-act="answer" data-arg="${k}" ${answered ? 'disabled' : ''}><b>${LETTERS[k]}</b><span>${esc(o)}</span></button>`;
   }).join('');
-  const answeredCount = Q.answers.filter((a) => a !== null).length;
+  const answeredCount = Q.answers.filter((a) => a !== null && a.length).length;
+  const right = answered && isRight(q, ans);
   return `<div class="quiz">
     <div class="quiz-top">
       <button class="back plain" data-act="quitQuiz">‹ Sair</button>
@@ -677,12 +701,17 @@ function viewQuiz() {
     <div class="bar"><i style="width:${((Q.i + (answered ? 1 : 0)) / n) * 100}%"></i></div>
     <p class="eyebrow">Pergunta ${Q.i + 1} de ${n} · Módulo ${q.modNum}</p>
     <h1 class="q">${esc(q.q)}</h1>
-    <button class="btn ghost small" data-act="speakQ">${I.vol} Ouvir pergunta</button>
+    <p class="chips">${multi ? `<span class="chip accent">Escolha ${NUM_WORD[need] || need}</span>` : ''}
+      <button class="btn ghost small" data-act="speakQ">${I.vol} Ouvir pergunta</button></p>
     <div class="opts">${opts}</div>
-    ${answered ? `<div class="explain ${ans === q.answer ? 'good' : 'bad'}">
-        <strong>${ans === q.answer ? 'Isso mesmo!' : `Não foi dessa vez. A certa é a ${LETTERS[q.answer]}.`}</strong>
+    ${!sim && !answered && multi ? `<button class="btn wide" data-act="confirmMulti" ${Q.sel.length === need ? '' : 'disabled'}>Confirmar (${Q.sel.length}/${need})</button>` : ''}
+    ${answered ? `<div class="explain ${right ? 'good' : 'bad'}">
+        <strong>${right ? 'Isso mesmo!' : `Não foi dessa vez. ${need > 1 ? 'As certas são' : 'A certa é a'} ${letters(q.answer)}.`}</strong>
         <p>${esc(q.explanation)}</p>
-        <button class="btn ghost small" data-act="speakE">${I.vol} Ouvir explicação</button>
+        <div class="row-btns">
+          <button class="btn ghost small" data-act="speakE">${I.vol} Ouvir explicação</button>
+          <button class="btn ghost small" data-act="doubtQ">${I.help} Não entendi</button>
+        </div>
       </div>
       <button class="btn wide" data-act="nextQ">${Q.i + 1 < n ? 'Próxima pergunta' : 'Ver resultado'}</button>` : ''}
     ${sim ? `<div class="sim-nav">
@@ -702,13 +731,32 @@ function afterQuizRender() {
   }
 }
 
+function toggle(arr, k, max) {
+  const i = arr.indexOf(k);
+  if (i >= 0) arr.splice(i, 1);
+  else { arr.push(k); if (arr.length > max) arr.shift(); }
+  return arr;
+}
+
 function answer(k) {
   if (!Q || Q.done) return;
   const q = Q.items[Q.i];
-  if (Q.kind === 'sim') { Q.answers[Q.i] = k; route(true); return; }
+  const need = q.answer.length;
+  if (Q.kind === 'sim') {
+    Q.answers[Q.i] = need > 1 ? toggle([...(Q.answers[Q.i] || [])], k, need) : [k];
+    route(true);
+    return;
+  }
   if (Q.answers[Q.i] !== null) return;
-  Q.answers[Q.i] = k;
-  const right = k === q.answer;
+  if (need > 1) { toggle(Q.sel, k, need); route(true); return; }
+  commitAnswer([k]);
+}
+
+function commitAnswer(sel) {
+  const q = Q.items[Q.i];
+  Q.answers[Q.i] = sel;
+  Q.sel = [];
+  const right = isRight(q, sel);
   if (right) { if (Q.kind === 'erros') delete S.wrong[q.id]; }
   else S.wrong[q.id] = (S.wrong[q.id] || 0) + 1;
   save();
@@ -720,15 +768,15 @@ function finishQuiz() {
   if (!Q || Q.done) return;
   clearInterval(quizTimer);
   stopQuizAudio();
-  const right = Q.items.filter((q, i) => Q.answers[i] === q.answer).length;
+  const right = Q.items.filter((q, i) => isRight(q, Q.answers[i])).length;
   const score = right / Q.items.length;
   Q.done = true; Q.right = right; Q.score = score;
   if (Q.kind === 'mod') {
     const prev = S.quiz[Q.arg] || { best: 0, attempts: 0 };
-    S.quiz[Q.arg] = { best: Math.max(prev.best, score), last: score, attempts: prev.attempts + 1, lastAt: today() };
+    S.quiz[Q.arg] = { best: Math.max(prev.best, score), last: score, attempts: prev.attempts + 1, lastAt: today(), n: Q.items.length };
   }
   if (Q.kind === 'sim') {
-    Q.items.forEach((q, i) => { if (Q.answers[i] !== q.answer) S.wrong[q.id] = (S.wrong[q.id] || 0) + 1; });
+    Q.items.forEach((q, i) => { if (!isRight(q, Q.answers[i])) S.wrong[q.id] = (S.wrong[q.id] || 0) + 1; });
     S.sims.push({ at: today(), score, right, total: Q.items.length });
   }
   saveNow();
@@ -741,10 +789,10 @@ function viewResult() {
   let byMod = '';
   if (Q.kind === 'sim') {
     const g = {};
-    Q.items.forEach((q, i) => { g[q.modNum] ||= [0, 0]; g[q.modNum][1] += 1; if (Q.answers[i] === q.answer) g[q.modNum][0] += 1; });
+    Q.items.forEach((q, i) => { g[q.modNum] ||= [0, 0]; g[q.modNum][1] += 1; if (isRight(q, Q.answers[i])) g[q.modNum][0] += 1; });
     byMod = `<section class="card"><h2 class="card-h">Por módulo</h2><ul class="plain-list">${Object.entries(g).map(([m, [r, t]]) => `<li>Módulo ${m}: <strong>${Math.round((r / t) * 100)}%</strong> (${r}/${t})</li>`).join('')}</ul></section>`;
   }
-  const wrongs = Q.items.map((q, i) => ({ q, a: Q.answers[i] })).filter(({ q, a }) => a !== q.answer);
+  const wrongs = Q.items.map((q, i) => ({ q, a: Q.answers[i] })).filter(({ q, a }) => !isRight(q, a));
   return `<header class="page-h center">
       <p class="eyebrow">${esc(Q.title)}</p>
       <div class="score">${pct}%</div>
@@ -753,13 +801,92 @@ function viewResult() {
     ${byMod}
     ${wrongs.length ? `<section class="card"><h2 class="card-h">O que revisar</h2>${wrongs.map(({ q, a }) => `
       <div class="review-q"><p><strong>${esc(q.q)}</strong></p>
-      <p class="small">${a === null ? 'Sem resposta.' : `Você marcou ${LETTERS[a]}.`} Certa: <strong>${LETTERS[q.answer]}) ${esc(q.options[q.answer])}</strong></p>
+      <p class="small">${!a || !a.length ? 'Sem resposta.' : `Você marcou ${letters(a)}.`} Certa: <strong>${q.answer.map((k) => `${LETTERS[k]}) ${esc(q.options[k])}`).join(' · ')}</strong></p>
       <p class="muted small">${esc(q.explanation)}</p></div>`).join('')}</section>` : ''}
     <div class="stack">
       ${Q.kind === 'mod' ? `<button class="btn wide" data-act="startQuiz" data-arg="${Q.arg}">Refazer o quiz</button>` : ''}
       ${Object.keys(S.wrong).length ? `<button class="btn ghost wide" data-act="startErros">Revisar questões erradas</button>` : ''}
       <a class="btn ghost wide" href="#/hoje">Voltar para Hoje</a>
     </div>`;
+}
+
+// ------------------------------------------------------------ dúvidas (viram issues no GitHub)
+function addDoubt(d) {
+  const text = prompt(d.ask);
+  if (text === null) return; // cancelou
+  S.doubts.push({ id: Date.now().toString(36), at: today(), sent: false, text: text.trim(), ...d.data });
+  saveNow();
+  toast('Dúvida anotada. Envie pelo GitHub quando tiver internet (Praticar › Minhas dúvidas).');
+  route(true);
+}
+
+function doubtLesson(id) {
+  const L = D.byId[id];
+  if (!L) return;
+  const pos = P.id === id ? Math.max(0, Math.floor(audio.currentTime) - 5) : null;
+  addDoubt({
+    ask: `Dúvida na ${L.label} do Módulo ${L.modNum}${pos !== null ? ` (em ${fmtTime(pos)})` : ''}.\nEscreva a dúvida (ou deixe em branco para só marcar o trecho):`,
+    data: { kind: 'aula', ref: L.id, pos, title: `Módulo ${L.modNum} · ${L.label} — ${L.title}` },
+  });
+}
+
+function doubtQuestion() {
+  if (!Q) return;
+  const q = Q.items[Q.i];
+  const a = Q.answers[Q.i] || [];
+  addDoubt({
+    ask: 'O que não ficou claro nesta questão? (pode deixar em branco)',
+    data: { kind: 'questao', ref: q.id, pos: null, title: `Questão do Módulo ${q.modNum}: ${q.q}`, marked: letters(a), correct: letters(q.answer) },
+  });
+}
+
+function doubtMarkdown(d) {
+  const lines = [`**Tipo:** ${d.kind === 'aula' ? 'dúvida de aula' : 'dúvida de questão'}`, `**Onde:** ${d.title}`];
+  if (d.pos !== null && d.pos !== undefined) lines.push(`**Trecho do áudio:** ${fmtTime(d.pos)}`);
+  if (d.kind === 'questao') lines.push(`**Marquei:** ${d.marked || '-'} · **Certa:** ${d.correct}`);
+  lines.push(`**Ref:** \`${d.ref}${d.pos != null ? `@${d.pos}s` : ''}\` · anotada em ${fmtDate(d.at)}`, '', d.text || '_(sem texto: revisar este trecho)_');
+  return lines.join('\n');
+}
+
+function issueUrl(title, body) {
+  return `${D.cur.issuesUrl}?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+}
+
+function sendDoubts(ids) {
+  const list = S.doubts.filter((d) => ids.includes(d.id));
+  if (!list.length) return;
+  let title; let body;
+  if (list.length === 1) {
+    const d = list[0];
+    const short = (d.text || d.title).slice(0, 70);
+    title = `[Dúvida] ${short}${(d.text || d.title).length > 70 ? '…' : ''}`;
+    body = doubtMarkdown(d);
+  } else {
+    title = `[Dúvidas] ${list.length} dúvidas anotadas até ${fmtDate(today())}`;
+    body = list.map((d, i) => `### ${i + 1}.\n${doubtMarkdown(d)}`).join('\n\n---\n\n');
+  }
+  window.open(issueUrl(title, body), '_blank', 'noopener');
+  list.forEach((d) => { d.sent = true; });
+  saveNow();
+  route(true);
+}
+
+function viewDuvidas() {
+  const pend = S.doubts.filter((d) => !d.sent);
+  const sent = S.doubts.filter((d) => d.sent).slice(-10).reverse();
+  const item = (d) => `<li class="doubt">
+      <p class="row-sub">${d.kind === 'aula' ? 'Aula' : 'Questão'}${d.pos != null ? ` · ${fmtTime(d.pos)}` : ''} · ${fmtDate(d.at)}</p>
+      <p class="row-title">${esc(d.title)}</p>
+      ${d.text ? `<p>${esc(d.text)}</p>` : '<p class="muted small">Sem texto: revisar este trecho.</p>'}
+      <div class="row-btns">
+        ${d.sent ? '<span class="ok-text">' + I.check + ' Enviada</span>' : `<button class="btn small" data-act="sendDoubt" data-arg="${d.id}">Enviar ao GitHub</button>`}
+        <button class="btn ghost small" data-act="delDoubt" data-arg="${d.id}">Apagar</button>
+      </div></li>`;
+  return `<header class="page-h"><a class="back" href="#/praticar">‹ Praticar</a><p class="eyebrow">Dúvidas</p><h1>Minhas dúvidas</h1>
+      <p class="muted">Anote dúvidas no player, na aula ou no quiz, mesmo offline. Depois envie como issue no GitHub: o curso é ajustado a partir delas. É preciso estar logado no GitHub.</p></header>
+    ${pend.length > 1 ? `<button class="btn wide" data-act="sendAll">Enviar as ${pend.length} numa issue só</button>` : ''}
+    <section class="card"><h2 class="card-h">Pendentes</h2>${pend.length ? `<ul class="list">${pend.map(item).join('')}</ul>` : '<p class="muted">Nenhuma dúvida pendente.</p>'}</section>
+    ${sent.length ? `<section class="card"><h2 class="card-h">Enviadas</h2><ul class="list">${sent.map(item).join('')}</ul></section>` : ''}`;
 }
 
 // ------------------------------------------------------------ ações
@@ -799,9 +926,9 @@ const ACT = {
   answer: (k) => answer(Number(k)),
   nextQ: () => {
     if (!Q) return;
-    if (Q.i + 1 < Q.items.length) { Q.i += 1; stopQuizAudio(); route(); } else finishQuiz();
+    if (Q.i + 1 < Q.items.length) { Q.i += 1; Q.sel = []; stopQuizAudio(); route(); } else finishQuiz();
   },
-  prevQ: () => { if (Q && Q.i > 0) { Q.i -= 1; route(); } },
+  prevQ: () => { if (Q && Q.i > 0) { Q.i -= 1; Q.sel = []; route(); } },
   finishQuiz: () => {
     const left = Q.answers.filter((a) => a === null).length;
     if (left && !confirm(`Ainda há ${left} sem resposta. Entregar mesmo assim?`)) return;
@@ -812,6 +939,12 @@ const ACT = {
     clearInterval(quizTimer); Q = null; stopQuizAudio(); go('#/praticar');
   },
   speakQ: () => { if (Q) playSeq([Q.items[Q.i].audioQ]); },
+  confirmMulti: () => { if (Q && Q.sel.length === Q.items[Q.i].answer.length) commitAnswer([...Q.sel]); },
+  doubtQ: () => doubtQuestion(),
+  doubtLesson: (id) => doubtLesson(id || P.id),
+  sendDoubt: (id) => sendDoubts([id]),
+  sendAll: () => sendDoubts(S.doubts.filter((d) => !d.sent).map((d) => d.id)),
+  delDoubt: (id) => { if (!confirm('Apagar esta dúvida?')) return; S.doubts = S.doubts.filter((d) => d.id !== id); saveNow(); route(true); },
   speakE: () => { if (Q) playSeq([Q.items[Q.i].audioE]); },
 };
 

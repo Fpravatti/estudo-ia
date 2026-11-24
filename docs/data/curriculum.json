@@ -4,12 +4,13 @@
  "examDefault": "2027-02-24",
  "newLessonsPerDay": 2,
  "contentWeeks": 8,
+ "issuesUrl": "https://github.com/Fpravatti/estudo-ia/issues/new",
  "modules": [
   {
    "id": "m01",
    "num": 1,
-   "title": "O que é IA generativa",
-   "subtitle": "Começando do zero: IA, LLMs, como aprendem e onde erram",
+   "title": "Fundamentos de IA generativa e LLMs",
+   "subtitle": "Tokens, Transformer, treinamento, fine-tuning, alinhamento, avaliação e ciclo de vida",
    "courses": [
     1,
     8,
@@ -17,10 +18,10 @@
     2
    ],
    "available": true,
-   "lessonCount": 8,
-   "questionCount": 10,
-   "totalDuration": 3366,
-   "audioBytes": 22780224
+   "lessonCount": 10,
+   "questionCount": 15,
+   "totalDuration": 4983,
+   "audioBytes": 35653104
   },
   {
    "id": "m02",
@@ -171,7 +172,7 @@
   }
  ],
  "commonAudio": {
-  "right": "audio/common/certo-800e74c387.mp3",
-  "wrong": "audio/common/errado-f655371df2.mp3"
+  "right": "audio/common/certo-1c25f4d490.mp3",
+  "wrong": "audio/common/errado-576845467b.mp3"
  }
 }

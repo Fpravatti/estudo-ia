@@ -22,8 +22,9 @@ import edge_tts
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 DOCS = ROOT / "docs"
-# Voz só em português: a "Multilingual" às vezes trocava para espanhol ("módulo uno").
-VOICE = "pt-BR-FranciscaNeural"
+# Voz só em português (a "Multilingual" às vezes trocava para espanhol).
+# Masculina, escolhida pelo usuário.
+VOICE = "pt-BR-AntonioNeural"
 RATE = "+0%"
 BITRATE = 48000  # formato padrão do edge-tts: 24 kHz, 48 kbps, mono
 
@@ -179,7 +180,8 @@ def duration(rel: str) -> int:
 
 # ---------------------------------------------------------------- build
 
-LETRAS = "ABCD"
+LETRAS = "ABCDE"
+NUMEROS = {2: "duas", 3: "três"}
 
 
 def build():
@@ -202,7 +204,7 @@ def build():
         for f in lesson_files:
             meta, body = parse_md(f)
             kind = meta.get("tipo", "aula")
-            lid = f"{mod['id']}-{f.stem[:2]}"
+            lid = f"{mod['id']}-{f.stem}"
             if kind == "aula":
                 n_aula += 1
                 label = f"Aula {n_aula}"
@@ -229,21 +231,27 @@ def build():
             qs = json.loads(qfile.read_text(encoding="utf-8"))
             total = len(qs)
             for i, q in enumerate(qs, 1):
-                assert len(q["opcoes"]) == 4, f"{mod['id']} questão {i}: precisa de 4 opções"
+                certas = q["certa"] if isinstance(q["certa"], list) else [q["certa"]]
+                n_opts = len(q["opcoes"])
+                assert 4 <= n_opts <= 5, f"{mod['id']} questão {i}: precisa de 4 ou 5 opções"
+                assert all(0 <= c < n_opts for c in certas), f"{mod['id']} questão {i}: 'certa' inválida"
                 opts = " ".join(
                     f"Alternativa {LETRAS[k]}: {end_sentence(o)}" for k, o in enumerate(q["opcoes"])
                 )
-                q_speech = fix_speech(f"Pergunta {i} de {total}. {q['pergunta']}\n\n{opts}")
-                certa = q["certa"]
-                e_speech = fix_speech(
-                    f"A resposta certa é a alternativa {LETRAS[certa]}: "
-                    f"{end_sentence(q['opcoes'][certa])} {q['explicacao']}"
-                )
+                pede = f" Escolha {NUMEROS[len(certas)]} alternativas." if len(certas) > 1 else ""
+                q_speech = fix_speech(f"Pergunta {i} de {total}. {q['pergunta']}{pede}\n\n{opts}")
+                if len(certas) == 1:
+                    certo_txt = f"A resposta certa é a alternativa {LETRAS[certas[0]]}: {end_sentence(q['opcoes'][certas[0]])}"
+                else:
+                    letras = ", ".join(LETRAS[c] for c in certas[:-1]) + f" e {LETRAS[certas[-1]]}"
+                    certo_txt = f"As respostas certas são as alternativas {letras}."
+                e_speech = fix_speech(f"{certo_txt} {q['explicacao']}")
+                qid = hashlib.sha1(q["pergunta"].encode()).hexdigest()[:8]
                 quiz.append({
-                    "id": f"{mod['id']}-q{i:02d}",
+                    "id": f"{mod['id']}-q{qid}",
                     "q": q["pergunta"],
                     "options": q["opcoes"],
-                    "answer": certa,
+                    "answer": certas,
                     "explanation": q["explicacao"],
                     "audioQ": jobs.add(mod["id"], f"quiz-{i:02d}-pergunta", q_speech),
                     "audioE": jobs.add(mod["id"], f"quiz-{i:02d}-explicacao", e_speech),

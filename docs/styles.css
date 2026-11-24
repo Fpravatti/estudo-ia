@@ -234,3 +234,9 @@ h2 { font-size: 1.1rem; margin: 0 0 0.6em; }
   opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; max-width: calc(100% - 32px); z-index: 40;
 }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
+.chip.accent { background: var(--accent-soft); color: var(--accent); }
+.row-btns { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.doubt { display: block; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.doubt:last-child { border-bottom: 0; }
+.doubt p { margin: 0 0 6px; }
+.row-title svg { width: 18px; height: 18px; vertical-align: -3px; color: var(--accent); }
