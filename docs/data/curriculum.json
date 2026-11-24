@@ -19,8 +19,8 @@
    "available": true,
    "lessonCount": 8,
    "questionCount": 10,
-   "totalDuration": 3515,
-   "audioBytes": 23722704
+   "totalDuration": 3366,
+   "audioBytes": 22780224
   },
   {
    "id": "m02",
@@ -171,7 +171,7 @@
   }
  ],
  "commonAudio": {
-  "right": "audio/common/certo-4f7b922c00.mp3",
-  "wrong": "audio/common/errado-35f7bb9a46.mp3"
+  "right": "audio/common/certo-800e74c387.mp3",
+  "wrong": "audio/common/errado-f655371df2.mp3"
  }
 }

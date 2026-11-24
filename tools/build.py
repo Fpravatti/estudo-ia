@@ -22,7 +22,8 @@ import edge_tts
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 DOCS = ROOT / "docs"
-VOICE = "pt-BR-ThalitaMultilingualNeural"
+# Voz só em português: a "Multilingual" às vezes trocava para espanhol ("módulo uno").
+VOICE = "pt-BR-FranciscaNeural"
 RATE = "+0%"
 BITRATE = 48000  # formato padrão do edge-tts: 24 kHz, 48 kbps, mono
 
