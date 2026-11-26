@@ -75,3 +75,12 @@ Resposta: machine learning tradicional para o risco de atraso, e um LLM com RAG 
 ## Resumo em um minuto
 
 A IA generativa gera conteúdo novo, enquanto o machine learning tradicional, discriminativo, classifica ou prevê. As principais famílias generativas são os Transformers autorregressivos, para texto, a difusão, para imagem, além das GANs e dos VAEs. Um modelo fundacional é treinado com dados amplos e adaptado para muitas tarefas, e pode ser proprietário, acessado por API, ou de pesos abertos, executado na sua infraestrutura. Para dados estruturados com saída numérica ou de classe, prefira machine learning tradicional. Para dados não estruturados, IA generativa.
+
+## Termos-chave desta aula
+
+- **IA generativa**: gera conteúdo novo, como texto, imagem e código.
+- **Modelo discriminativo**: o machine learning tradicional, que classifica ou prevê um número.
+- **Difusão**: família de modelos que gera imagens removendo ruído passo a passo.
+- **Modelo fundacional**: modelo grande, treinado com dados amplos, adaptável a muitas tarefas.
+- **Pesos abertos**: modelo que você baixa e roda na sua infraestrutura, respeitando a licença.
+- **Modelo proprietário**: modelo acessado pela API do fornecedor, sem acesso aos pesos.

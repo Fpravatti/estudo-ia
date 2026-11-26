@@ -79,3 +79,13 @@ A taxa desatualizada é um problema de informação atual, então o modelo preci
 ## Resumo em um minuto
 
 Alucinação se combate com RAG, instruções de responder só com o contexto e citações. Data de corte e conhecimento privado, com RAG e ferramentas. Contexto longo sofre com custo e com o efeito perdido no meio. Aritmética se resolve com PAL, em que o modelo escreve código e o interpretador executa. ReAct alterna pensamento, ação e observação, e é a base dos agentes, com function calling. Prompt injection pode ser direto ou indireto, e exige defesa em profundidade. Para produção, destilação cria um aluno menor, quantização reduz precisão, e poda remove pesos pouco úteis.
+
+## Termos-chave desta aula
+
+- **Alucinação**: informação falsa com cara de verdadeira.
+- **Lost in the middle**: o modelo usa pior o que está no meio de um contexto longo.
+- **PAL**: o modelo escreve código e um interpretador faz a conta.
+- **ReAct**: ciclo de pensamento, ação e observação. É a base dos agentes.
+- **Function calling**: o modelo pede uma ferramenta; a aplicação executa.
+- **Prompt injection**: instruções maliciosas, diretas ou escondidas em documentos.
+- **Destilação**: um modelo menor, o aluno, aprende a imitar um maior, o professor.

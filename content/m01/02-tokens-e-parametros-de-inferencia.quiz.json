@@ -1,0 +1,46 @@
+[
+ {
+  "pergunta": "O que a janela de contexto de um modelo inclui?",
+  "opcoes": [
+   "Só o prompt do usuário",
+   "A soma dos tokens de entrada e de saída",
+   "Só a resposta gerada",
+   "Só o system prompt"
+  ],
+  "certa": 1,
+  "explicacao": "A janela de contexto soma tudo: system prompt, histórico, documentos e a resposta. Um prompt enorme deixa pouco espaço para a saída."
+ },
+ {
+  "pergunta": "Com temperatura zero, o comportamento do modelo se aproxima de qual estratégia?",
+  "opcoes": [
+   "Decodificação gulosa: escolher sempre o token mais provável",
+   "Sorteio totalmente aleatório",
+   "Top-k com k muito alto",
+   "Nucleus sampling com p igual a 1"
+  ],
+  "certa": 0,
+  "explicacao": "Temperatura zero concentra toda a chance no token mais provável, o que equivale na prática à decodificação gulosa."
+ },
+ {
+  "pergunta": "Como funciona o top-p, também chamado de nucleus sampling?",
+  "opcoes": [
+   "Sorteia sempre entre exatamente 10 tokens",
+   "Escolhe o token menos provável",
+   "Sorteia só entre o menor grupo de tokens cuja probabilidade somada atinge p",
+   "Desliga a temperatura"
+  ],
+  "certa": 2,
+  "explicacao": "O top-p forma um núcleo com os tokens mais prováveis até somar p. O tamanho do grupo se adapta à confiança do modelo, ao contrário do top-k, que é fixo."
+ },
+ {
+  "pergunta": "Por que um mesmo texto pode custar mais tokens em português do que em inglês?",
+  "opcoes": [
+   "Porque o português tem mais letras no alfabeto",
+   "Porque as APIs cobram mais caro de quem está no Brasil",
+   "Porque o português não usa subpalavras",
+   "Porque os tokenizadores são otimizados principalmente para o inglês"
+  ],
+  "certa": 3,
+  "explicacao": "Os tokenizadores foram treinados com muito texto em inglês, então palavras em português costumam ser quebradas em mais pedaços."
+ }
+]

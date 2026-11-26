@@ -10,7 +10,15 @@ Um modelo começa com bilhões de parâmetros com valores aleatórios. Para cheg
 
 ## Como funciona o pré-treinamento
 
-O modelo recebe trechos de texto e faz a tarefa do seu objetivo de treino, que para os LLMs decoder-only é prever o próximo token. A diferença entre a previsão e o token real é medida por uma **função de perda**. O algoritmo de **retropropagação** calcula, para cada parâmetro, em que direção ajustá-lo para reduzir a perda, e um **otimizador**, geralmente o **Adam** ou variações dele, aplica o ajuste. Isso se repete por bilhões de exemplos.
+O modelo recebe trechos de texto e faz a tarefa do seu objetivo de treino, que para os LLMs decoder-only é prever o próximo token. Cada passo do treino tem três peças, e vale conhecer o nome de cada uma.
+
+A primeira é a **função de perda**, em inglês **loss**. Ela é um número que mede o tamanho do erro: quanto o modelo errou ao prever o token real. Treinar é fazer esse número cair.
+
+A segunda é a **retropropagação**, em inglês **backpropagation**. É o cálculo que descobre, para cada um dos bilhões de parâmetros, se ele deve subir ou descer um pouquinho para que a perda diminua. Esse "para que lado ajustar" se chama **gradiente**.
+
+A terceira é o **otimizador**, o algoritmo que de fato aplica os ajustes, decidindo o tamanho de cada passo. O otimizador mais usado em LLMs se chama **Adam**. Apesar de parecer nome de pessoa, é uma sigla em inglês para **estimativa adaptativa de momentos**. A ideia é simples: em vez de dar o mesmo tamanho de passo para todos os parâmetros, o Adam guarda um histórico dos gradientes recentes de cada parâmetro e adapta o passo de cada um. Parâmetros que recebem sinais consistentes andam com mais confiança; os que oscilam andam com mais cuidado. Isso deixa o treino mais rápido e estável. Existe uma variação muito usada chamada **AdamW**. Guarde um detalhe que vai importar daqui a pouco: para manter esse histórico, o Adam guarda **dois números extras para cada parâmetro**.
+
+Perda, retropropagação e otimizador se repetem por bilhões de exemplos, e os parâmetros vão chegando a valores úteis.
 
 Como o próprio texto fornece a resposta, não é preciso rotular nada à mão. Por isso o pré-treinamento é **autossupervisionado**, e pode usar a escala da internet.
 
@@ -22,7 +30,7 @@ Esta conta aparece em provas e no dia a dia. Cada parâmetro é um número guard
 
 Em **ponto flutuante de 32 bits**, ou FP32, cada parâmetro ocupa **4 bytes**. Então um modelo de **1 bilhão de parâmetros** ocupa cerca de **4 gigabytes** só para guardar os pesos.
 
-Mas **treinar** exige muito mais. Além dos pesos, é preciso guardar os **gradientes**, os **estados do otimizador**, que no Adam são dois valores extras por parâmetro, e as **ativações** intermediárias. Na prática, treinar em FP32 exige algo em torno de **seis vezes mais memória** que os pesos sozinhos. Aquele modelo de 1 bilhão de parâmetros precisaria de uns vinte e poucos gigabytes de GPU para treinar. Um modelo de 70 bilhões, centenas de gigabytes, distribuídos por várias GPUs.
+Mas **treinar** exige muito mais. Além dos pesos, é preciso guardar os **gradientes**, um por parâmetro, os **estados do otimizador**, que no Adam são aqueles dois valores extras por parâmetro, e as **ativações**, que são os resultados intermediários de cada camada, guardados para a retropropagação. Na prática, treinar em FP32 exige algo em torno de **seis vezes mais memória** que os pesos sozinhos. Aquele modelo de 1 bilhão de parâmetros precisaria de uns vinte e poucos gigabytes de GPU para treinar. Um modelo de 70 bilhões, centenas de gigabytes, distribuídos por várias GPUs.
 
 ## Precisão numérica e quantização
 
@@ -69,3 +77,12 @@ A resposta é quantizar. Em INT8, os pesos caem para cerca de 13 gigabytes, e em
 ## Resumo em um minuto
 
 O pré-treinamento é autossupervisionado, depende de curadoria pesada de dados e usa retropropagação com otimizadores como o Adam. Em FP32, cada parâmetro ocupa 4 bytes, e treinar exige cerca de seis vezes a memória dos pesos. BF16 e FP16 usam 2 bytes, com o BF16 mais estável. INT8 usa 1 byte, e 4 bits, meio byte. Quantizar reduz memória e custo de inferência. As leis de escala mostram que desempenho depende de parâmetros, dados e computação, e o Chinchilla indicou cerca de 20 tokens por parâmetro. Pré-treinar do zero raramente se justifica.
+
+## Termos-chave desta aula
+
+- **Função de perda**: número que mede o erro do modelo. Treinar é fazê-lo cair.
+- **Retropropagação e gradiente**: o cálculo de para que lado ajustar cada parâmetro.
+- **Adam**: o otimizador mais usado. Adapta o passo de cada parâmetro e guarda dois valores extras por parâmetro.
+- **FP32, BF16 e INT8**: 4, 2 e 1 byte por parâmetro. O BF16 é o preferido para treinar.
+- **Quantização**: reduzir a precisão dos pesos para caber em menos memória.
+- **Chinchilla**: estudo que indicou cerca de 20 tokens de treino por parâmetro.

@@ -240,3 +240,18 @@ h2 { font-size: 1.1rem; margin: 0 0 0.6em; }
 .doubt:last-child { border-bottom: 0; }
 .doubt p { margin: 0 0 6px; }
 .row-title svg { width: 18px; height: 18px; vertical-align: -3px; color: var(--accent); }
+
+/* texto sincronizado (estilo letra de música) */
+.seg { cursor: pointer; border-radius: 6px; transition: background-color .25s, color .25s, opacity .25s; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.seg.now { background: var(--accent-soft); color: var(--text); padding: 1px 3px; margin: 0 -3px; }
+.seg-title { font-weight: 700; color: var(--muted); }
+.lyrics {
+  position: relative; text-align: left; height: 42vh; min-height: 220px; overflow-y: auto;
+  margin: 4px 0 14px; padding: 12px 14px; border-radius: var(--radius);
+  background: var(--surface); border: 1px solid var(--line);
+  font-size: 1.02rem; line-height: 1.65; overscroll-behavior: contain;
+}
+.lyrics h3 { font-size: 1rem; margin: 1.2em 0 0.3em; }
+.lyrics .seg { opacity: 0.6; }
+.lyrics .seg.now { opacity: 1; font-weight: 600; }
+.player-title { font-size: 1.2rem; margin-bottom: 10px; }

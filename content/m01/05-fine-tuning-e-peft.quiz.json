@@ -1,0 +1,46 @@
+[
+ {
+  "pergunta": "Qual é a diferença entre aprendizado em contexto e fine-tuning?",
+  "opcoes": [
+   "São a mesma coisa",
+   "No aprendizado em contexto os parâmetros não mudam; no fine-tuning, mudam",
+   "O fine-tuning não usa exemplos",
+   "O aprendizado em contexto exige GPU para treinar"
+  ],
+  "certa": 1,
+  "explicacao": "Exemplos no prompt ensinam o padrão naquela chamada, sem mexer nos pesos. O fine-tuning altera os parâmetros de forma permanente."
+ },
+ {
+  "pergunta": "O que é esquecimento catastrófico?",
+  "opcoes": [
+   "Quando o modelo piora em tarefas antigas depois de ser ajustado intensamente para uma única tarefa",
+   "Quando o modelo esquece o histórico da conversa",
+   "Quando a janela de contexto estoura",
+   "Quando o modelo é apagado do servidor"
+  ],
+  "certa": 0,
+  "explicacao": "Ajustar demais para uma tarefa pode estragar outras. Fine-tuning multitarefa ou PEFT reduzem o problema."
+ },
+ {
+  "pergunta": "Por que o LoRA é chamado de ajuste eficiente em parâmetros?",
+  "opcoes": [
+   "Porque treina todos os parâmetros, só que mais rápido",
+   "Porque não usa dados",
+   "Porque congela o modelo e treina só matrizes pequenas, muitas vezes menos de um por cento dos parâmetros",
+   "Porque só funciona em modelos pequenos"
+  ],
+  "certa": 2,
+  "explicacao": "O LoRA mantém os pesos originais congelados e treina duas matrizes de baixo posto por camada. É barato e pode ser mesclado sem latência extra."
+ },
+ {
+  "pergunta": "Fine-tuning é a melhor escolha para qual objetivo?",
+  "opcoes": [
+   "Manter informações da semana atualizadas",
+   "Fazer o modelo citar a fonte das respostas",
+   "Dar acesso a documentos que mudam todo dia",
+   "Fazer o modelo seguir um formato ou estilo de forma consistente"
+  ],
+  "certa": 3,
+  "explicacao": "Fine-tuning muda comportamento: formato, estilo, especialização. Conhecimento que muda e citação de fontes são casos de RAG."
+ }
+]

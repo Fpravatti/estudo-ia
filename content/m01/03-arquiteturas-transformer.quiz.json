@@ -1,0 +1,46 @@
+[
+ {
+  "pergunta": "Qual é o objetivo de pré-treinamento de um modelo encoder-only como o BERT?",
+  "opcoes": [
+   "Prever o próximo token olhando só para trás",
+   "Adivinhar tokens escondidos usando o contexto dos dois lados",
+   "Remover ruído de imagens",
+   "Traduzir frases"
+  ],
+  "certa": 1,
+  "explicacao": "O BERT é treinado com masked language modeling: tokens são escondidos e ele os adivinha usando o contexto antes e depois, com atenção bidirecional."
+ },
+ {
+  "pergunta": "O que significa dizer que a atenção de um decoder é causal?",
+  "opcoes": [
+   "Cada token só pode olhar para os tokens anteriores",
+   "Cada token olha para todos os tokens",
+   "O modelo explica a causa de cada resposta",
+   "O modelo só processa uma palavra por vez, sem paralelismo"
+  ],
+  "certa": 0,
+  "explicacao": "Na atenção causal, cada token só enxerga o passado, porque na geração o futuro ainda não existe."
+ },
+ {
+  "pergunta": "Para que servem os embeddings na busca semântica?",
+  "opcoes": [
+   "Para comprimir arquivos de áudio",
+   "Para traduzir textos automaticamente",
+   "Para representar o significado como vetores, de modo que textos parecidos fiquem próximos",
+   "Para contar tokens"
+  ],
+  "certa": 2,
+  "explicacao": "Embeddings transformam texto em vetores. Textos com significado parecido ficam próximos, o que permite buscar por significado e não por palavras exatas."
+ },
+ {
+  "pergunta": "Qual problema das redes recorrentes o Transformer resolveu?",
+  "opcoes": [
+   "Elas eram rápidas demais",
+   "Elas não aceitavam texto em português",
+   "Elas não usavam GPUs",
+   "Elas processavam em sequência, eram lentas e esqueciam o início de textos longos"
+  ],
+  "certa": 3,
+  "explicacao": "As redes recorrentes processavam palavra por palavra. A autoatenção do Transformer processa tudo em paralelo e liga diretamente palavras distantes."
+ }
+]

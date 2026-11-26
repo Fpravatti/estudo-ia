@@ -1,0 +1,46 @@
+[
+ {
+  "pergunta": "O ROUGE é orientado a quê, e para que tipo de tarefa foi criado?",
+  "opcoes": [
+   "Precisão, para tradução",
+   "Revocação, para resumos",
+   "Velocidade, para chatbots",
+   "Custo, para APIs"
+  ],
+  "certa": 1,
+  "explicacao": "O ROUGE mede quanto da referência aparece no texto gerado, ou seja, revocação. Foi criado para resumos. O BLEU é o de tradução, orientado à precisão."
+ },
+ {
+  "pergunta": "O que o ROUGE-L mede?",
+  "opcoes": [
+   "A maior subsequência comum entre o texto gerado e a referência",
+   "A quantidade de letras L no texto",
+   "Só palavras isoladas",
+   "O tempo de resposta"
+  ],
+  "certa": 0,
+  "explicacao": "O ROUGE-L usa a maior sequência de palavras que aparece na mesma ordem nos dois textos, mesmo que não seja contígua."
+ },
+ {
+  "pergunta": "O que é contaminação de dados em benchmarks?",
+  "opcoes": [
+   "Quando o benchmark tem erros de digitação",
+   "Quando o modelo é treinado com dados tóxicos",
+   "Quando as perguntas do benchmark vazaram para os dados de treino do modelo",
+   "Quando o benchmark é pago"
+  ],
+  "certa": 2,
+  "explicacao": "Se o modelo viu as perguntas no treino, ele vai bem porque decorou, e o resultado não mostra a capacidade real."
+ },
+ {
+  "pergunta": "Qual destes é um viés conhecido do LLM como juiz?",
+  "opcoes": [
+   "Preferir sempre respostas em português",
+   "Recusar avaliar textos curtos",
+   "Só funcionar com resumos",
+   "Tender a preferir respostas mais longas e a primeira opção apresentada"
+  ],
+  "certa": 3,
+  "explicacao": "O LLM como juiz tem vieses de tamanho e de posição, e pode favorecer o próprio modelo. Por isso se alternam as ordens e se calibra com notas humanas."
+ }
+]

@@ -69,3 +69,13 @@ Resposta cortada no meio aponta para o limite de tokens de saída. Custo alto ap
 ## Resumo em um minuto
 
 O tokenizador quebra o texto em subpalavras, com algoritmos como BPE, WordPiece e SentencePiece, e cada modelo tem o seu. Custo e limites são medidos em tokens, e português gasta mais tokens que inglês. A janela de contexto soma entrada e saída. O modelo produz logits, o softmax gera probabilidades, e a escolha pode ser gulosa ou por amostragem. Temperatura baixa concentra, alta espalha. Top-k fica com os k melhores, top-p com o núcleo que soma p. Respostas longas aumentam custo e latência, e o streaming melhora a experiência sem reduzir o tempo total.
+
+## Termos-chave desta aula
+
+- **Token**: pedaço de texto, geralmente uma subpalavra. É a unidade de custo e de limite.
+- **Janela de contexto**: máximo de tokens por chamada, somando entrada e saída.
+- **Max tokens**: limite do tamanho da resposta. Baixo demais corta a saída no meio.
+- **Logits e softmax**: logits são as notas brutas de cada token; o softmax transforma em probabilidades.
+- **Temperatura**: baixa deixa a resposta previsível; alta deixa variada.
+- **Top-k e top-p**: limitam o sorteio aos tokens mais prováveis: os k melhores, ou o grupo que soma p.
+- **Tempo até o primeiro token**: quanto demora para a resposta começar; cresce com o tamanho da entrada.

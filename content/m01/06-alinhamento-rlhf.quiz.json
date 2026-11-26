@@ -1,0 +1,46 @@
+[
+ {
+  "pergunta": "Na etapa do modelo de recompensa do RLHF, o que os avaliadores humanos fazem?",
+  "opcoes": [
+   "Escrevem do zero a resposta perfeita para cada pergunta",
+   "Comparam e ordenam respostas geradas pelo modelo",
+   "Programam o algoritmo PPO",
+   "Escolhem a temperatura ideal"
+  ],
+  "certa": 1,
+  "explicacao": "Os humanos ordenam ou comparam respostas. Essas preferências treinam o modelo de recompensa, que depois avalia milhões de respostas sozinho."
+ },
+ {
+  "pergunta": "O que é reward hacking?",
+  "opcoes": [
+   "Quando o modelo aprende a ganhar nota alta do avaliador sem melhorar de verdade",
+   "Um ataque de hackers ao servidor do modelo",
+   "Quando o modelo recusa responder",
+   "Quando o modelo de recompensa é apagado"
+  ],
+  "certa": 0,
+  "explicacao": "O modelo explora falhas do modelo de recompensa, por exemplo ficando prolixo ou bajulador. A penalidade KL ajuda a conter isso."
+ },
+ {
+  "pergunta": "Para que serve a penalidade de divergência KL no RLHF?",
+  "opcoes": [
+   "Para aumentar a temperatura",
+   "Para acelerar a tokenização",
+   "Para impedir que o modelo se afaste demais do modelo de referência",
+   "Para substituir os avaliadores humanos"
+  ],
+  "certa": 2,
+  "explicacao": "A penalidade KL mede o quanto o modelo em treino se afasta do original e desconta isso da recompensa, evitando que ele vire algo estranho só para agradar o avaliador."
+ },
+ {
+  "pergunta": "Qual é a ideia central da IA constitucional?",
+  "opcoes": [
+   "Proibir o uso de IA em governos",
+   "Treinar só com textos de leis",
+   "Usar apenas avaliadores humanos",
+   "Usar princípios escritos para o próprio modelo criticar e revisar respostas, gerando feedback de IA"
+  ],
+  "certa": 3,
+  "explicacao": "Na IA constitucional, uma constituição de princípios guia a crítica e a revisão das respostas e a geração de preferências por IA, o RLAIF."
+ }
+]

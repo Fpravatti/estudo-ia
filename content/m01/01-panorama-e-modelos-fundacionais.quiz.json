@@ -1,0 +1,46 @@
+[
+ {
+  "pergunta": "Qual é a diferença central entre um modelo generativo e um modelo discriminativo?",
+  "opcoes": [
+   "O generativo é sempre maior que o discriminativo",
+   "O generativo cria conteúdo novo; o discriminativo classifica ou prevê um valor",
+   "O discriminativo só funciona com imagens",
+   "Não há diferença, são nomes diferentes para a mesma coisa"
+  ],
+  "certa": 1,
+  "explicacao": "Modelos generativos aprendem a distribuição dos dados e geram exemplos novos. Os discriminativos, o machine learning tradicional, separam categorias ou preveem números."
+ },
+ {
+  "pergunta": "Qual família de modelos é a mais associada à geração de imagens hoje?",
+  "opcoes": [
+   "Difusão",
+   "Encoder-only, como o BERT",
+   "Regressão logística",
+   "Árvores de decisão"
+  ],
+  "certa": 0,
+  "explicacao": "Os modelos de difusão geram imagens partindo do ruído e removendo-o passo a passo, guiados pelo texto do pedido."
+ },
+ {
+  "pergunta": "O que define um modelo fundacional?",
+  "opcoes": [
+   "Ter o código-fonte aberto",
+   "Ter sido criado por uma única empresa",
+   "Ser treinado com dados amplos e poder ser adaptado para muitas tarefas",
+   "Funcionar só com texto em inglês"
+  ],
+  "certa": 2,
+  "explicacao": "Modelo fundacional é sobre a forma de treinar e usar: dados amplos e adaptação para muitas tarefas. Ele pode ser proprietário ou de pesos abertos."
+ },
+ {
+  "pergunta": "Qual é uma vantagem típica de um modelo de pesos abertos em relação a um proprietário acessado por API?",
+  "opcoes": [
+   "Nunca exige GPU",
+   "Sempre tem a melhor qualidade do mercado",
+   "Não tem nenhuma licença",
+   "Permite rodar na própria infraestrutura, com mais controle sobre os dados"
+  ],
+  "certa": 3,
+  "explicacao": "Com pesos abertos, o modelo roda no seu ambiente, o que dá controle e privacidade. Em troca, você precisa de infraestrutura e de atenção à licença."
+ }
+]

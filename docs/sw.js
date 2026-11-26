@@ -1,5 +1,5 @@
 /* Service worker: deixa o app e os áudios disponíveis offline. */
-const VERSION = 'dcca9aecb2';
+const VERSION = 'bc7bd23a6d';
 const SHELL = `shell-${VERSION}`;
 const DATA = 'data-v1';
 const AUDIO = 'audio-v1'; // não muda entre versões: os nomes dos mp3 já têm hash

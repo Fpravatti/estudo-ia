@@ -63,3 +63,13 @@ O modelo está explorando falhas do modelo de recompensa, ou seja, é reward hac
 ## Resumo em um minuto
 
 Alinhamento ajusta o modelo às preferências humanas: útil, honesto e inofensivo. O RLHF parte de um modelo SFT, treina um modelo de recompensa com comparações humanas, e otimiza o LLM com aprendizado por reforço, tipicamente PPO. O reward hacking é contido com a penalidade KL contra um modelo de referência. O DPO otimiza direto nos pares de preferência, sem modelo de recompensa separado. O RLAIF e a IA constitucional usam feedback de IA guiado por princípios escritos. Modelos de raciocínio usam reforço com recompensas verificáveis, como no GRPO. E alinhamento é só uma camada da segurança.
+
+## Termos-chave desta aula
+
+- **Alinhamento**: ajustar o modelo às preferências humanas: útil, honesto e inofensivo.
+- **Modelo de recompensa**: modelo auxiliar que dá nota às respostas, imitando as pessoas.
+- **PPO**: o algoritmo de reforço do RLHF clássico.
+- **Reward hacking**: o modelo engana o avaliador para ganhar nota sem melhorar.
+- **Penalidade KL**: impede o modelo de se afastar demais do modelo de referência.
+- **DPO**: otimiza direto nos pares de preferência, sem modelo de recompensa.
+- **IA constitucional**: feedback de IA guiado por princípios escritos.

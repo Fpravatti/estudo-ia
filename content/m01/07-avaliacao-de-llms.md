@@ -71,3 +71,13 @@ Montar um conjunto de pareceres reais com resumos de referência escritos por es
 ## Resumo em um minuto
 
 Avaliar LLMs é difícil porque respostas diferentes podem estar certas. ROUGE avalia resumos e é orientado à revocação, com as variações 1, 2 e L. BLEU avalia tradução e é orientado à precisão. Ambas medem sobreposição de n-gramas, e não significado. Perplexidade acompanha o pré-treino. GLUE e SuperGLUE medem entendimento, MMLU cobre 57 matérias, BIG-bench mais de duzentas tarefas, e HELM é holístico. Cuidado com contaminação. LLM como juiz escala, mas tem vieses de tamanho e de posição. E o centro de tudo é um conjunto de avaliação próprio, usado para detectar regressões.
+
+## Termos-chave desta aula
+
+- **N-grama**: sequência de n palavras. Unigrama é uma, bigrama são duas.
+- **ROUGE**: métrica de resumo, focada em revocação: cobriu o que devia?
+- **BLEU**: métrica de tradução, focada em precisão.
+- **MMLU**: benchmark de múltipla escolha com 57 matérias.
+- **HELM**: avaliação holística, com várias métricas além da acurácia.
+- **Contaminação**: quando as perguntas do benchmark vazaram para o treino.
+- **LLM como juiz**: um modelo avaliando respostas; cuidado com os vieses de tamanho e de posição.

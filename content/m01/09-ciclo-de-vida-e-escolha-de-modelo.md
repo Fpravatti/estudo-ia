@@ -83,3 +83,12 @@ A restrição de dados aponta para um modelo hospedado no ambiente do banco, sej
 ## Resumo em um minuto
 
 O ciclo de vida tem quatro fases que se repetem: escopo, escolha do modelo, adaptação com avaliação contínua, e integração com monitoramento. A escada de adaptação é prompt, depois RAG para conhecimento, depois fine-tuning para comportamento, e pré-treino como último recurso. Os critérios de escolha do modelo são qualidade nos seus dados, custo, latência, contexto, modalidade, privacidade e conformidade, licença e customização. Custos caem com menos tokens, cache de prompt, roteamento e lotes. E IA responsável atravessa todas as fases.
+
+## Termos-chave desta aula
+
+- **Escopo**: definir exatamente a tarefa e os critérios de sucesso.
+- **Escada de adaptação**: primeiro prompt, depois RAG, depois fine-tuning, e pré-treino só em último caso.
+- **Roteamento ou cascata**: modelos pequenos para casos simples e grandes só para os difíceis.
+- **Cache de prompt**: reaproveitar a parte fixa do prompt para pagar menos.
+- **Red teaming**: atacar o próprio sistema de propósito para achar falhas.
+- **Responsabilização**: sempre há uma pessoa ou equipe responsável pelo sistema.

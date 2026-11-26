@@ -1,0 +1,46 @@
+[
+ {
+  "pergunta": "O que é o Adam no treinamento de redes neurais?",
+  "opcoes": [
+   "Um benchmark de avaliação",
+   "Um otimizador que adapta o tamanho do passo de cada parâmetro com base no histórico dos gradientes",
+   "Um tipo de tokenizador",
+   "O nome do primeiro LLM"
+  ],
+  "certa": 1,
+  "explicacao": "Adam é o otimizador mais usado em LLMs. Ele guarda um histórico dos gradientes de cada parâmetro e adapta o passo de cada um, o que custa dois valores extras de memória por parâmetro."
+ },
+ {
+  "pergunta": "Quanto ocupa, aproximadamente, só para guardar os pesos, um modelo de 7 bilhões de parâmetros em BF16?",
+  "opcoes": [
+   "14 gigabytes",
+   "7 gigabytes",
+   "28 gigabytes",
+   "3,5 gigabytes"
+  ],
+  "certa": 0,
+  "explicacao": "BF16 usa 2 bytes por parâmetro: 7 bilhões vezes 2 dá cerca de 14 gigabytes. Em FP32 seriam 28, em INT8 7, e em 4 bits cerca de 3,5."
+ },
+ {
+  "pergunta": "Por que o BF16 costuma ser preferido ao FP16 para treinar?",
+  "opcoes": [
+   "Porque ocupa menos memória que o FP16",
+   "Porque é um formato de 8 bits",
+   "Porque mantém a mesma faixa de valores do FP32, o que deixa o treino mais estável",
+   "Porque não precisa de GPU"
+  ],
+  "certa": 2,
+  "explicacao": "Os dois usam 16 bits, mas o BF16 preserva a faixa de valores do FP32, sacrificando casas decimais. Isso evita instabilidade no treino."
+ },
+ {
+  "pergunta": "Em que situação faz sentido pré-treinar um modelo do zero?",
+  "opcoes": [
+   "Sempre que a empresa tem documentos internos",
+   "Quando se quer mudar o tom de voz das respostas",
+   "Quando a resposta precisa citar fontes",
+   "Quase nunca: só em domínios com linguagem muito própria, muitos dados e orçamento enorme"
+  ],
+  "certa": 3,
+  "explicacao": "Pré-treinar do zero é caríssimo. Documentos internos são caso de RAG, e tom de voz é caso de fine-tuning. O exemplo clássico de pré-treino próprio é o BloombergGPT."
+ }
+]

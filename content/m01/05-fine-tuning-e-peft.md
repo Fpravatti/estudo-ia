@@ -73,3 +73,13 @@ Há dados rotulados de qualidade, a tarefa é estável e específica, e o proble
 ## Resumo em um minuto
 
 Aprendizado em contexto não muda parâmetros, e fine-tuning muda. O fine-tuning com instruções usa pares de instrução e resposta, e para uma tarefa única algumas centenas a mil exemplos já ajudam muito. Ajustar só uma tarefa pode causar esquecimento catastrófico, que se evita com fine-tuning multitarefa ou com PEFT. O LoRA congela o modelo e treina matrizes de baixo posto, com menos de um por cento dos parâmetros, e pode ser mesclado sem latência. O QLoRA soma quantização em 4 bits. Soft prompts treinam vetores virtuais. Fine-tuning muda comportamento, RAG traz conhecimento.
+
+## Termos-chave desta aula
+
+- **Fine-tuning**: treinar um modelo pronto com exemplos para mudar o comportamento dele.
+- **SFT**: fine-tuning supervisionado, com pares de instrução e resposta.
+- **Esquecimento catastrófico**: o modelo piora em tarefas antigas depois de ajustado numa só.
+- **PEFT**: congela o modelo e treina poucos parâmetros.
+- **LoRA**: treina duas matrizes pequenas por camada; pode ser mesclado sem deixar o modelo mais lento.
+- **QLoRA**: LoRA em cima de um modelo base quantizado em 4 bits.
+- **Soft prompt**: vetores treinados colocados no início da entrada, no lugar de palavras.

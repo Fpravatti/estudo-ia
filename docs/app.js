@@ -56,7 +56,7 @@ const I = {
 const KEY = 'estudo-ia-v1';
 const defaults = () => ({
   settings: { examDate: null, startDate: null, speed: 1, newPerDay: 2, autoNext: true, quizAudio: true },
-  lessons: {}, quiz: {}, wrong: {}, days: {}, sims: [], doubts: [], lastId: null, welcomed: false,
+  lessons: {}, quiz: {}, lquiz: {}, wrong: {}, days: {}, sims: [], doubts: [], lastId: null, welcomed: false,
 });
 let S = loadState();
 function loadState() {
@@ -78,23 +78,28 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) saveN
 const lst = (id) => (S.lessons[id] ||= {});
 
 // ------------------------------------------------------------ dados
-const D = { cur: null, mods: {}, lessons: [], byId: {}, questions: [] };
+const D = { cur: null, mods: {}, lessons: [], byId: {}, questions: [], lessonQs: [] };
 async function loadData() {
   const get = async (f) => { const r = await fetch(f); if (!r.ok) throw new Error(f); return r.json(); };
   D.cur = await get('data/curriculum.json');
   const avail = D.cur.modules.filter((m) => m.available);
   await Promise.all(avail.map(async (m) => { D.mods[m.id] = await get(`data/${m.id}.json`); }));
-  D.lessons = []; D.questions = [];
+  D.lessons = []; D.questions = []; D.lessonQs = [];
   for (const m of avail) {
     const md = D.mods[m.id];
     md.lessons.forEach((l, i) => {
       Object.assign(l, { mod: m.id, modNum: m.num, modTitle: m.title, index: i });
       D.lessons.push(l); D.byId[l.id] = l;
+      (l.quiz || []).forEach((q) => { q.mod = m.id; q.modNum = m.num; q.lesson = l.id; D.lessonQs.push(q); });
     });
     md.quiz.forEach((q) => { q.mod = m.id; q.modNum = m.num; D.questions.push(q); });
   }
   // limpa progresso de conteúdo que foi reescrito
-  const qids = new Set(D.questions.map((q) => q.id));
+  const qids = new Set([...D.questions, ...D.lessonQs].map((q) => q.id));
+  S.lquiz ||= {};
+  for (const [lid, qz] of Object.entries(S.lquiz)) {
+    if (!D.byId[lid] || qz.n !== (D.byId[lid].quiz || []).length) delete S.lquiz[lid];
+  }
   for (const id of Object.keys(S.wrong)) if (!qids.has(id)) delete S.wrong[id];
   for (const [mid, qz] of Object.entries(S.quiz)) {
     if (!D.mods[mid] || qz.n !== D.mods[mid].quiz.length) delete S.quiz[mid];
@@ -296,6 +301,7 @@ function updatePlayerUI(force) {
   if (prog) prog.style.width = `${(t / dur) * 100}%`;
   const seek = $('#seek');
   if (seek && !seek.matches(':active')) { seek.max = Math.round(dur); seek.value = Math.round(t); seek.style.setProperty('--p', `${(t / dur) * 100}%`); }
+  updateTranscript(force);
   const tc = $('#t-cur'); if (tc) tc.textContent = fmtTime(t);
   const tl = $('#t-left'); if (tl) tl.textContent = `-${fmtTime(dur - t)}`;
   if (force || lastIconPaused !== audio.paused) {
@@ -444,6 +450,8 @@ function viewHoje() {
     if (pr.done === pr.total && !qz) volta.push(actionRow('startQuiz', m.id, `Fazer o quiz do Módulo ${m.num}`, `${D.mods[m.id].quiz.length} questões, com áudio`));
     else if (qz && qz.best < 0.7 && pr.done === pr.total) volta.push(actionRow('startQuiz', m.id, `Refazer o quiz do Módulo ${m.num}`, `Sua melhor nota: ${Math.round(qz.best * 100)}%`));
   }
+  const pendQ = D.lessons.filter((l) => l.quiz?.length && S.lessons[l.id]?.done && !S.lquiz[l.id]).slice(0, 3);
+  pendQ.forEach((l) => volta.push(actionRow('startLessonQuiz', l.id, `Perguntas da ${l.label} do Módulo ${l.modNum}`, `${l.quiz.length} perguntas rápidas sobre ${l.title}`)));
   const nWrong = Object.keys(S.wrong).length;
   if (nWrong) volta.push(actionRow('startErros', '', `Revisar ${nWrong} ${nWrong === 1 ? 'questão' : 'questões'} que você errou`, 'Com explicação em áudio'));
   items.push(`<section class="card">
@@ -527,6 +535,75 @@ function viewModulo(id) {
     <p class="muted small">Cobre os cursos nº ${md.courses.join(', ')} da trilha original.</p>`;
 }
 
+function transcriptHtml(L) {
+  const out = [];
+  let i = 0;
+  const segs = L.segs || [];
+  const span = (s, k) => `<span class="seg" data-i="${k}" data-act="seekSeg" data-arg="${L.id}|${s.t}">${s.h}</span>`;
+  while (i < segs.length) {
+    const s = segs[i];
+    if (s.k === 't') { out.push(`<p class="seg-title">${span(s, i)}</p>`); i += 1; continue; }
+    if (s.k === 'h') { out.push(`<h3>${span(s, i)}</h3>`); i += 1; continue; }
+    const b = s.b; const k = s.k; const parts = [];
+    while (i < segs.length && segs[i].b === b && segs[i].k === k) { parts.push(k === 'li' ? `<li>${span(segs[i], i)}</li>` : span(segs[i], i)); i += 1; }
+    out.push(k === 'li' ? `<ul>${parts.join('')}</ul>` : `<p>${parts.join(' ')}</p>`);
+  }
+  return out.join('');
+}
+
+function segIndexAt(L, t) {
+  const segs = L.segs || [];
+  let lo = 0; let hi = segs.length - 1; let ans = 0;
+  while (lo <= hi) { const mid = (lo + hi) >> 1; if (segs[mid].t <= t + 0.15) { ans = mid; lo = mid + 1; } else hi = mid - 1; }
+  return ans;
+}
+
+let lastSeg = -1;
+let userScrollUntil = 0;
+['touchmove', 'wheel'].forEach((ev) => addEventListener(ev, () => { userScrollUntil = Date.now() + 6000; }, { passive: true }));
+function updateTranscript(force) {
+  const L = D.byId[P.id];
+  const box = document.querySelector(`.transcript[data-lesson="${P.id}"]`);
+  if (!L || !box) { lastSeg = -1; return; }
+  const idx = segIndexAt(L, audio.currentTime || S.lessons[P.id]?.pos || 0);
+  if (idx === lastSeg && !force) return;
+  lastSeg = idx;
+  box.querySelectorAll('.seg.now').forEach((e) => e.classList.remove('now'));
+  const el = box.querySelector(`.seg[data-i="${idx}"]`);
+  if (!el) return;
+  el.classList.add('now');
+  if (audio.paused && !force) return;
+  if (Date.now() < userScrollUntil) return;
+  if (box.classList.contains('lyrics')) {
+    const top = el.offsetTop - box.clientHeight / 2 + el.offsetHeight / 2;
+    box.scrollTo({ top: Math.max(0, top), behavior: force ? 'auto' : 'smooth' });
+  } else {
+    el.scrollIntoView({ block: 'center', behavior: force ? 'auto' : 'smooth' });
+  }
+}
+
+function seekSeg(arg) {
+  const [id, t] = arg.split('|');
+  const time = Number(t);
+  if (P.id === id) {
+    audio.currentTime = time;
+    if (audio.paused) loadLesson(id, true);
+  } else {
+    lst(id).pos = Math.max(time, 3.01);
+    const L = D.byId[id];
+    playLesson(id, D.mods[L.mod].lessons.slice(L.index).map((l) => l.id));
+  }
+  userScrollUntil = 0;
+  setTimeout(() => updateTranscript(true), 300);
+}
+
+function lessonQuizCard(L) {
+  if (!L.quiz?.length) return '';
+  const qz = S.lquiz[L.id];
+  return `<section class="card"><h2 class="card-h">${I.help} Perguntas desta aula</h2>
+    ${actionRow('startLessonQuiz', L.id, `Responder ${L.quiz.length} perguntas rápidas`, qz ? `Melhor nota: ${Math.round(qz.best * 100)}%` : 'Para fixar os termos e conceitos da aula')}</section>`;
+}
+
 function viewAula(id) {
   const L = D.byId[id];
   if (!L) return notFound();
@@ -545,7 +622,9 @@ function viewAula(id) {
       ${st.done ? `<span class="ok-text">${I.check} Concluída</span>` : `<button class="btn ghost" data-act="markDone" data-arg="${id}">Marcar como concluída</button>`}
       <button class="btn ghost" data-act="doubtLesson" data-arg="${id}">${I.help} Dúvida</button>
     </div>
-    <article class="prose">${L.html}</article>
+    <article class="prose transcript" data-lesson="${L.id}">${transcriptHtml(L)}</article>
+    <p class="muted small">Toque numa frase para ouvir a partir dela.</p>
+    ${lessonQuizCard(L)}
     ${next ? `<a class="row action next-link" href="#/aula/${next.id}"><span class="row-main"><span class="row-sub">Próxima: ${esc(next.label)}</span><span class="row-title">${esc(next.title)}</span></span>${I.chev}</a>`
       : actionRow('startQuiz', L.mod, `Quiz do Módulo ${L.modNum}`, 'Hora de testar o que você aprendeu')}`;
 }
@@ -557,9 +636,9 @@ function viewPlayer() {
   const upNext = P.queue.slice(i + 1).map((id) => D.byId[id]).filter(Boolean);
   return `<div class="player">
     <button class="back plain" data-act="closePlayer">‹ Voltar</button>
-    <div class="art">${I.vol}</div>
     <p class="eyebrow">Módulo ${L.modNum} · ${esc(L.label)}</p>
     <h1 class="player-title">${esc(L.title)}</h1>
+    <div class="lyrics transcript prose" data-lesson="${L.id}">${transcriptHtml(L)}</div>
     <input id="seek" class="seek" type="range" min="0" max="${Math.round(L.duration)}" value="0" step="1" aria-label="Posição do áudio">
     <div class="times"><span id="t-cur">0:00</span><span id="t-left"></span></div>
     <div class="controls">
@@ -570,7 +649,7 @@ function viewPlayer() {
     <div class="speeds" role="group" aria-label="Velocidade">${SPEEDS.map((s) => `<button data-act="speed" data-speed="${s}" class="${s === S.settings.speed ? 'on' : ''}">${String(s).replace('.', ',')}x</button>`).join('')}</div>
     <label class="toggle"><input type="checkbox" data-act="autoNext" ${S.settings.autoNext ? 'checked' : ''}> Tocar a próxima aula automaticamente</label>
     <button class="btn ghost wide" data-act="doubtLesson" data-arg="${L.id}">${I.help} Tenho uma dúvida neste trecho</button>
-    <a class="btn ghost wide" href="#/aula/${L.id}">${I.doc} Ler o texto da aula</a>
+    ${L.quiz?.length ? `<button class="btn ghost wide" data-act="startLessonQuiz" data-arg="${L.id}">${I.check} Responder as ${L.quiz.length} perguntas desta aula</button>` : ''}
     ${upNext.length ? `<h2 class="section-h">A seguir</h2><ul class="list">${upNext.map((l) => lessonRow(l, { queue: P.queue.slice(P.queue.indexOf(l.id)) })).join('')}</ul>` : ''}
   </div>`;
 }
@@ -654,7 +733,8 @@ let quizTimer = null;
 function startQuiz(kind, arg) {
   let items; let title;
   if (kind === 'mod') { const md = D.mods[arg]; items = md.quiz; title = `Quiz · Módulo ${md.num}`; }
-  else if (kind === 'erros') { items = D.questions.filter((q) => S.wrong[q.id]); title = 'Revisar erros'; }
+  else if (kind === 'aula') { const L = D.byId[arg]; items = L.quiz; title = `Perguntas · Módulo ${L.modNum} · ${L.label}`; }
+  else if (kind === 'erros') { items = [...D.questions, ...D.lessonQs].filter((q) => S.wrong[q.id]); title = 'Revisar erros'; }
   else { items = shuffle(D.questions).slice(0, 50); title = 'Simulado'; }
   if (!items.length) { toast('Nenhuma questão disponível.'); return; }
   audio.pause();
@@ -771,6 +851,10 @@ function finishQuiz() {
   const right = Q.items.filter((q, i) => isRight(q, Q.answers[i])).length;
   const score = right / Q.items.length;
   Q.done = true; Q.right = right; Q.score = score;
+  if (Q.kind === 'aula') {
+    const prev = S.lquiz[Q.arg] || { best: 0, attempts: 0 };
+    S.lquiz[Q.arg] = { best: Math.max(prev.best, score), last: score, attempts: prev.attempts + 1, n: Q.items.length };
+  }
   if (Q.kind === 'mod') {
     const prev = S.quiz[Q.arg] || { best: 0, attempts: 0 };
     S.quiz[Q.arg] = { best: Math.max(prev.best, score), last: score, attempts: prev.attempts + 1, lastAt: today(), n: Q.items.length };
@@ -805,6 +889,8 @@ function viewResult() {
       <p class="muted small">${esc(q.explanation)}</p></div>`).join('')}</section>` : ''}
     <div class="stack">
       ${Q.kind === 'mod' ? `<button class="btn wide" data-act="startQuiz" data-arg="${Q.arg}">Refazer o quiz</button>` : ''}
+      ${Q.kind === 'aula' ? `<button class="btn wide" data-act="startLessonQuiz" data-arg="${Q.arg}">Refazer as perguntas</button>
+        <a class="btn ghost wide" href="#/aula/${Q.arg}">Voltar para a aula</a>` : ''}
       ${Object.keys(S.wrong).length ? `<button class="btn ghost wide" data-act="startErros">Revisar questões erradas</button>` : ''}
       <a class="btn ghost wide" href="#/hoje">Voltar para Hoje</a>
     </div>`;
@@ -921,6 +1007,8 @@ const ACT = {
   install: async () => { if (deferredInstall) { deferredInstall.prompt(); deferredInstall = null; } },
   applyUpdate: () => { waitingSW?.postMessage('skipWaiting'); },
   startQuiz: (id) => startQuiz('mod', id),
+  startLessonQuiz: (id) => startQuiz('aula', id),
+  seekSeg: (arg) => seekSeg(arg),
   startErros: () => startQuiz('erros'),
   startSim: () => startQuiz('sim'),
   answer: (k) => answer(Number(k)),

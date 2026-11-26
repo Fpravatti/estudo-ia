@@ -1,0 +1,46 @@
+[
+ {
+  "pergunta": "Qual é a ordem recomendada na escada de adaptação de um modelo?",
+  "opcoes": [
+   "Pré-treino, fine-tuning, RAG, prompt",
+   "Prompt, depois RAG, depois fine-tuning, e pré-treino só em último caso",
+   "Fine-tuning primeiro, sempre",
+   "RAG e pré-treino ao mesmo tempo"
+  ],
+  "certa": 1,
+  "explicacao": "Comece pelo mais simples e barato. Suba um degrau só quando o anterior não bastar."
+ },
+ {
+  "pergunta": "O que é roteamento, ou cascata de modelos?",
+  "opcoes": [
+   "Usar modelos pequenos e baratos nos casos simples e modelos grandes só nos difíceis",
+   "Treinar vários modelos do zero",
+   "Enviar a mesma pergunta para todos os modelos e escolher a mais longa",
+   "Trocar de fornecedor todo mês"
+  ],
+  "certa": 0,
+  "explicacao": "O roteamento reduz custo e latência sem perder qualidade nos casos difíceis."
+ },
+ {
+  "pergunta": "Qual destas é uma alavanca para reduzir o custo de uma aplicação com LLM?",
+  "opcoes": [
+   "Enviar sempre o histórico completo da conversa",
+   "Pedir respostas mais longas",
+   "Usar cache de prompt e enviar só os trechos relevantes",
+   "Usar sempre o maior modelo"
+  ],
+  "certa": 2,
+  "explicacao": "Menos tokens de entrada, respostas concisas, cache de prompt, roteamento e processamento em lote reduzem o custo."
+ },
+ {
+  "pergunta": "Em que momento a IA responsável deve entrar no ciclo de vida?",
+  "opcoes": [
+   "Só depois do lançamento",
+   "Só na escolha do modelo",
+   "Só quando houver uma reclamação",
+   "Em todas as fases, do escopo ao monitoramento"
+  ],
+  "certa": 3,
+  "explicacao": "IA responsável atravessa o ciclo: riscos no escopo, vieses na escolha, dados no treino, red teaming na avaliação e guardrails e auditoria em produção."
+ }
+]

@@ -75,3 +75,12 @@ Para classificar milhões de mensagens com baixo custo, um modelo encoder ajusta
 ## Resumo em um minuto
 
 O Transformer substituiu as redes recorrentes com a autoatenção, que processa a sequência em paralelo e captura relações distantes. Encoder-only, como o BERT, usa atenção bidirecional e tokens mascarados, e é ótimo para classificação e embeddings. Decoder-only, como GPT e Llama, usa atenção causal e previsão do próximo token, e domina a geração. Encoder-decoder, como T5 e BART, é natural para tradução e sumarização. Embeddings representam significado como vetores, e textos parecidos ficam próximos, o que sustenta a busca semântica.
+
+## Termos-chave desta aula
+
+- **Self-attention**: cada token avalia a importância de todos os outros tokens.
+- **Encoder-only**: como o BERT. Lê nos dois sentidos. Bom para classificar e gerar embeddings.
+- **Decoder-only**: como GPT e Llama. Só olha para trás. Bom para gerar texto.
+- **Encoder-decoder**: como T5 e BART. Transforma uma sequência em outra: tradução e resumo.
+- **Embedding**: vetor de números que representa o significado de um texto.
+- **Similaridade de cosseno**: a medida de quão próximos estão dois embeddings.

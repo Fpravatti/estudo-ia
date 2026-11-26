@@ -1,0 +1,46 @@
+[
+ {
+  "pergunta": "O que é o efeito lost in the middle?",
+  "opcoes": [
+   "O modelo perde a conexão com a internet",
+   "O modelo usa pior a informação que está no meio de contextos longos",
+   "O modelo esquece o system prompt",
+   "O modelo responde só pela metade"
+  ],
+  "certa": 1,
+  "explicacao": "Estudos mostraram que os modelos aproveitam melhor o começo e o fim do contexto. Por isso RAG, que envia só o relevante, continua útil mesmo com janelas enormes."
+ },
+ {
+  "pergunta": "Como a técnica PAL resolve problemas de aritmética?",
+  "opcoes": [
+   "O modelo escreve código e um interpretador executa a conta",
+   "O modelo decora tabelas de multiplicação",
+   "Aumentando a temperatura",
+   "Usando um modelo de difusão"
+  ],
+  "certa": 0,
+  "explicacao": "No PAL, o modelo gera um programa, por exemplo em Python, e o interpretador faz o cálculo. O computador não erra a conta."
+ },
+ {
+  "pergunta": "No function calling, quem executa a ferramenta?",
+  "opcoes": [
+   "O próprio LLM, dentro dos seus parâmetros",
+   "O usuário, manualmente",
+   "A aplicação, a partir do pedido estruturado que o modelo gerou",
+   "O tokenizador"
+  ],
+  "certa": 2,
+  "explicacao": "O modelo só gera o pedido, com nome da ferramenta e argumentos. A aplicação executa e devolve o resultado para o modelo continuar."
+ },
+ {
+  "pergunta": "O que caracteriza um prompt injection indireto?",
+  "opcoes": [
+   "O usuário digita a instrução maliciosa no chat",
+   "O modelo é treinado com dados errados",
+   "O modelo recebe um prompt muito longo",
+   "As instruções maliciosas estão escondidas num documento, e-mail ou página que o modelo lê"
+  ],
+  "certa": 3,
+  "explicacao": "No indireto, o ataque vem de um conteúdo externo processado pelo modelo. Por isso todo conteúdo externo deve ser tratado como não confiável."
+ }
+]
